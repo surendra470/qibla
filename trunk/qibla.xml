@@ -41,7 +41,6 @@ var pCountry = prefs__MODULE_ID__.getString("country");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
-  var obj = this;
   var map;
   var mapElem;
   var xMrk; 
@@ -85,7 +84,7 @@ function Process__MODULE_ID__() {
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
     } 
-  }   
+  };
   
   function centreMap(pLat, pLng) {
     if (panMap == false) {
@@ -114,7 +113,7 @@ function Process__MODULE_ID__() {
     geo.setBaseCountryCode(pCountry);
     geo.getLocations(pAddr, procResult);
     return false;
-  }
+  };
   
   function procResult(pResult) {
     map.clearOverlays(); 
@@ -125,7 +124,7 @@ function Process__MODULE_ID__() {
         map.hideControls();
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          info.innerHTML += "<a href='javascript:obj.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
+          info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length.length - 1)
             info.innerHTML += "<br />";
         }
