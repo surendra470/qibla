@@ -125,7 +125,7 @@ function Process__MODULE_ID__() {
         map.hideControls();
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
+          info.innerHTML += "<a href='javascript:obj.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length.length - 1)
             info.innerHTML += "<br />";
         }
