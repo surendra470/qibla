@@ -40,7 +40,7 @@ var pLng = prefs__MODULE_ID__.getString("location.long");
 var pCountry = prefs__MODULE_ID__.getString("country");
 var process__MODULE_ID__;
 
-function Process__MODULE_ID__() {
+var Process__MODULE_ID__ = function() {
     var map;
     var mapElem;
     var xMrk; 
