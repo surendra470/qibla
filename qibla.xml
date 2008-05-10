@@ -30,7 +30,8 @@
 />
 
 <Content type="html"><![CDATA[ 
-<script src="http://www.google.com/jsapi?key=internal-ig-mapsearch" type="text/javascript"></script>
+<script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
+
 <script type="text/javascript">
 google.load("maps", "2");
 var prefs__MODULE_ID__ = new _IG_Prefs(__MODULE_ID__);
@@ -52,7 +53,7 @@ function Process__MODULE_ID__() {
     var geo = new google.maps.ClientGeocoder();
     var reasons = [];
     var zoom = 12;
-    var imgBase = "/ig/modules/__MODULE_ID__/";
+    var imgBase = "http://__MODULE_ID__.googlecode.com/svn/trunk/";
     reasons[G_GEO_SUCCESS]            = "Success";
     reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was either missing or had no value.";
     reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No geographic location could be found for the specified address.";
@@ -153,12 +154,12 @@ function init__MODULE_ID__() {
 
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
-<!--
+
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="Please enter your address..." />
-<input type="image" src="/ig/modules/__MODULE_ID__/magicwand.gif" id="submit__MODULE_ID__" alt="Send address" title="Send address" />
+<input type="image" src="http://__MODULE_ID__.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="Send address" title="Send address" />
 </form>
--->
+
 <div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
 ]]>
 </Content>
