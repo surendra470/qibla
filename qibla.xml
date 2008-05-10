@@ -40,7 +40,7 @@ var pLng = prefs__MODULE_ID__.getString("location.long");
 var pCountry = prefs__MODULE_ID__.getString("country");
 var process__MODULE_ID__;
 
-var Process__MODULE_ID__ = function() {
+function Process__MODULE_ID__() {
     var map;
     var mapElem;
     var xMrk; 
@@ -111,39 +111,39 @@ var Process__MODULE_ID__ = function() {
     
     this.showAddr = function(pAddr) {
         geo.setBaseCountryCode(pCountry);
-        geo.getLocations(pAddr, function (res)
-        {
-            map.clearOverlays(); 
-            if (res.Status.code == G_GEO_SUCCESS) {
-                if (res.Placemark.length > 1) {
-                    var info = document.createElement("div");
-                    panMap = false;
-                    map.hideControls();
-                    for (var i=0; i < res.Placemark.length; i++) {
-                      var p = res.Placemark[i].Point.coordinates;
-                      info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + res.Placemark[i].address + "</a>";
-                      if (i != res.Placemark.length.length - 1)
-                          info.innerHTML += "<br />";
-                    }
+        geo.getLocations(pAddr, processGeo);
+        return false;
+    }
     
-                    xMrk.openInfoWindowHtml('<div id="info">' + info.innerHTML + "</div>", {maxContent: info, maxTitle: "Please choose the closest match", noCloseOnClick: true});
-                    map.getInfoWindow().maximize();
+    var processGeo = new function(pResult) {
+        map.clearOverlays(); 
+        if (res.Status.code == G_GEO_SUCCESS) {
+            if (res.Placemark.length > 1) {
+                var info = document.createElement("div");
+                panMap = false;
+                map.hideControls();
+                for (var i=0; i < res.Placemark.length; i++) {
+                  var p = res.Placemark[i].Point.coordinates;
+                  info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + res.Placemark[i].address + "</a>";
+                  if (i != res.Placemark.length.length - 1)
+                      info.innerHTML += "<br />";
                 }
-                else {
-                    var p = res.Placemark[0].Point.coordinates;
-                    centreMap(p[1],p[0]);
-                }
+
+                xMrk.openInfoWindowHtml('<div id="info">' + info.innerHTML + "</div>", {maxContent: info, maxTitle: "Please choose the closest match", noCloseOnClick: true});
+                map.getInfoWindow().maximize();
             }
             else {
-                var reason = "Code " + res.Status.code;
-                if (reasons[res.Status.code]) {
-                    reason = reasons[res.Status.code]
-                } 
-                alert(pAddr + " was not found. " + reason);
+                var p = res.Placemark[0].Point.coordinates;
+                centreMap(p[1],p[0]);
             }
-        });
-        
-        return false;
+        }
+        else {
+            var reason = "Code " + res.Status.code;
+            if (reasons[res.Status.code]) {
+                reason = reasons[res.Status.code]
+            } 
+            alert(pAddr + " was not found. " + reason);
+        }
     }
 }
 
