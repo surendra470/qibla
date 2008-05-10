@@ -1,0 +1,4 @@
+<messagebundle>
+  <msg name="address_enter">Please enter your address</msg>
+  <msg name="address_submit">Send address</msg>
+</messagebundle> 
