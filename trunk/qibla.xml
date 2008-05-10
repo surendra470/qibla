@@ -86,7 +86,7 @@ function Process__MODULE_ID__() {
       } 
     }   
     
-    function centreMap(pLat, pLng) {
+    var centreMap = function(pLat, pLng) {
         if (panMap == false) {
             map.showControls();
             panMap = true;  
@@ -94,7 +94,7 @@ function Process__MODULE_ID__() {
         map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
     }
     
-    function drawMap() {
+    var drawMap = function() {
         if (panMap == true) {
             var ctr = map.getCenter();
             map.clearOverlays();
@@ -104,7 +104,7 @@ function Process__MODULE_ID__() {
         }
     }
     
-    function flyCrow(pLat, pLng) {
+    var flyCrow = function(pLat, pLng) {
         pline = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
         map.addOverlay(pline);
     }
@@ -154,12 +154,15 @@ function init__MODULE_ID__() {
 
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
-
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(address__MODULE_ID__.value); return false">
+<style>
+#address__MODULE_ID__ {width:80%;color:grey;}
+#form__MODULE_ID__ {margin:0;padding:0;}
+#submit__MODULE_ID__ {border-style:none;}
+</style>
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="Please enter your address..." />
 <input type="image" src="http://__MODULE_ID__.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="Send address" title="Send address" />
 </form>
-
 <div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
 ]]>
 </Content>
