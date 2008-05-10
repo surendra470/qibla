@@ -10,9 +10,8 @@
     screenshot="/ig/modules/qibla/screen.png"
     category="tools"
     render_inline="optional"
-    height="300"
     scrolling="false"
-    description="Enter your address to get the Qibla direction.">
+    description="Discover the Qibla direction.">
     <Locale lang="en" country="uk"/>
 </ModulePrefs>
 
