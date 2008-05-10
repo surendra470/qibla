@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Qibla Direction"
+    directory_title="Qibla Direction"
+    author=""
+    author_email=""
+    author_affiliation=""
+    author_location="Glasgow, UK"
+    thumbnail="/ig/modules/qibla/thumb.png"
+    screenshot="/ig/modules/qibla/screen.png"
+    category="tools"
+    render_inline="optional"
+    height="300"
+    scrolling="false"
+    description="Enter your address to get the Qibla direction.">
+    <Locale lang="en" country="uk"/>
+</ModulePrefs>
+
+<UserPref
+   name="location"
+   display_name="Initial Location"
+   datatype="location"
+   default_value="Buckingham Palace, London"
+/>
+
+<UserPref
+   name="country"
+   display_name="Geocoder Base Country"
+   datatype="string"
+   default_value="uk"
+/>
+
+<UserPref
+   name="height"
+   display_name="Map Height"
+   datatype="string"
+   default_value="300"
+/>
+
+<Content type="html"><![CDATA[ 
+<script src="http://www.google.com/jsapi?key=internal-ig-mapsearch" type="text/javascript"></script>
+<script type="text/javascript">
+google.load("maps", "2");
+var prefs__MODULE_ID__ = new _IG_Prefs(__MODULE_ID__);
+var pLat = prefs__MODULE_ID__.getString("location.lat");
+var pLng = prefs__MODULE_ID__.getString("location.long");
+var pCountry = prefs__MODULE_ID__.getString("country");
+var pHeight = prefs__MODULE_ID__.getString("height");
+var process__MODULE_ID__;
+
+function Process__MODULE_ID__() {
+    var map;
+    var mapElem;
+    var xMrk; 
+    var pline;
+    var typeCtrl;
+    var zoomCtrl; 
+    var qbLat = 21.4225;
+    var qbLng = 39.8261;
+    var panMap = true;
+    var geo = new google.maps.ClientGeocoder();
+    var reasons = [];
+    var zoom = 12;
+    var imgBase = "/ig/modules/__MODULE_ID__/";
+    reasons[G_GEO_SUCCESS]            = "Success";
+    reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was either missing or had no value.";
+    reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No geographic location could be found for the specified address.";
+    reasons[G_GEO_UNAVAILABLE_ADDRESS]= "Unavailable address:  The location of the given address cannot be returned due to legal or contractual reasons.";
+    reasons[G_GEO_BAD_KEY]            = "Bad key: The API key is either invalid or does not match the domain for which it was given";
+    reasons[G_GEO_TOO_MANY_QUERIES]   = "Too many queries: The daily geocoding quota for this site has been exceeded.";
+    reasons[G_GEO_SERVER_ERROR]       = "Server error: The request could not be successfully processed.";
+    
+    this.init = function() {
+      if (google.maps.BrowserIsCompatible()) {
+        mapElem = document.getElementById("map__MODULE_ID__");
+        map = new google.maps.Map2(mapElem);
+        centreMap(pLat, pLng);
+        typeCtrl = new google.maps.HierarchicalMapTypeControl();
+        typeCtrl.clearRelationships();
+        typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
+        zoomCtrl = new google.maps.LargeMapControl();
+        map.addControl(typeCtrl);
+        map.addControl(zoomCtrl);
+    
+        var xIco = new google.maps.Icon();
+        xIco.image = imgBase + "crosshair.gif";
+        xIco.iconSize = new google.maps.Size(21, 21);
+        xIco.iconAnchor = new google.maps.Point(11, 11);
+        xIco.infoWindowAnchor = new google.maps.Point(11, 11); 
+        xMrk = new google.maps.Marker(map.getCenter(), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+        
+        drawMap();
+        google.maps.Event.addListener(map, "moveend", drawMap);
+      } 
+    }   
+    
+    function centreMap(pLat, pLng) {
+        if (panMap == false) {
+            map.showControls();
+            panMap = true;  
+        }
+        map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
+    }
+    
+    function drawMap() {
+        if (panMap == true) {
+            var ctr = map.getCenter();
+            map.clearOverlays();
+            xMrk.setLatLng(ctr);
+            map.addOverlay(xMrk);
+            flyCrow(ctr.lat(), ctr.lng());
+        }
+    }
+    
+    function flyCrow(pLat, pLng) {
+        pline = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
+        map.addOverlay(pline);
+    }
+    
+    this.showAddr = function(pAddr) {
+        geo.setBaseCountryCode(pCountry);
+        geo.getLocations(pAddr, function (res)
+        {
+            map.clearOverlays(); 
+            if (res.Status.code == G_GEO_SUCCESS) {
+                if (res.Placemark.length > 1) {
+                    var info = document.createElement("div");
+                    panMap = false;
+                    map.hideControls();
+                    for (var i=0; i < res.Placemark.length; i++) {
+                      var p = res.Placemark[i].Point.coordinates;
+                      info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + res.Placemark[i].address + "</a>";
+                      if (i != res.Placemark.length.length - 1)
+                          info.innerHTML += "<br />";
+                    }
+    
+                    xMrk.openInfoWindowHtml('<div id="info">' + info.innerHTML + "</div>", {maxContent: info, maxTitle: "Please choose the closest match", noCloseOnClick: true});
+                    map.getInfoWindow().maximize();
+                }
+                else {
+                    var p = res.Placemark[0].Point.coordinates;
+                    centreMap(p[1],p[0]);
+                }
+            }
+            else {
+                var reason = "Code " + res.Status.code;
+                if (reasons[res.Status.code]) {
+                    reason = reasons[res.Status.code]
+                } 
+                alert(pAddr + " was not found. " + reason);
+            }
+        });
+        
+        return false;
+    }
+}
+
+function init__MODULE_ID__() {
+    process__MODULE_ID__ = new Process__MODULE_ID__();
+    process__MODULE_ID__.init();
+}
+
+_IG_RegisterOnloadHandler(init__MODULE_ID__);
+</script>
+<!--
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(address__MODULE_ID__.value); return false">
+<input type="text" id="address__MODULE_ID__" maxlength="50" value="Please enter your address..." />
+<input type="image" src="/ig/modules/__MODULE_ID__/magicwand.gif" id="submit__MODULE_ID__" alt="Send address" title="Send address" />
+</form>
+-->
+<div id="map__MODULE_ID__" style="width:100%;height: __UP_hght__px"></div>
+]]>
+</Content>
+</Module>
