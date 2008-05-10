@@ -86,13 +86,13 @@ function Process__MODULE_ID__() {
     } 
   };
   
-  function centreMap(pLat, pLng) {
+  this.centreMap = function(pLat, pLng) {
     if (panMap == false) {
       map.showControls();
       panMap = true;  
     }
     map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
-  }
+  };
   
   function drawMap() {
     if (panMap == true) {
@@ -124,7 +124,7 @@ function Process__MODULE_ID__() {
         map.hideControls();
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
+          info.innerHTML += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length.length - 1)
             info.innerHTML += "<br />";
         }
