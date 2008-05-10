@@ -112,21 +112,21 @@ function Process__MODULE_ID__() {
   
   this.showAddr = function(pAddr) {
     geo.setBaseCountryCode(pCountry);
-    geo.getLocations(pAddr, processGeo);
+    geo.getLocations(pAddr, procResult);
     return false;
   }
   
-  function processGeo(pResult) {
+  function procResult(pResult) {
     map.clearOverlays(); 
-    if (res.Status.code == G_GEO_SUCCESS) {
-      if (res.Placemark.length > 1) {
+    if (pResult.Status.code == G_GEO_SUCCESS) {
+      if (pResult.Placemark.length > 1) {
         var info = document.createElement("div");
         panMap = false;
         map.hideControls();
-        for (var i=0; i < res.Placemark.length; i++) {
-          var p = res.Placemark[i].Point.coordinates;
-          info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + res.Placemark[i].address + "</a>";
-          if (i != res.Placemark.length.length - 1)
+        for (var i=0; i < pResult.Placemark.length; i++) {
+          var p = pResult.Placemark[i].Point.coordinates;
+          info.innerHTML += "<a href='javascript:centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
+          if (i != pResult.Placemark.length.length - 1)
             info.innerHTML += "<br />";
         }
 
@@ -134,14 +134,14 @@ function Process__MODULE_ID__() {
         map.getInfoWindow().maximize();
       }
       else {
-        var p = res.Placemark[0].Point.coordinates;
+        var p = pResult.Placemark[0].Point.coordinates;
         centreMap(p[1],p[0]);
       }
     }
     else {
-      var reason = "Code " + res.Status.code;
-      if (reasons[res.Status.code]) {
-        reason = reasons[res.Status.code]
+      var reason = "Code " + pResult.Status.code;
+      if (reasons[pResult.Status.code]) {
+        reason = reasons[pResult.Status.code]
       } 
       alert(pAddr + " was not found. " + reason);
     }
