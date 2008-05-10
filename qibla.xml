@@ -92,6 +92,7 @@ function Process__MODULE_ID__() {
       map.showControls();
       panMap = true;  
     }
+    map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
   };
   
@@ -122,6 +123,7 @@ function Process__MODULE_ID__() {
       if (pResult.Placemark.length > 1) {
         var info = document.createElement("div");
         panMap = false;
+        if (map) alert("map exists");
         map.hideControls();
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
