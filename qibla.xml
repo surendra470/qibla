@@ -41,6 +41,7 @@ var pCountry = prefs__MODULE_ID__.getString("country");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
+  var obj = this;
   var map;
   var mapElem;
   var xMrk; 
@@ -66,7 +67,7 @@ function Process__MODULE_ID__() {
     if (google.maps.BrowserIsCompatible()) {
       mapElem = document.getElementById("map__MODULE_ID__");
       map = new google.maps.Map2(mapElem);
-      centreMap(pLat, pLng);
+      obj.centreMap(pLat, pLng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
