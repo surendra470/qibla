@@ -88,6 +88,8 @@ function Process__MODULE_ID__() {
   };
   
   this.centreMap = function(pLat, pLng) {
+    alert("inside centreMap");
+    alert(panMap);
     if (panMap == false) {
       map.showControls();
       panMap = true;  
@@ -132,8 +134,9 @@ function Process__MODULE_ID__() {
           if (i != pResult.Placemark.length.length - 1)
             info.innerHTML += "<br />";
         }
-
+        alert("opening info window");
         xMrk.openInfoWindowHtml('<div id="info">' + info.innerHTML + "</div>", {maxContent: info, maxTitle: "Please choose the closest match", noCloseOnClick: true});
+        alert("done opening info window");
         map.getInfoWindow().maximize();
       }
       else {
