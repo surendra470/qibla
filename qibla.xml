@@ -33,7 +33,7 @@
 <Content type="html"><![CDATA[ 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2");
+google.load("maps", "2.x");
 var prefs__MODULE_ID__ = new _IG_Prefs(__MODULE_ID__);
 var pLat = prefs__MODULE_ID__.getString("location.lat");
 var pLng = prefs__MODULE_ID__.getString("location.long");
@@ -125,9 +125,7 @@ function Process__MODULE_ID__() {
       if (pResult.Placemark.length > 1) {
         var info = document.createElement("div");
         panMap = false;
-        alert("hiding controls");
         map.hideControls();
-        alert("done hiding controls");
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
           info.innerHTML += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
