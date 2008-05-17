@@ -148,7 +148,7 @@ function Process__MODULE_ID__() {
         }
         //xMrk.openInfoWindowHtml('<div id="msg__MODULE_ID__">' + msg.innerHTML + "</div>", {maxContent: msg__MODULE_ID__, maxTitle: "Please choose the closest match", noCloseOnClick: true});
         //map.getInfoWindow().maximize();
-        msg = miniMsg.createDismissibleMessage(msgCnt, showCtrl);
+        msg = miniMsg.createDismissibleMessage(msgCnt, dismissMsg);
         msg.style.cursor = "pointer";
       }
       else {
@@ -167,6 +167,7 @@ function Process__MODULE_ID__() {
   
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
+    showCtrl();
     flyCrow(lat, lng);
   };
 }
