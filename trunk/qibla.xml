@@ -37,9 +37,9 @@
 <script type="text/javascript">
 google.load("maps", "2.x");
 var prefs__MODULE_ID__ = new _IG_Prefs(__MODULE_ID__);
-var pLat = prefs__MODULE_ID__.getString("location.lat");
-var pLng = prefs__MODULE_ID__.getString("location.long");
-var pCountry = prefs__MODULE_ID__.getString("country");
+var lat = prefs__MODULE_ID__.getString("location.lat");
+var lng = prefs__MODULE_ID__.getString("location.long");
+var country = prefs__MODULE_ID__.getString("country");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
@@ -69,7 +69,7 @@ function Process__MODULE_ID__() {
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
-      obj.centreMap(pLat, pLng);
+      obj.centreMap(lat, lng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -120,12 +120,15 @@ function Process__MODULE_ID__() {
   }
   
   this.showAddr = function(pAddr) {
-    geo.setBaseCountryCode(pCountry);
+    geo.setBaseCountryCode(country);
     geo.getLocations(pAddr, procResult);
     return false;
   };
   
   function procResult(pResult) {
+    var ctr = map.getCenter();
+    lat = ctr.lat();
+    lng = ctr.lng();
     map.clearOverlays(); 
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
@@ -164,6 +167,7 @@ function Process__MODULE_ID__() {
   
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
+    flyCrow(lat, lng);
   };
 }
     
