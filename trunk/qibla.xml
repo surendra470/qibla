@@ -148,12 +148,12 @@ function Process__MODULE_ID__() {
         }
         //xMrk.openInfoWindowHtml('<div id="msg__MODULE_ID__">' + msg.innerHTML + "</div>", {maxContent: msg__MODULE_ID__, maxTitle: "Please choose the closest match", noCloseOnClick: true});
         //map.getInfoWindow().maximize();
-        msg = miniMsg.createDismissibleMessage(msgCnt, dismissMsg);
+        msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
         msg.style.cursor = "pointer";
       }
       else {
         var p = pResult.Placemark[0].Point.coordinates;
-        centreMap(p[1],p[0]);
+        obj.centreMap(p[1],p[0]);
       }
     }
     else {
