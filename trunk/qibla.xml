@@ -35,7 +35,7 @@
 <Content type="html"><![CDATA[
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2.x");
+google.load("maps", "2");
 var prefs__MODULE_ID__ = new _IG_Prefs(__MODULE_ID__);
 var lat = prefs__MODULE_ID__.getString("location.lat");
 var lng = prefs__MODULE_ID__.getString("location.long");
@@ -58,6 +58,7 @@ function Process__MODULE_ID__() {
   var reasons = [];
   var zoom = 12;
   var imgBase = "http://__MODULE_ID__.googlecode.com/svn/trunk/";
+  var analysed = false;
   reasons[G_GEO_SUCCESS]            = "Success";
   reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was either missing or had no value.";
   reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No geographic location could be found for the specified address.";
@@ -86,6 +87,7 @@ function Process__MODULE_ID__() {
       
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
+      google.maps.Event.addListener(map, "zoomend", analyse);
     } 
   };
   
@@ -111,6 +113,13 @@ function Process__MODULE_ID__() {
       xMrk.setLatLng(ctr);
       map.addOverlay(xMrk);
       flyCrow(ctr.lat(), ctr.lng());
+    }
+  }
+  
+  function analyse() {
+    if (!analysed) {
+      _IG_Analytics("UA-1059171-6", "/qibla/navigated");
+      analysed = true
     }
   }
   
@@ -180,7 +189,7 @@ function init__MODULE_ID__() {
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <script>
- _IG_Analytics("UA-xxxxxx-x", "/qibla");
+ _IG_Analytics("UA-1059171-6", "/qibla");
 </script>
 <style>
 #address__MODULE_ID__ {width:80%;color:grey;}
@@ -189,7 +198,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </style>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="http://__MODULE_ID__.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" onclick="_IG_Analytics('UA-xxxxxx-x', '/qibla/geo')" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" onclick="_IG_Analytics('UA-1059171-6', '/qibla/geocoded')" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
 <div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
 ]]>
