@@ -53,6 +53,8 @@ function Process__MODULE_ID__() {
   var qbLng = 39.8261;
   var panMap = true;
   var geo = new google.maps.ClientGeocoder();
+  var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
+  var msg;
   var reasons = [];
   var zoom = 12;
   var imgBase = "http://__MODULE_ID__.googlecode.com/svn/trunk/";
@@ -136,15 +138,14 @@ function Process__MODULE_ID__() {
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
           //msg.innerHTML += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             //info.innerHTML += "<br />";
             msgCnt += "<br />";
         }
         //xMrk.openInfoWindowHtml('<div id="msg__MODULE_ID__">' + msg.innerHTML + "</div>", {maxContent: msg__MODULE_ID__, maxTitle: "Please choose the closest match", noCloseOnClick: true});
         //map.getInfoWindow().maximize();
-        var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
-        var msg = miniMsg.createDismissibleMessage(msgCnt, showCtrl);
+        msg = miniMsg.createDismissibleMessage(msgCnt, showCtrl);
         msg.style.cursor = "pointer";
       }
       else {
@@ -160,6 +161,10 @@ function Process__MODULE_ID__() {
       alert(pAddr + " was not found. " + reason);
     }
   }
+  
+  this.dismissMsg = function() {
+    miniMsg.dismissMessage(msg);
+  };
 }
     
 function init__MODULE_ID__() {
