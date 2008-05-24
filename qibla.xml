@@ -12,8 +12,8 @@
     render_inline="optional"
     scrolling="false"
     description="Discover the Qibla direction.">
-    <Locale messages="ALL_ALL.xml"/>
-    <Locale lang="ar" messages="ar_ALL.xml" language_direction="rtl"/>
+    <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
+    <Locale lang="ar" messages="http://qibla.googlecode.com/svn/trunk/ar_ALL.xml" language_direction="rtl"/>
     <Require feature="minimessage"/>
     <Require feature="analytics"/>
 </ModulePrefs>
