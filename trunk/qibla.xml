@@ -33,14 +33,14 @@
 />
 
 <UserPref
-   name="bg_color"
+   name="bg"
    display_name="Message Background Color"
    datatype="string"
    default_value="fff4c2"
 />
 
 <UserPref
-   name="fg_color"
+   name="fg"
    display_name="Message Foreground Color"
    datatype="string"
    default_value="ffffff"
@@ -48,7 +48,7 @@
 
 <Content type="html"><![CDATA[
 <style>
-.mmlib_table__MODULE_ID__ {background-color:#__UP_bg_color__;color:#__UP_fg_color__;}
+.mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
 </style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
