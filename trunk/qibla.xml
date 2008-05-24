@@ -75,19 +75,16 @@ function Process__MODULE_ID__() {
   var zoom = 12;
   var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
-  /*
   var reasons = [];
-  reasons[G_GEO_SUCCESS] = "Success";
-  reasons[G_GEO_MISSING_ADDRESS] = "The address was empty.";
-  reasons[G_GEO_UNKNOWN_ADDRESS] = "This is an unknown address.";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS] = "This address cannot be found due to legal or contractual reasons.";
-  reasons[G_GEO_BAD_KEY] = "The API key is either invalid or does not match the domain for which it was given.";
-  reasons[G_GEO_TOO_MANY_QUERIES] = "The geocoding quota has been exceeded.";
-  reasons[G_GEO_SERVER_ERROR] = "This address could not be processed due to a fault.";
-  */
+  reasons[G_GEO_SUCCESS] = "G_GEO_SUCCESS";
+  reasons[G_GEO_MISSING_ADDRESS] = "G_GEO_MISSING_ADDRESS";
+  reasons[G_GEO_UNKNOWN_ADDRESS] = "G_GEO_UNKNOWN_ADDRESS";
+  reasons[G_GEO_UNAVAILABLE_ADDRESS] = "G_GEO_UNAVAILABLE_ADDRESS";
+  reasons[G_GEO_BAD_KEY] = "G_GEO_BAD_KEY";
+  reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
+  reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
+
   this.init = function() {
-    var addr = document.getElementById("address__MODULE_ID__");
-    
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       obj.centreMap(lat, lng);
@@ -182,10 +179,10 @@ function Process__MODULE_ID__() {
       }
     }
     else {
-      var code = pResult.Status.code;
-      var reason = "Code " + code;
-      if (prefs.getMsg(code))
-        reason = getMsg(code);
+      var reason = "Code " + pResult.Status.code;
+      if (reasons[pResult.Status.code]) {
+        reason = prefs.getMsg(reasons[pResult.Status.code]);
+      }
       msg = miniMsg.createDismissibleMessage(reason);
     }
   }
