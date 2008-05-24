@@ -3,7 +3,7 @@
 <ModulePrefs title="Qibla Direction"
     directory_title="Qibla Direction"
     author=""
-    author_email=""
+    author_email="futureindustries@yahoo.com"
     author_affiliation=""
     author_location="Glasgow, UK"
     thumbnail="/ig/modules/qibla/thumb.png"
@@ -12,8 +12,8 @@
     render_inline="optional"
     scrolling="false"
     description="Discover the Qibla direction.">
-    <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
-    <Locale lang="ar" messages="http://qibla.googlecode.com/svn/trunk/ar_ALL.xml" language_direction="rtl"/>
+    <Locale messages="ALL_ALL.xml"/>
+    <Locale lang="ar" messages="ar_ALL.xml" language_direction="rtl"/>
     <Require feature="minimessage"/>
     <Require feature="analytics"/>
 </ModulePrefs>
@@ -32,7 +32,24 @@
    default_value="uk"
 />
 
+<UserPref
+   name="bg_color"
+   display_name="Message Background Color"
+   datatype="string"
+   default_value="#fff4c2"
+/>
+
+<UserPref
+   name="fg_color"
+   display_name="Message Foreground Color"
+   datatype="string"
+   default_value="#ffffff"
+/>
+
 <Content type="html"><![CDATA[
+<style>
+.mmlib_table__MODULE_ID__ {background-color:__UP_bg_color__;color:__UP_fg_color__;}
+</style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
 google.load("maps", "2");
@@ -45,10 +62,10 @@ var process__MODULE_ID__;
 function Process__MODULE_ID__() {
   var obj = this;
   var map;
-  var xMrk; 
+  var xMrk;
   var poly;
   var typeCtrl;
-  var zoomCtrl; 
+  var zoomCtrl;
   var qbLat = 21.4225;
   var qbLng = 39.8261;
   var panMap = true;
@@ -57,16 +74,16 @@ function Process__MODULE_ID__() {
   var msg;
   var reasons = [];
   var zoom = 12;
-  var imgBase = "http://__MODULE_ID__.googlecode.com/svn/trunk/";
+  var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
   reasons[G_GEO_SUCCESS]            = "Success";
-  reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was either missing or had no value.";
-  reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No geographic location could be found for the specified address.";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS]= "Unavailable address:  The location of the given address cannot be returned due to legal or contractual reasons.";
-  reasons[G_GEO_BAD_KEY]            = "Bad key: The API key is either invalid or does not match the domain for which it was given";
-  reasons[G_GEO_TOO_MANY_QUERIES]   = "Too many queries: The daily geocoding quota for this site has been exceeded.";
-  reasons[G_GEO_SERVER_ERROR]       = "Server error: The request could not be successfully processed.";
-  
+  reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was empty.";
+  reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No location could be found for this address.";
+  reasons[G_GEO_UNAVAILABLE_ADDRESS]= "Unavailable address:  The location of this address cannot be found due to legal or contractual reasons.";
+  reasons[G_GEO_BAD_KEY]            = "Bad key: The API key is either invalid or does not match the domain for which it was given.";
+  reasons[G_GEO_TOO_MANY_QUERIES]   = "Too many queries: The geocoding quota has been exceeded.";
+  reasons[G_GEO_SERVER_ERROR]       = "Server error: The request could not be processed.";
+
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -77,35 +94,35 @@ function Process__MODULE_ID__() {
       zoomCtrl = new google.maps.LargeMapControl();
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
-  
+
       var xIco = new google.maps.Icon();
       xIco.image = imgBase + "crosshair.gif";
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
-      xIco.infoWindowAnchor = new google.maps.Point(11, 11); 
+      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(map.getCenter(), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
-      
+
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", analyse);
-    } 
+    }
   };
-  
+
   this.centreMap = function(pLat, pLng) {
     showCtrl();
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
   };
-  
+
   function showCtrl() {
     if (panMap == false) {
       //map.showControls();
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
-      panMap = true;  
-    }  
+      panMap = true;
+    }
   }
-  
+
   function drawMap() {
     if (panMap == true) {
       var ctr = map.getCenter();
@@ -115,33 +132,32 @@ function Process__MODULE_ID__() {
       flyCrow(ctr.lat(), ctr.lng());
     }
   }
-  
+
   function analyse() {
     if (!analysed) {
-      _IG_Analytics("UA-1059171-6", "/qibla/navigated");
-      analysed = true
+      _IG_Analytics("UA-1059171-6", "/qibla/navigate");
+      analysed = true;
     }
   }
-  
+
   function flyCrow(pLat, pLng) {
     poly = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
     map.addOverlay(poly);
   }
-  
+
   this.showAddr = function(pAddr) {
     geo.setBaseCountryCode(country);
     geo.getLocations(pAddr, procResult);
     return false;
   };
-  
+
   function procResult(pResult) {
     var ctr = map.getCenter();
     lat = ctr.lat();
     lng = ctr.lng();
-    map.clearOverlays(); 
+    map.clearOverlays();
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
-        //msg = document.createElement("div");
         panMap = false;
         //map.hideControls();
         map.removeControl(typeCtrl);
@@ -149,14 +165,10 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          //msg.innerHTML += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ")'>" + pResult.Placemark[i].address + "</a>";
           msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
-            //info.innerHTML += "<br />";
             msgCnt += "<br />";
         }
-        //xMrk.openInfoWindowHtml('<div id="msg__MODULE_ID__">' + msg.innerHTML + "</div>", {maxContent: msg__MODULE_ID__, maxTitle: "Please choose the closest match", noCloseOnClick: true});
-        //map.getInfoWindow().maximize();
         msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
         msg.style.cursor = "pointer";
       }
@@ -169,18 +181,18 @@ function Process__MODULE_ID__() {
       var reason = "Code " + pResult.Status.code;
       if (reasons[pResult.Status.code]) {
         reason = reasons[pResult.Status.code]
-      } 
-      alert(pAddr + " was not found. " + reason);
+      }
+      msg = miniMsg.createDismissibleMessage(pAddr + " was not found. " + reason);
     }
   }
-  
+
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
     showCtrl();
     flyCrow(lat, lng);
   };
 }
-    
+
 function init__MODULE_ID__() {
   process__MODULE_ID__ = new Process__MODULE_ID__();
   process__MODULE_ID__.init();
@@ -198,7 +210,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </style>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" onclick="_IG_Analytics('UA-1059171-6', '/qibla/geocoded')" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" onclick="_IG_Analytics('UA-1059171-6', '/qibla/geocode')" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
 <div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
 ]]>
