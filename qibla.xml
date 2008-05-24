@@ -207,7 +207,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
  _IG_Analytics("UA-1059171-6", "/qibla");
 </script>
 <style>
-#address__MODULE_ID__ {width:100%;color:grey;overflow:hidden;}
+#address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__ {border-style:none;float:right}
 </style>
