@@ -36,19 +36,19 @@
    name="bg_color"
    display_name="Message Background Color"
    datatype="string"
-   default_value="#fff4c2"
+   default_value="fff4c2"
 />
 
 <UserPref
    name="fg_color"
    display_name="Message Foreground Color"
    datatype="string"
-   default_value="#ffffff"
+   default_value="ffffff"
 />
 
 <Content type="html"><![CDATA[
 <style>
-.mmlib_table__MODULE_ID__ {background-color:__UP_bg_color__;color:__UP_fg_color__;}
+.mmlib_table__MODULE_ID__ {background-color:#__UP_bg_color__;color:#__UP_fg_color__;}
 </style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
@@ -77,12 +77,12 @@ function Process__MODULE_ID__() {
   var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
   reasons[G_GEO_SUCCESS]            = "Success";
-  reasons[G_GEO_MISSING_ADDRESS]    = "Missing address: The address was empty.";
-  reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown address:  No location could be found for this address.";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS]= "Unavailable address:  The location of this address cannot be found due to legal or contractual reasons.";
-  reasons[G_GEO_BAD_KEY]            = "Bad key: The API key is either invalid or does not match the domain for which it was given.";
-  reasons[G_GEO_TOO_MANY_QUERIES]   = "Too many queries: The geocoding quota has been exceeded.";
-  reasons[G_GEO_SERVER_ERROR]       = "Server error: The request could not be processed.";
+  reasons[G_GEO_MISSING_ADDRESS]    = "The address was empty.";
+  reasons[G_GEO_UNKNOWN_ADDRESS]    = "This is an unknown address.";
+  reasons[G_GEO_UNAVAILABLE_ADDRESS]= "This address cannot be found due to legal or contractual reasons.";
+  reasons[G_GEO_BAD_KEY]            = "The API key is either invalid or does not match the domain for which it was given.";
+  reasons[G_GEO_TOO_MANY_QUERIES]   = "The geocoding quota has been exceeded.";
+  reasons[G_GEO_SERVER_ERROR]       = "This address could not be processed due to a fault.";
 
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
@@ -182,7 +182,7 @@ function Process__MODULE_ID__() {
       if (reasons[pResult.Status.code]) {
         reason = reasons[pResult.Status.code]
       }
-      msg = miniMsg.createDismissibleMessage(pAddr + " was not found. " + reason);
+      msg = miniMsg.createDismissibleMessage(reason);
     }
   }
 
