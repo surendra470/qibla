@@ -205,9 +205,9 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
  _IG_Analytics("UA-1059171-6", "/qibla");
 </script>
 <style>
-#address__MODULE_ID__ {width:80%;color:grey;}
+#address__MODULE_ID__ {width:100%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
-#submit__MODULE_ID__ {border-style:none;}
+#submit__MODULE_ID__ {border-style:none;float:right}
 </style>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
