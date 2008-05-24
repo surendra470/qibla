@@ -76,15 +76,17 @@ function Process__MODULE_ID__() {
   var zoom = 12;
   var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
-  reasons[G_GEO_SUCCESS]            = "Success";
-  reasons[G_GEO_MISSING_ADDRESS]    = "The address was empty.";
-  reasons[G_GEO_UNKNOWN_ADDRESS]    = "This is an unknown address.";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS]= "This address cannot be found due to legal or contractual reasons.";
-  reasons[G_GEO_BAD_KEY]            = "The API key is either invalid or does not match the domain for which it was given.";
-  reasons[G_GEO_TOO_MANY_QUERIES]   = "The geocoding quota has been exceeded.";
-  reasons[G_GEO_SERVER_ERROR]       = "This address could not be processed due to a fault.";
+  reasons[G_GEO_SUCCESS] = "Success";
+  reasons[G_GEO_MISSING_ADDRESS] = "The address was empty.";
+  reasons[G_GEO_UNKNOWN_ADDRESS] = "This is an unknown address.";
+  reasons[G_GEO_UNAVAILABLE_ADDRESS] = "This address cannot be found due to legal or contractual reasons.";
+  reasons[G_GEO_BAD_KEY] = "The API key is either invalid or does not match the domain for which it was given.";
+  reasons[G_GEO_TOO_MANY_QUERIES] = "The geocoding quota has been exceeded.";
+  reasons[G_GEO_SERVER_ERROR] = "This address could not be processed due to a fault.";
 
   this.init = function() {
+    var addr = document.getElementById("address__MODULE_ID__");
+    
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       obj.centreMap(lat, lng);
@@ -205,7 +207,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
  _IG_Analytics("UA-1059171-6", "/qibla");
 </script>
 <style>
-#address__MODULE_ID__ {width:100%;color:grey;}
+#address__MODULE_ID__ {width:100%;color:grey;overflow:hidden;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__ {border-style:none;float:right}
 </style>
