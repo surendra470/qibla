@@ -146,6 +146,7 @@ function Process__MODULE_ID__() {
   }
 
   this.showAddr = function(pAddr) {
+    miniMsg.dismissMessage(msg);
     geo.setBaseCountryCode(country);
     geo.getLocations(pAddr, procResult);
     return false;
