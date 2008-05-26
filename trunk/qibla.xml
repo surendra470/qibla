@@ -103,7 +103,7 @@ function Process__MODULE_ID__() {
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
 
-      google.maps.Event.addListener(map, "moveend", drawMap);
+      google.maps.Event.addListener(map, "moveend", obj.drawMap);
       google.maps.Event.addListener(map, "zoomend", analyse);
     }
   };
