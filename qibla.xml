@@ -132,7 +132,7 @@ function Process__MODULE_ID__() {
     if (panMap == true) {
       var ctr = map.getCenter();
       map.clearOverlays();
-      showXhair(ctr.lng(), ctr.lng());
+      showXhair(ctr.lat(), ctr.lng());
       flyCrow(ctr.lat(), ctr.lng());
     }
   }
