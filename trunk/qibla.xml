@@ -160,13 +160,13 @@ function Process__MODULE_ID__() {
     var ctr = map.getCenter();
     lat = ctr.lat();
     lng = ctr.lng();
-    map.clearOverlays();
+    //map.clearOverlays();
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
-        panMap = false;
+        //panMap = false;
         //map.hideControls();
-        map.removeControl(typeCtrl);
-        map.removeControl(zoomCtrl);
+        //map.removeControl(typeCtrl);
+        //map.removeControl(zoomCtrl);
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
@@ -193,9 +193,9 @@ function Process__MODULE_ID__() {
 
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
-    showCtrl();
-    showXhair(lat, lng);
-    flyCrow(lat, lng);
+    //showCtrl();
+    //showXhair(lat, lng);
+    //flyCrow(lat, lng);
   };
 }
 
