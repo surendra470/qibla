@@ -87,6 +87,12 @@ function Process__MODULE_ID__() {
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+      var xIco = new google.maps.Icon();
+      xIco.image = imgBase + "crosshair.gif";
+      xIco.iconSize = new google.maps.Size(21, 21);
+      xIco.iconAnchor = new google.maps.Point(11, 11);
+      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
+      xMrk = new google.maps.Marker(map.getCenter(), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
@@ -94,13 +100,6 @@ function Process__MODULE_ID__() {
       zoomCtrl = new google.maps.LargeMapControl();
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
-
-      var xIco = new google.maps.Icon();
-      xIco.image = imgBase + "crosshair.gif";
-      xIco.iconSize = new google.maps.Size(21, 21);
-      xIco.iconAnchor = new google.maps.Point(11, 11);
-      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      xMrk = new google.maps.Marker(map.getCenter(), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
 
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
