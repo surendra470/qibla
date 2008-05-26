@@ -92,10 +92,7 @@ function Process__MODULE_ID__() {
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
-      //obj.centreMap(lat, lng);
-      obj.drawMap(lat, lng);
-      map.setZoom(zoom);
-      
+      obj.centreMap(lat, lng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -103,38 +100,29 @@ function Process__MODULE_ID__() {
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
 
-      google.maps.Event.addListener(map, "moveend", obj.drawMap);
+      drawMap();
+      google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", analyse);
     }
   };
 
-  //this.centreMap = function(pLat, pLng) {
-  //  map.checkResize();
-  //  map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
-  //  showXhair(pLat, pLng);
-  //};
+  this.centreMap = function(pLat, pLng) {
+    map.checkResize();
+    map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
+    showXhair(pLat, pLng);
+  };
 
   function showXhair(pLat, pLng) {
     xMrk.setLatLng(new google.maps.LatLng(pLat, pLng));
     map.addOverlay(xMrk);
   }
   
-  this.drawMap = function(pLat, pLng) {
-    map.clearOverlays();
-    map.checkResize();
-    var newLat;
-    var newLng;
-    if (pLat && pLng) {
-      newLat = pLat;
-      newLng = pLng;
-    } else {
-      newLat = map.getCenter().lat();
-      newLng = map.getCenter().lng();
-    }
-    map.setCenter(new google.maps.LatLng(newLat, newLng));
-    showXhair(newLat, newLng);
-    flyCrow(newLat, newLng);
-  };
+  function drawMap() {
+      var ctr = map.getCenter();
+      map.clearOverlays();
+      showXhair(ctr.lat(), ctr.lng());
+      flyCrow(ctr.lat(), ctr.lng());
+  }
 
   function analyse() {
     if (!analysed) {
@@ -164,7 +152,7 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.drawMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
