@@ -109,9 +109,10 @@ function Process__MODULE_ID__() {
   };
 
   this.centreMap = function(pLat, pLng) {
-    showCtrl();
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
+    showCtrl();
+    showXhair(pLat, pLng);
   };
 
   function showCtrl() {
