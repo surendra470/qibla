@@ -123,12 +123,16 @@ function Process__MODULE_ID__() {
     }
   }
 
+  function showXhair(pLat, pLng) {
+    xMrk.setLatLng(new google.maps.LatLng(pLat, pLng));
+    map.addOverlay(xMrk);
+  }
+  
   function drawMap() {
     if (panMap == true) {
       var ctr = map.getCenter();
       map.clearOverlays();
-      xMrk.setLatLng(ctr);
-      map.addOverlay(xMrk);
+      showXhair(ctr.lng(), ctr.lng());
       flyCrow(ctr.lat(), ctr.lng());
     }
   }
@@ -190,8 +194,7 @@ function Process__MODULE_ID__() {
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
     showCtrl();
-    xMrk.setLatLng(new google.maps.LatLng(lat, lng));
-    map.addOverlay(xMrk);
+    showXhair(lat, lng);
     flyCrow(lat, lng);
   };
 }
