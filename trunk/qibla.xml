@@ -93,6 +93,9 @@ function Process__MODULE_ID__() {
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       //obj.centreMap(lat, lng);
+      obj.drawMap(lat, lng);
+      map.setZoom(zoom);
+      
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -100,7 +103,6 @@ function Process__MODULE_ID__() {
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
 
-      obj.drawMap(lat, lng);
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", analyse);
     }
@@ -118,8 +120,10 @@ function Process__MODULE_ID__() {
   }
   
   this.drawMap = function(pLat, pLng) {
-    map.checkResize();
     map.clearOverlays();
+    map.checkResize();
+    if (pLat && pLng)
+      map.setCenter(new google.maps.LatLng(pLat, pLng));
     showXhair(pLat, pLng);
     flyCrow(pLat, pLng);
   };
