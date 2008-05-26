@@ -68,7 +68,6 @@ function Process__MODULE_ID__() {
   var zoomCtrl;
   var qbLat = 21.4225;
   var qbLng = 39.8261;
-  var panMap = true;
   var geo = new google.maps.ClientGeocoder();
   var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
@@ -93,7 +92,7 @@ function Process__MODULE_ID__() {
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
-      obj.centreMap(lat, lng);
+      //obj.centreMap(lat, lng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -101,41 +100,29 @@ function Process__MODULE_ID__() {
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
 
-      drawMap();
+      obj.drawMap(lat, lng);
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", analyse);
     }
   };
 
-  this.centreMap = function(pLat, pLng) {
-    map.checkResize();
-    map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
-    showCtrl();
-    showXhair(pLat, pLng);
-  };
-
-  function showCtrl() {
-    if (panMap == false) {
-      //map.showControls();
-      map.addControl(typeCtrl);
-      map.addControl(zoomCtrl);
-      panMap = true;
-    }
-  }
+  //this.centreMap = function(pLat, pLng) {
+  //  map.checkResize();
+  //  map.setCenter(new google.maps.LatLng(pLat, pLng), zoom);
+  //  showXhair(pLat, pLng);
+  //};
 
   function showXhair(pLat, pLng) {
     xMrk.setLatLng(new google.maps.LatLng(pLat, pLng));
     map.addOverlay(xMrk);
   }
   
-  function drawMap() {
-    if (panMap == true) {
-      var ctr = map.getCenter();
-      map.clearOverlays();
-      showXhair(ctr.lat(), ctr.lng());
-      flyCrow(ctr.lat(), ctr.lng());
-    }
-  }
+  this.drawMap = function(pLat, pLng) {
+    map.checkResize();
+    map.clearOverlays();
+    showXhair(pLat, pLng);
+    flyCrow(pLat, pLng);
+  };
 
   function analyse() {
     if (!analysed) {
@@ -160,17 +147,12 @@ function Process__MODULE_ID__() {
     var ctr = map.getCenter();
     lat = ctr.lat();
     lng = ctr.lng();
-    //map.clearOverlays();
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
-        //panMap = false;
-        //map.hideControls();
-        //map.removeControl(typeCtrl);
-        //map.removeControl(zoomCtrl);
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.drawMap(" +p[1] + "," + p[0] + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
@@ -193,9 +175,6 @@ function Process__MODULE_ID__() {
 
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
-    //showCtrl();
-    //showXhair(lat, lng);
-    //flyCrow(lat, lng);
   };
 }
 
