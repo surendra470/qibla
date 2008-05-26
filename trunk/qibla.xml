@@ -190,6 +190,8 @@ function Process__MODULE_ID__() {
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
     showCtrl();
+    xMrk.setLatLng(new google.maps.LatLng(lat, lng));
+    map.addOverlay(xMrk);
     flyCrow(lat, lng);
   };
 }
