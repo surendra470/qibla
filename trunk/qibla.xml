@@ -92,7 +92,7 @@ function Process__MODULE_ID__() {
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      xMrk = new google.maps.Marker(map.getCenter(), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng);
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
