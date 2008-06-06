@@ -11,6 +11,7 @@
     category="tools"
     render_inline="optional"
     scrolling="false"
+    height="300"
     description="Discover the Qibla direction.">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
     <Locale lang="ar" messages="http://qibla.googlecode.com/svn/trunk/ar_ALL.xml" language_direction="rtl"/>
@@ -72,6 +73,7 @@ function Process__MODULE_ID__() {
   var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
   var zoom = 12;
+  var trackCode = "UA-1059171-6";
   var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
   var reasons = [];
@@ -102,7 +104,13 @@ function Process__MODULE_ID__() {
 
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
-      google.maps.Event.addListener(map, "zoomend", analyse);
+      google.maps.Event.addListener(map, "zoomend", function() {
+        if (!analysed) {
+          _IG_Analytics(trackCode, "/qibla/navigate");
+          analysed = true;
+        }
+      });
+      _IG_Analytics(trackCode, "/qibla");
     }
   };
 
@@ -124,13 +132,6 @@ function Process__MODULE_ID__() {
       flyCrow(ctr.lat(), ctr.lng());
   }
 
-  function analyse() {
-    if (!analysed) {
-      _IG_Analytics("UA-1059171-6", "/qibla/navigate");
-      analysed = true;
-    }
-  }
-
   function flyCrow(pLat, pLng) {
     poly = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
     map.addOverlay(poly);
@@ -140,6 +141,8 @@ function Process__MODULE_ID__() {
     miniMsg.dismissMessage(msg);
     geo.setBaseCountryCode(country);
     geo.getLocations(pAddr, procResult);
+    _IG_Analytics(trackCode, "/qibla/geocode");
+    analysed = true;
     return false;
   };
 
@@ -185,9 +188,6 @@ function init__MODULE_ID__() {
 
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
-<script>
- _IG_Analytics("UA-1059171-6", "/qibla");
-</script>
 <style>
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
@@ -195,7 +195,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </style>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" onclick="_IG_Analytics('UA-1059171-6', '/qibla/geocode')" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
 <div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
 ]]>
