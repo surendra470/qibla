@@ -4,17 +4,12 @@
     directory_title="Qibla Direction"
     author="Munawar"
     author_email="futureindustries@yahoo.com"
-    author_affiliation=""
-    author_location="Glasgow, UK"
     thumbnail="http://qibla.googlecode.com/svn/trunk/thumb.png"
     screenshot="http://qibla.googlecode.com/svn/trunk/screen.png"
     category="tools"
-    render_inline="optional"
-    scrolling="false"
     height="300"
     description="Discover the Qibla direction using your address.">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
-    <Locale lang="ar" messages="http://qibla.googlecode.com/svn/trunk/ar_ALL.xml" language_direction="rtl"/>
     <Require feature="minimessage"/>
     <Require feature="analytics"/>
 </ModulePrefs>
