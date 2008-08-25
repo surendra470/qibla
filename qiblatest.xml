@@ -57,6 +57,8 @@ function Process__MODULE_ID__() {
   var lng = prefs.getString("location.long");
   alert(lat);
   alert(lng);
+  alert(prefs.getString("fg"));
+  alert(prefs.getString("bg"));
   var country = prefs.getString("country");
   var obj = this;
   var map;
