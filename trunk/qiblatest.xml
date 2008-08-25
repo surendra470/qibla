@@ -55,11 +55,13 @@ function Process__MODULE_ID__() {
   var prefs = (gadgets && gadgets.Prefs) ? new gadgets.Prefs() : new _IG_Prefs(__MODULE_ID__);
   var lat = prefs.getString("loc.lat");
   var lng = prefs.getString("loc.long");
+  alert(loc);
   alert(lat);
   alert(lng);
   alert(prefs.getString("fg"));
   alert(prefs.getString("bg"));
   var country = prefs.getString("country");
+  alert(country);
   var obj = this;
   var map;
   var xMrk;
