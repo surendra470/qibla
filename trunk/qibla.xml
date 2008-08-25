@@ -52,7 +52,7 @@ google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
-  var prefs = new _IG_Prefs(__MODULE_ID__);
+  var prefs = (gadgets && gadgets.Prefs) new gadgets.Prefs() : new _IG_Prefs(__MODULE_ID__);
   var lat = prefs.getString("location.lat");
   var lng = prefs.getString("location.long");
   var country = prefs.getString("country");
