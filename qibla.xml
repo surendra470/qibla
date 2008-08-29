@@ -52,7 +52,7 @@ google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
-  var prefs = (gadgets && gadgets.Prefs) ? new gadgets.Prefs() : new _IG_Prefs(__MODULE_ID__);
+  var prefs = (gadgets && gadgets.Prefs) ? new gadgets.Prefs(__MODULE_ID__) : new _IG_Prefs(__MODULE_ID__);
   var lat = prefs.getString("location.lat");
   var lng = prefs.getString("location.long");
   var country = prefs.getString("country");
@@ -79,7 +79,16 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_BAD_KEY] = "G_GEO_BAD_KEY";
   reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
-
+  geo.setBaseCountryCode(country);
+  
+  if (!lat || !lng) {
+    // Blogger doesn't populate these for some reason
+    geo.getLatLng(prefs.getString("location"), function(pLatLng) {
+      lat = pLatLng.lat();
+      lng = pLatLng.lng();
+    });
+  }
+  
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -134,7 +143,6 @@ function Process__MODULE_ID__() {
 
   this.showAddr = function(pAddr) {
     miniMsg.dismissMessage(msg);
-    geo.setBaseCountryCode(country);
     geo.getLocations(pAddr, procResult);
     _IG_Analytics(trackCode, "/qibla/geocode");
     analysed = true;
