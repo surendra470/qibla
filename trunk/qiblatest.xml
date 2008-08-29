@@ -80,18 +80,25 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   geo.setBaseCountryCode(country);
-        alert("|" + lat + "|");
-        alert("|" + lng + "|");  
+  
   if (!lat || !lng) {
+    alert("inside");
     // Blogger doesn't populate these
-    geo.getLatLng(prefs.getString("location"), function(pLatLng) {
+    alert(prefs.getString("location"));
+    var ret = geo.getLatLng(prefs.getString("location"), function(pLatLng) {
+      if (pLatLng)
+        alert("pLatLng is not null");
+        
         lat = pLatLng.lat();
         lng = pLatLng.lng();
+
+    });
+    alert("ret = " + ret);
+  }
+
         alert(lat);
         alert(lng);
-    });
-  }
-  
+        
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
