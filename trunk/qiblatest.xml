@@ -84,11 +84,16 @@ function Process__MODULE_ID__() {
   if (!lat || !lng) {
     // Blogger doesn't populate these
     geo.getLatLng(prefs.getString("location"), function(pLatLng) {
+      if (pLatLng)
+        alert("pLatLng is not null");
       lat = pLatLng.lat();
       lng = pLatLng.lng();
     });
   }
-        
+  
+  alert(lat);
+  alert(lng);
+  
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
