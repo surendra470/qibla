@@ -80,7 +80,8 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   geo.setBaseCountryCode(country);
-  
+        alert("|" + lat + "|");
+        alert("|" + lng + "|");  
   if (!lat || !lng) {
     // Blogger doesn't populate these
     geo.getLatLng(prefs.getString("location"), function(pLatLng) {
