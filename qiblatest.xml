@@ -82,22 +82,12 @@ function Process__MODULE_ID__() {
   geo.setBaseCountryCode(country);
   
   if (!lat || !lng) {
-    alert("inside");
     // Blogger doesn't populate these
-    alert(prefs.getString("location"));
-    var ret = geo.getLatLng(prefs.getString("location"), function(pLatLng) {
-      if (pLatLng)
-        alert("pLatLng is not null");
-        
-        lat = pLatLng.lat();
-        lng = pLatLng.lng();
-
+    geo.getLatLng(prefs.getString("location"), function(pLatLng) {
+      lat = pLatLng.lat();
+      lng = pLatLng.lng();
     });
-    alert("ret = " + ret);
   }
-
-        alert(lat);
-        alert(lng);
         
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
