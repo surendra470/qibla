@@ -149,8 +149,8 @@ function Process__MODULE_ID__() {
 
   function procResult(pResult) {
     var ctr = map.getCenter();
-    lat = ctr.lat();
-    lng = ctr.lng();
+    //lat = ctr.lat();
+    //lng = ctr.lng();
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
         var msgCnt = "";
