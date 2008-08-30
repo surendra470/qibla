@@ -16,28 +16,35 @@
 
 <UserPref
    name="location"
-   display_name="Initial Location"
+   display_name="Initial location"
    datatype="location"
    default_value="Buckingham Palace, London"
 />
 
 <UserPref
+   name="zoom"
+   display_name="Zoom level"
+   datatype="string"
+   default_value="12"
+/>
+
+<UserPref
    name="country"
-   display_name="Geocoder Base Country"
+   display_name="Geocoder base country"
    datatype="string"
    default_value="uk"
 />
 
 <UserPref
    name="bg"
-   display_name="Message Background Color"
+   display_name="Information message background color"
    datatype="string"
    default_value="fff4c2"
 />
 
 <UserPref
    name="fg"
-   display_name="Message Foreground Color"
+   display_name="Information message foreground color"
    datatype="string"
    default_value="000000"
 />
@@ -56,6 +63,7 @@ function Process__MODULE_ID__() {
   var lat = prefs.getString("location.lat");
   var lng = prefs.getString("location.long");
   var country = prefs.getString("country");
+  var zoom = prefs.getInt("zoom");
   var obj = this;
   var map;
   var xMrk;
@@ -67,7 +75,6 @@ function Process__MODULE_ID__() {
   var geo = new google.maps.ClientGeocoder();
   var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
-  var zoom = 12;
   var trackCode = "UA-1059171-6";
   var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
