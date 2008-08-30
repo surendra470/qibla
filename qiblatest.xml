@@ -90,12 +90,13 @@ function Process__MODULE_ID__() {
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      obj.centreMap(lat, lng, zoom);
       
-      if (lat && lng)
-        obj.centreMap(lat, lng, zoom);
-      else
-        this.showAddr(prefs.getString("location"), false); // Blogger doesn't populate lat and lng from location datatype
-        
+      if (!lat || !lng) {
+        // Blogger doesn't populate lat and lng from location datatype
+        this.showAddr(prefs.getString("location"), false); 
+      }
+      
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
