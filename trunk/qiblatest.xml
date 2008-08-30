@@ -94,7 +94,7 @@ function Process__MODULE_ID__() {
       if (lat && lng)
         obj.centreMap(lat, lng, zoom);
       else
-        showAddr(prefs.getString("location"), false); // Blogger doesn't populate lat and lng from location datatype
+        this.showAddr(prefs.getString("location"), false); // Blogger doesn't populate lat and lng from location datatype
         
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
