@@ -81,14 +81,6 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   geo.setBaseCountryCode(country);
   
-  if (!lat || !lng) {
-    // Blogger doesn't populate these for some reason
-    geo.getLatLng(prefs.getString("location"), function(pLatLng) {
-      lat = pLatLng.lat();
-      lng = pLatLng.lng();
-    });
-  }
-  
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -99,6 +91,12 @@ function Process__MODULE_ID__() {
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng, zoom);
+      
+      if (!lat || !lng) {
+        // Blogger doesn't populate lat and lng from location datatype
+        this.showAddr(prefs.getString("location"), false); 
+      }
+      
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -141,18 +139,17 @@ function Process__MODULE_ID__() {
     map.addOverlay(poly);
   }
 
-  this.showAddr = function(pAddr) {
+  this.showAddr = function(pAddr, pAnalyse) {
     miniMsg.dismissMessage(msg);
     geo.getLocations(pAddr, procResult);
-    _IG_Analytics(trackCode, "/qibla/geocode");
-    analysed = true;
+    if (pAnalyse)
+      _IG_Analytics(trackCode, "/qibla/geocode");
+    analysed = pAnalyse;
     return false;
   };
 
   function procResult(pResult) {
     var ctr = map.getCenter();
-    lat = ctr.lat();
-    lng = ctr.lng();
     if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
         var msgCnt = "";
