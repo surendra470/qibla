@@ -81,19 +81,6 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   geo.setBaseCountryCode(country);
   
-  if (!lat || !lng) {
-    // Blogger doesn't populate these
-    geo.getLatLng(prefs.getString("location"), function(pLatLng) {
-      if (pLatLng)
-        alert("pLatLng is not null");
-      lat = pLatLng.lat();
-      lng = pLatLng.lng();
-    });
-  }
-  
-  alert(lat);
-  alert(lng);
-  
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -103,7 +90,12 @@ function Process__MODULE_ID__() {
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
-      obj.centreMap(lat, lng, zoom);
+      
+      if (lat && lng)
+        obj.centreMap(lat, lng, zoom);
+      else
+        showAddr(prefs.getString("location"), false); // Blogger doesn't populate lat and lng from location datatype
+        
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -146,11 +138,12 @@ function Process__MODULE_ID__() {
     map.addOverlay(poly);
   }
 
-  this.showAddr = function(pAddr) {
+  this.showAddr = function(pAddr, pAnalyse) {
     miniMsg.dismissMessage(msg);
     geo.getLocations(pAddr, procResult);
-    _IG_Analytics(trackCode, "/qibla/geocode");
-    analysed = true;
+    if (pAnalyse)
+      _IG_Analytics(trackCode, "/qibla/geocode");
+    analysed = pAnalyse;
     return false;
   };
 
@@ -201,7 +194,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__ {border-style:none;}
 </style>
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
 <input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
