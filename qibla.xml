@@ -63,7 +63,8 @@ function Process__MODULE_ID__() {
   var lat = prefs.getString("location.lat");
   var lng = prefs.getString("location.long");
   var country = prefs.getString("country");
-  var zoom = prefs.getInt("zoom");
+  var initZoom = prefs.getInt("zoom");
+  var g = 16;
   var obj = this;
   var map;
   var xMrk;
@@ -161,7 +162,7 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ", 16);process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + ", geoZoom);process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
@@ -170,7 +171,7 @@ function Process__MODULE_ID__() {
       }
       else {
         var p = pResult.Placemark[0].Point.coordinates;
-        obj.centreMap(p[1], p[0], 16);
+        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : 3);
       }
     }
     else {
