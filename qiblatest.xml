@@ -114,17 +114,20 @@ function Process__MODULE_ID__() {
   };
 
   this.centreMap = function(pLat, pLng, pZoom) {
+    alert("centreMap");
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), pZoom);
     showXhair(pLat, pLng);
   };
 
   function showXhair(pLat, pLng) {
+    alert("showXhair");
     xMrk.setLatLng(new google.maps.LatLng(pLat, pLng));
     map.addOverlay(xMrk);
   }
   
   function drawMap() {
+      alert("drawMap");
       var ctr = map.getCenter();
       map.clearOverlays();
       showXhair(ctr.lat(), ctr.lng());
@@ -132,6 +135,7 @@ function Process__MODULE_ID__() {
   }
 
   function flyCrow(pLat, pLng) {
+    alert("flyCrow");
     poly = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
     map.addOverlay(poly);
   }
