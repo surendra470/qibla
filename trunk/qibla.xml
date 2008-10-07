@@ -173,7 +173,7 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" +p[1] + "," + p[0] + "," + geoZoom);process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" + p[1] + "," + p[0] + "," + geoZoom + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
