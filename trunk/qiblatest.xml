@@ -47,7 +47,7 @@
 </style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2.s");
+google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
@@ -87,14 +87,14 @@ function Process__MODULE_ID__() {
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      //xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng, zoom);
-      typeCtrl = new google.maps.HierarchicalMapTypeControl();
-      typeCtrl.clearRelationships();
-      typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
-      zoomCtrl = new google.maps.LargeMapControl();
-      map.addControl(typeCtrl);
-      map.addControl(zoomCtrl);
+      //typeCtrl = new google.maps.HierarchicalMapTypeControl();
+      //typeCtrl.clearRelationships();
+      //typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
+      //zoomCtrl = new google.maps.LargeMapControl();
+      //map.addControl(typeCtrl);
+      //map.addControl(zoomCtrl);
 
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
