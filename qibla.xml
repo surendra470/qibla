@@ -16,21 +16,21 @@
 
 <UserPref
    name="location"
-   display_name="Initial location"
+   display_name="Default location"
    datatype="location"
    default_value="Buckingham Palace, London"
 />
 
 <UserPref
    name="zoom"
-   display_name="Zoom level"
+   display_name="Initial zoom level"
    datatype="string"
    default_value="12"
 />
 
 <UserPref
    name="country"
-   display_name="Geocoder base country"
+   display_name="Address lookup default country"
    datatype="string"
    default_value="uk"
 />
@@ -98,10 +98,17 @@ function Process__MODULE_ID__() {
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      
+      var loc = google.loader.ClientLocation; 
+      if (loc) {
+        lat = loc.latitude;
+        lng = loc.longitude;
+      }
+      
       obj.centreMap(lat, lng, initZoom);
       
       if (!lat || !lng) {
-        // Blogger doesn't populate lat and lng from location datatype
+        // when last checked, Blogger doesn't populate lat and lng from the location datatype
         this.showAddr(prefs.getString("location"), false); 
       }
       
@@ -199,12 +206,13 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__ {border-style:none;}
+#map__MODULE_ID__ {width:100%;height:300;}
 </style>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
 <input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
-<div id="map__MODULE_ID__" style="width:100%;height:100%"></div>
+<div id="map__MODULE_ID__"></div>
 ]]>
 </Content>
 </Module>
