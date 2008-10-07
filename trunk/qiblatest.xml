@@ -47,7 +47,7 @@
 </style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2");
+google.load("maps", "2.x");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
@@ -89,6 +89,7 @@ function Process__MODULE_ID__() {
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng, zoom);
+      alert("hello1");
       //typeCtrl = new google.maps.HierarchicalMapTypeControl();
       //typeCtrl.clearRelationships();
       //typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
@@ -97,6 +98,7 @@ function Process__MODULE_ID__() {
       //map.addControl(zoomCtrl);
 
       drawMap();
+      alert("hello2");
       /*
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
