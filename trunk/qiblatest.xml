@@ -81,6 +81,8 @@ function Process__MODULE_ID__() {
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+      if (map)
+        alert("map is not null");
       var xIco = new google.maps.Icon();
       xIco.image = imgBase + "crosshair.gif";
       xIco.iconSize = new google.maps.Size(21, 21);
