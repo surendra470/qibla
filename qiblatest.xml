@@ -12,48 +12,17 @@
 
 </ModulePrefs>
 
-<UserPref
-   name="location"
-   display_name="Initial Location"
-   datatype="location"
-   default_value="Buckingham Palace, London"
-/>
-
-<UserPref
-   name="country"
-   display_name="Geocoder Base Country"
-   datatype="string"
-   default_value="uk"
-/>
-
-<UserPref
-   name="bg"
-   display_name="Message Background Color"
-   datatype="string"
-   default_value="fff4c2"
-/>
-
-<UserPref
-   name="fg"
-   display_name="Message Foreground Color"
-   datatype="string"
-   default_value="000000"
-/>
-
 <Content type="html"><![CDATA[
-<style>
-.mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
-</style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2.x");
+google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
   var prefs = new _IG_Prefs(__MODULE_ID__);
-  var lat = prefs.getString("location.lat");
-  var lng = prefs.getString("location.long");
-  var country = prefs.getString("country");
+  var lat = 0;
+  var lng = 0;
+  var country = "uk"
   var obj = this;
   var map;
   var xMrk;
