@@ -63,8 +63,8 @@ function Process__MODULE_ID__() {
   var zoomCtrl;
   var qbLat = 21.4225;
   var qbLng = 39.8261;
-  var geo = new google.maps.ClientGeocoder();
-  var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
+  //var geo = new google.maps.ClientGeocoder();
+  //var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
   var zoom = 12;
   var trackCode = "UA-1059171-6";
@@ -87,7 +87,7 @@ function Process__MODULE_ID__() {
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      //xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
       obj.centreMap(lat, lng, zoom);
       //typeCtrl = new google.maps.HierarchicalMapTypeControl();
       //typeCtrl.clearRelationships();
@@ -97,6 +97,7 @@ function Process__MODULE_ID__() {
       //map.addControl(zoomCtrl);
 
       drawMap();
+      /*
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
         if (!analysed) {
@@ -105,6 +106,7 @@ function Process__MODULE_ID__() {
         }
       });
       _IG_Analytics(trackCode, "/qibla");
+      */
     }
   };
 
