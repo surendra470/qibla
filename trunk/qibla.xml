@@ -28,7 +28,7 @@
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically"
+   display_name="Default address lookup country if it cannot be discovered automatically (a 2 letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
    datatype="string"
    default_value="uk"/>
 
