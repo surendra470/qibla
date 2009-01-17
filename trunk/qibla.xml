@@ -16,38 +16,33 @@
 
 <UserPref
    name="location"
-   display_name="Default location"
+   display_name="Initial map location if it cannot be discovered automatically"
    datatype="location"
-   default_value="Buckingham Palace, London"
-/>
+   default_value="Buckingham Palace, London"/>
 
 <UserPref
    name="zoom"
    display_name="Initial zoom level"
    datatype="string"
-   default_value="12"
-/>
+   default_value="12"/>
 
 <UserPref
    name="country"
-   display_name="Address lookup default country"
+   display_name="Default address lookup country if it cannot be discovered automatically"
    datatype="string"
-   default_value="uk"
-/>
+   default_value="uk"/>
 
 <UserPref
    name="bg"
    display_name="Information message background color"
    datatype="string"
-   default_value="fff4c2"
-/>
+   default_value="fff4c2"/>
 
 <UserPref
    name="fg"
    display_name="Information message foreground color"
    datatype="string"
-   default_value="000000"
-/>
+   default_value="000000"/>
 
 <Content type="html"><![CDATA[
 <style>
@@ -81,7 +76,6 @@ function Process__MODULE_ID__() {
   var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
   var trackCode = "UA-1059171-6";
-  var imgBase = "http://qibla.googlecode.com/svn/trunk/";
   var analysed = false;
   var reasons = [];
   reasons[G_GEO_SUCCESS] = "G_GEO_SUCCESS";
@@ -91,13 +85,12 @@ function Process__MODULE_ID__() {
   reasons[G_GEO_BAD_KEY] = "G_GEO_BAD_KEY";
   reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
   reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
-  geo.setBaseCountryCode(country);
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = imgBase + "crosshair.gif";
+      xIco.image = _IG_GetCachedUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
@@ -107,7 +100,10 @@ function Process__MODULE_ID__() {
       if (loc) {
         lat = loc.latitude;
         lng = loc.longitude;
+	  country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
       }
+
+      geo.setBaseCountryCode(country);
       
       obj.centreMap(lat, lng, initZoom);
       
@@ -131,6 +127,7 @@ function Process__MODULE_ID__() {
           analysed = true;
         }
       });
+
       _IG_Analytics(trackCode, "/qibla");
     }
   };
@@ -206,7 +203,7 @@ function init__MODULE_ID__() {
 
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
 <input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 </form>
