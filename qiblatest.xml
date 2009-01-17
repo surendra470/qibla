@@ -101,8 +101,10 @@ function Process__MODULE_ID__() {
         lat = loc.latitude;
         lng = loc.longitude;
 	  country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
+	alert('loc.address.country_code= ' + loc.address.country_code);
+	  alert("clientloccountry= " + country);
       }
-
+	alert(country);
       geo.setBaseCountryCode(country);
       
       obj.centreMap(lat, lng, initZoom);
