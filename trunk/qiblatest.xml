@@ -34,13 +34,13 @@
 
 <UserPref
    name="bg"
-   display_name="Information message background color"
+   display_name="Information message background colour"
    datatype="string"
    default_value="fff4c2"/>
 
 <UserPref
    name="fg"
-   display_name="Information message foreground color"
+   display_name="Information message foreground colour"
    datatype="string"
    default_value="000000"/>
 
@@ -88,10 +88,9 @@ function Process__MODULE_ID__() {
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
-      //map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       map = new google.maps.Map2(_gel("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = _IG_GetCachedUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
+      xIco.image = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
