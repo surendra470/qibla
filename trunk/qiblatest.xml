@@ -28,7 +28,7 @@
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically"
+   display_name="Default address lookup country if it cannot be discovered automatically (a 2 letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
    datatype="string"
    default_value="uk"/>
 
@@ -101,10 +101,8 @@ function Process__MODULE_ID__() {
         lat = loc.latitude;
         lng = loc.longitude;
 	  country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
-	alert('loc.address.country_code= ' + loc.address.country_code);
-	  alert("clientloccountry= " + country);
       }
-	alert(country);
+
       geo.setBaseCountryCode(country);
       
       obj.centreMap(lat, lng, initZoom);
@@ -207,7 +205,12 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<input type="image" src="" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<script type="text/javascript">
+  _IG_RegisterOnloadHandler(function() {
+    _gel("submit__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/magicwand.gif");
+  });
+</script>
 </form>
 <div id="map__MODULE_ID__"></div>
 ]]>
