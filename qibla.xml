@@ -34,13 +34,13 @@
 
 <UserPref
    name="bg"
-   display_name="Information message background color"
+   display_name="Information message background colour"
    datatype="string"
    default_value="fff4c2"/>
 
 <UserPref
    name="fg"
-   display_name="Information message foreground color"
+   display_name="Information message foreground colour"
    datatype="string"
    default_value="000000"/>
 
@@ -88,9 +88,9 @@ function Process__MODULE_ID__() {
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
-      map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+      map = new google.maps.Map2(_gel("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = _IG_GetCachedUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
+      xIco.image = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
@@ -205,7 +205,12 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="http://qibla.googlecode.com/svn/trunk/magicwand.gif" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<input type="image" src="" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
+<script type="text/javascript">
+  _IG_RegisterOnloadHandler(function() {
+    _gel("submit__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/magicwand.gif");
+  });
+</script>
 </form>
 <div id="map__MODULE_ID__"></div>
 ]]>
