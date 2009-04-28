@@ -192,13 +192,13 @@ function Process__MODULE_ID__() {
   
   this.help = function() {
     var help = "<ol><li>Enter your address and press the Enter key</li>" +
-               "  <li>Adjust the map so that the crosshairs in the centre are above your location. You can do this by:" +
-               "    <ul><li>Using the up/down/left/right control buttons in the top left corner of the map (doesn't appear on small maps)</li>" +
-	       "      <li>Clicking on the map, and while keeping the mouse key pressed, dragging the map with your mouse</li>" +
-	       "      <li>Using the arrow keys on your keyboard</li></ul>" +
-	       "  <li>The red line shows the direction to the Qibla. If you wish to zoom in, you can do this by:" +
-	       "    <ul><li>Using the +/- control buttons on the left hand side of the map</li>" +
-	       "      <li>Using the wheel button of your mouse</li></ul>" +
+               "  <li>Use one of the following methods to adjust the map so that the crosshairs in the centre of the map are above your location:" +
+               "    <ul><li>Use the up/down/left/right control buttons in the top left corner of the map (doesn't appear on small maps)</li>" +
+	       "      <li>Click on the map, and while keeping the mouse key pressed, drag the map with your mouse</li>" +
+	       "      <li>Use the up/down/left/right arrow keys on your keyboard</li></ul>" +
+	       "  <li>The red line shows the direction to the Qibla. Use one of the following methods to zoom in for a closer look:" +
+	       "    <ul><li>Use the +/- control buttons on the left hand side of the map</li>" +
+	       "      <li>Use the wheel button of your mouse</li></ul>" +
 	       "  </li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
   };
