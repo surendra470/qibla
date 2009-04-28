@@ -199,7 +199,7 @@ function Process__MODULE_ID__() {
 	       "  <li>The red line shows the direction to the Qibla. If you wish to zoom in, you can do this by:" +
 	       "    <ul><li>Using the +/- control buttons on the left hand side of the map</li>" +
 	       "      <li>Using the wheel button of your mouse</li></ul>" +
-	       "  </li></ol>;
+	       "  </li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
   };
 }
