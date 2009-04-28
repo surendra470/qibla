@@ -210,13 +210,13 @@ function init__MODULE_ID__() {
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
-<input type="text" id="address__MODULE_ID__" maxlength="50" value="__MSG_address_enter__" />
-<input type="image" src="" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
-<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help__MODULE_ID__" alt="__MSG_help__" title="__MSG_help__" /></a>
+<input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
+<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" />&nbsp;
+<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" /></a>
 <script type="text/javascript">
   _IG_RegisterOnloadHandler(function() {
-    _gel("submit__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
-    _gel("help__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/question.gif");
+    _gel("address_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
+    _gel("help_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/question.gif");
   });
 </script>
 </form>
