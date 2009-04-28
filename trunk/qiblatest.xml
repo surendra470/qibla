@@ -70,8 +70,8 @@ function Process__MODULE_ID__() {
   var poly;
   var typeCtrl;
   var zoomCtrl;
-  var qbLat = 21.4225;
-  var qbLng = 39.8261;
+  var qbLat = 21.422504762754905;
+  var qbLng = 39.8261421918869;
   var geo = new google.maps.ClientGeocoder();
   var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
   var msg;
@@ -112,13 +112,16 @@ function Process__MODULE_ID__() {
         this.showAddr(prefs.getString("location"), false); 
       }
       
+/*
       typeCtrl = new google.maps.HierarchicalMapTypeControl();
       typeCtrl.clearRelationships();
       typeCtrl.addRelationship(G_SATELLITE_MAP, G_HYBRID_MAP, "Street names", true);
       zoomCtrl = new google.maps.LargeMapControl();
+      zoomCtrl = new google.maps.LargeMapControl3D();
       map.addControl(typeCtrl);
       map.addControl(zoomCtrl);
-
+*/
+      map.setUIToDefault();
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
@@ -208,7 +211,7 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 <input type="image" src="" id="submit__MODULE_ID__" alt="__MSG_address_submit__" title="__MSG_address_submit__" />
 <script type="text/javascript">
   _IG_RegisterOnloadHandler(function() {
-    _gel("submit__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/magicwand.gif");
+    _gel("submit__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
   });
 </script>
 </form>
