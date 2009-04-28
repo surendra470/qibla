@@ -1,6 +1,6 @@
 <messagebundle>
-  <msg name="address_enter">Enter your address here</msg>
-  <msg name="address_submit">Lookup address</msg>
+  <msg name="address">Enter your address here</msg>
+  <msg name="address_btn">Show Qibla direction</msg>
   <msg name="G_GEO_SUCCESS">Success</msg>
   <msg name="G_GEO_MISSING_ADDRESS">The address was empty.</msg>
   <msg name="G_GEO_UNKNOWN_ADDRESS">This is an unknown address.</msg>
@@ -8,6 +8,7 @@
   <msg name="G_GEO_BAD_KEY">The API key is either invalid or does not match the domain for which it was given.</msg>
   <msg name="G_GEO_TOO_MANY_QUERIES">The geocoding quota has been exceeded.</msg>
   <msg name="G_GEO_SERVER_ERROR">This address could not be processed due to a fault.</msg>
+  <msg name="help_btn">Help</msg>
   <msg name="help1">Enter your address, then press the Enter key</msg>
   <msg name="help2">Use one of the following map adjustment methods so that the crosshairs in the centre of the map are above your location:</msg>
   <msg name="help2_1">Use the up/down/left/right control buttons in the top left corner of the map (these won't appear on small maps)</msg>
