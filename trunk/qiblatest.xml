@@ -47,12 +47,9 @@
 <Content type="html"><![CDATA[
 <style>
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
-.mmlib_table__MODULE_ID__ ol {margin: 0 0 0 0; padding: 0 0 0 0;}
-.mmlib_table__MODULE_ID__ ul.nested {margin: 0 0 0 0; padding: 0 0 0 0;}
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__ {border-style:none;}
-#help__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:300;}
 </style>
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
@@ -204,7 +201,6 @@ function Process__MODULE_ID__() {
 	       "      <li>Use the wheel button of your mouse</li></ul>" +
 	       "  </li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
-    msg.style.
   };
 }
 
