@@ -10,6 +10,8 @@
     height="300"
     description="Discover the Qibla direction using your address. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
+    <Locale lang="en_US" messages="http://qibla.googlecode.com/svn/trunk/en_US.xml"/>
+    <Locale lang="en_CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
     <Require feature="minimessage"/>
     <Require feature="analytics"/>
 </ModulePrefs>
