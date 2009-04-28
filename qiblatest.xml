@@ -50,6 +50,7 @@
 <style>
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
+.mmlib_xlink {top:3px}
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #submit__MODULE_ID__, #help__MODULE_ID__ {border-style:none;}
