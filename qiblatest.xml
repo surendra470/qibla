@@ -47,7 +47,7 @@
 <Content type="html"><![CDATA[
 <style>
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
-.mmlib_table__MODULE_ID__ ol {background-color:red;}
+.mmlib_table__MODULE_ID__ ol {background-color:red;border: 1px solid blue}
 .mmlib_table__MODULE_ID__ ul.nested {background-color:yellow;}
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
