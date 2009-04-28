@@ -1,6 +1,6 @@
 <messagebundle>
-  <msg name="address_enter">Please enter your address</msg>
-  <msg name="address_submit">Send address</msg>
+  <msg name="address_enter">Enter your address here</msg>
+  <msg name="address_submit">Lookup address</msg>
   <msg name="G_GEO_SUCCESS">Success</msg>
   <msg name="G_GEO_MISSING_ADDRESS">The address was empty.</msg>
   <msg name="G_GEO_UNKNOWN_ADDRESS">This is an unknown address.</msg>
