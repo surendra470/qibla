@@ -60,7 +60,7 @@
 
 <!--[if IE 6]> 
 <style>
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:20px; padding-left:0;}
+.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
 </style>
 <![endif]-->
 
