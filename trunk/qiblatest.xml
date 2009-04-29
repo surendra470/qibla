@@ -49,51 +49,18 @@
 <Content type="html"><![CDATA[
 <style>
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
+.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:280px;}
-.mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { 
-   margin:auto -3em 1em 0; 
-   padding:0; 
-   position:relative; 
-   left:-3em;
-   overflow:hidden;
-}
- 
-.mmlib_table__MODULE_ID__ li { 
-   margin-top:0.25em;
-   margin-bottom:0.25em; 
-}
- 
-.mmlib_table__MODULE_ID__ ol ul { 
-   margin-left:1em; 
-   padding-left:0; 
-}
- 
-.mmlib_table__MODULE_ID__ ul li, .mmlib_table__MODULE_ID__ ol li { 
-   margin-left:5em; 
-}
- 
-.mmlib_table__MODULE_ID__ li li { 
-   margin-left:1em; 
-}
 </style>
 
-<!--[if lte IE 6]>
+<!--[if IE 6]> 
 <style>
-.mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { 
-    height:0; 
-    overflow:visible;
-}
-</style>
-<![endif]-->
- 
-<!--[if gt IE 6]>
-<style>
-    .mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { height:1%; }
+.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:-5px;}
 </style>
 <![endif]-->
 
