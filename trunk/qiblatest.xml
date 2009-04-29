@@ -204,7 +204,7 @@ function Process__MODULE_ID__() {
   
   this.help = function() {
     var help = "<ol><li>" + prefs.getMsg("help1") + "</li><li>" + prefs.getMsg("help2") + "<ul><li>" + 
-       prefs.getMsg("help2_1") + "</li><li>" + prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
+       prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
        prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li></ul></li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
   };
