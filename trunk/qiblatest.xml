@@ -82,16 +82,20 @@
 }
 </style>
 
-<!--[if lte IE 6]><style>
+<!--[if lte IE 6]>
+<style>
 .mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { 
     height:0; 
     overflow:visible;
 }
-</style>< ![endif]-->
+</style>
+<![endif]-->
  
-<!--[if gt IE 6]><style>
+<!--[if gt IE 6]>
+<style>
     .mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { height:1%; }
-</style>< ![endif]-->
+</style>
+<![endif]-->
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
