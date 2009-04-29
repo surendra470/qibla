@@ -56,13 +56,43 @@
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:280px;}
+.mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { 
+   margin:auto -3em 1em 0; 
+   padding:0; 
+   position:relative; 
+   left:-3em;
+   overflow:hidden;
+}
+ 
+.mmlib_table__MODULE_ID__ li { 
+   margin-top:0.25em;
+   margin-bottom:0.25em; 
+}
+ 
+.mmlib_table__MODULE_ID__ ol ul { 
+   margin-left:1em; 
+   padding-left:0; 
+}
+ 
+.mmlib_table__MODULE_ID__ ul li, .mmlib_table__MODULE_ID__ ol li { 
+   margin-left:5em; 
+}
+ 
+.mmlib_table__MODULE_ID__ li li { 
+   margin-left:1em; 
+}
 </style>
 
-<!--[if IE 6]> 
-<style>
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
-</style>
-<![endif]-->
+<!--[if lte IE 6]><style>
+.mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { 
+    height:0; 
+    overflow:visible;
+}
+</style>< ![endif]-->
+ 
+<!--[if gt IE 6]><style>
+    .mmlib_table__MODULE_ID__ ul, .mmlib_table__MODULE_ID__ ol { height:1%; }
+</style>< ![endif]-->
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
