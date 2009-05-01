@@ -60,9 +60,7 @@
 #map__MODULE_ID__ {width:100%;height:280px;}
 
 #geocode__MODULE_ID__ {
-	zoom:1;
-	overflow:hidden;
-	margin-right:50px;
+	margin-right:28px;
 }
 
 #address__MODULE_ID__ {
@@ -73,9 +71,9 @@
 }
 
 #buttons__MODULE_ID__ {
-	float:left;
+	float:right;
 	width:26px;
-	margin-right:-50px;
+	margin-right:-28px;
 }
 
 /* 
