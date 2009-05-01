@@ -54,9 +54,9 @@
 /*
 #address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
+*/
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
-*/
 #map__MODULE_ID__ {width:100%;height:277px;}
 
 #geocode__MODULE_ID__ {
@@ -66,6 +66,7 @@
 #address__MODULE_ID__ {
 	float:left;
 	width:100%;
+	height:20px;
 	margin:0;
 	padding:0;
 }
