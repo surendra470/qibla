@@ -62,7 +62,7 @@
 #geocode__MODULE_ID__ {
 	zoom:1;
 	overflow:hidden;
-	margin-right:30px;
+	margin-right:50px;
 }
 
 #address__MODULE_ID__ {
@@ -75,7 +75,7 @@
 #buttons__MODULE_ID__ {
 	float:left;
 	width:26px;
-	margin-right:-30px;
+	margin-right:-50px;
 }
 
 /* 
