@@ -56,6 +56,34 @@
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:280px;}
+
+#form__MODULE_ID__ #address {
+	margin-right:24px;
+}
+
+#form__MODULE_ID__ #address__MODULE_ID__ {
+	float:left;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+
+#form__MODULE_ID__ #buttons {
+	float:left;
+	width:20px;
+	margin-right:-24px;
+}
+
+/* 
+http://www.webmasterworld.com/css/3605330.htm
+http://forums.digitalpoint.com/showthread.php?t=1018014
+
+geocode return code handling
+additional help items
+input styling
+analyse help page views
+*/
+
 </style>
 
 <!--[if IE 6]> 
@@ -89,14 +117,6 @@ function Process__MODULE_ID__() {
   var msg;
   var trackCode = "UA-1059171-6";
   var analysed = false;
-  var reasons = [];
-  reasons[G_GEO_SUCCESS] = "G_GEO_SUCCESS";
-  reasons[G_GEO_MISSING_ADDRESS] = "G_GEO_MISSING_ADDRESS";
-  reasons[G_GEO_UNKNOWN_ADDRESS] = "G_GEO_UNKNOWN_ADDRESS";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS] = "G_GEO_UNAVAILABLE_ADDRESS";
-  reasons[G_GEO_BAD_KEY] = "G_GEO_BAD_KEY";
-  reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
-  reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
@@ -172,7 +192,7 @@ function Process__MODULE_ID__() {
   };
 
   function procResult(pResult) {
-    if (pResult.Status.code == G_GEO_SUCCESS) {
+    if (pResult.Status.code == google.maps.GeoStatusCode.G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
@@ -190,11 +210,7 @@ function Process__MODULE_ID__() {
       }
     }
     else {
-      var reason = "Code " + pResult.Status.code;
-      if (reasons[pResult.Status.code]) {
-        reason = prefs.getMsg(reasons[pResult.Status.code]);
-      }
-      msg = miniMsg.createDismissibleMessage(reason);
+      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
     }
   }
 
@@ -205,8 +221,9 @@ function Process__MODULE_ID__() {
   this.help = function() {
     var help = "<ol><li>" + prefs.getMsg("help1") + "</li><li>" + prefs.getMsg("help2") + "<ul><li>" + 
        prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
-       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li></ul></li></ol>";
+       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li><li>" + prefs.getMsg("help3_3") + "</li><li>" + prefs.getMsg("help3_4") + "</li></ul></li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
+    _IG_Analytics(trackCode, "/qibla/help");
   };
 }
 
@@ -218,9 +235,16 @@ function init__MODULE_ID__() {
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
+
+<div id="address">
 <input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
-<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" />&nbsp;&nbsp;
+
+<div id="buttons">
+<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="7" height="11" />&nbsp;&nbsp;
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" /></a>
+</div>
+</div>
+
 <script type="text/javascript">
   _IG_RegisterOnloadHandler(function() {
     _gel("address_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
