@@ -60,7 +60,7 @@
 #map__MODULE_ID__ {width:100%;height:280px;}
 
 #geocode__MODULE_ID__ {
-	margin-right:26px;
+	margin-right:28px;
 }
 
 #address__MODULE_ID__ {
@@ -73,7 +73,7 @@
 #buttons__MODULE_ID__ {
 	float:left;
 	width:24px;
-	margin-right:-26px;
+	margin-right:-28px;
 }
 
 /* 
