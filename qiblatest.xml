@@ -60,22 +60,22 @@
 #map__MODULE_ID__ {width:100%;height:280px;}
 
 #geocode__MODULE_ID__ {
-	margin-right:98px;
+	/*margin-right:98px;*/
 	height:20px;
 	padding:0;
 }
 
 #address__MODULE_ID__ {
-	/*float:left;*/
+	float:left;
 	width:100%;
 	margin:0;
 	padding:0;
 }
 
 #buttons__MODULE_ID__ {
-	float:left;
+	float:right;
 	width:56px;
-	margin-right:-98px;
+	/*margin-right:-98px;*/
 }
 
 /* 
@@ -196,7 +196,7 @@ function Process__MODULE_ID__() {
   };
 
   function procResult(pResult) {
-    if (pResult.Status.code == google.maps.GeoStatusCode.G_GEO_SUCCESS) {
+    if (pResult.Status.code == G_GEO_SUCCESS) {
       if (pResult.Placemark.length > 1) {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
