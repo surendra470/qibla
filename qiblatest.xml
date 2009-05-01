@@ -73,7 +73,7 @@
 }
 
 #buttons__MODULE_ID__ {
-	float:right;
+	float:left;
 	width:56px;
 	margin-right:-98px;
 }
