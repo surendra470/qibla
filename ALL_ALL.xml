@@ -1,20 +1,22 @@
 <messagebundle>
   <msg name="address">Enter your address here</msg>
   <msg name="address_btn">Show direction</msg>
-  <msg name="G_GEO_SUCCESS">Success</msg>
-  <msg name="G_GEO_MISSING_ADDRESS">The address was empty.</msg>
-  <msg name="G_GEO_UNKNOWN_ADDRESS">This is an unknown address.</msg>
-  <msg name="G_GEO_UNAVAILABLE_ADDRESS">This address cannot be found due to legal or contractual reasons.</msg>
-  <msg name="G_GEO_BAD_KEY">The API key is either invalid or does not match the domain for which it was given.</msg>
-  <msg name="G_GEO_TOO_MANY_QUERIES">The geocoding quota has been exceeded.</msg>
-  <msg name="G_GEO_SERVER_ERROR">This address could not be processed due to a fault.</msg>
+  <msg name="400">The address cannot be understood</msg>
+  <msg name="500">The reason for the failure is unknown</msg>
+  <msg name="601">The address is empty</msg>
+  <msg name="602">The address is unknown. Maybe it is relatively new</msg>
+  <msg name="603">The address cannot be found due to legal or contractual reasons</msg>
+  <msg name="610">The API key is invalid</msg>
+  <msg name="620">The address lookup quota has been exceeded</msg>
   <msg name="help_btn">Help</msg>
   <msg name="help1">Type an address, then press Enter</msg>
-  <msg name="help2">Use one of the following map adjustment methods so that the crosshairs in the center of the map represent your location:</msg>
+  <msg name="help2">Use one of the following map adjustment methods to make the crosshairs in the center of the map represent your location:</msg>
   <msg name="help2_1">Use the up/down/left/right control buttons in the top left corner of the map (these won't appear on small maps)</msg>
-  <msg name="help2_2">Click on the map, and drag it with the mouse button pressed</msg>
+  <msg name="help2_2">Click on the map and drag it with the mouse button pressed</msg>
   <msg name="help2_3">Use the up/down/left/right arrow keys on your keyboard</msg>
-  <msg name="help3">The red line shows the direction to the Qibla. You can visualize the direction better by choosing 'Satellite' from the list in the top right corner of the map. Use one of the following methods to zoom in for a closer look:</msg>
-  <msg name="help3_1">Use the +/- control buttons on the left hand side of the map</msg>
-  <msg name="help3_2">Use the wheel button of your mouse</msg>
+  <msg name="help3">The red line shows the direction to the Qibla. You can visualize the direction better by choosing "Satellite" from the list in the top right corner of the map. Use one of the following methods to zoom in for more detail:</msg>
+  <msg name="help3_1">Use the +/- control buttons in the top left corner of the map</msg>
+  <msg name="help3_2">Use the +/- keys on your keyboard</msg>
+  <msg name="help3_3">Double-click the map</msg>
+  <msg name="help3_4">Move your mouse cursor over the map, then use the mouse wheel button</msg>
 </messagebundle> 
