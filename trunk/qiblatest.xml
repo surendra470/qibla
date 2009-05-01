@@ -146,6 +146,7 @@ function Process__MODULE_ID__() {
   };
 
   this.centreMap = function(pLat, pLng, pZoom) {
+    miniMsg.dismissMessage(msg);
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), pZoom);
     showXhair(pLat, pLng);
