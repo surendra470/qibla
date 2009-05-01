@@ -51,34 +51,14 @@
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
-/*
-#address__MODULE_ID__ {width:80%;color:grey;}
-*/
 #form__MODULE_ID__ {margin:0;padding:0;height:20px;}
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:280px;}
+#geocode__MODULE_ID__ {width:100%;padding:0;margin:0;border-style:none;}
+#address__MODULE_ID__ {width:100%;height:20px;color:grey;}
+#buttons__MODULE_ID__ {width:25px;}
 
-#geocode__MODULE_ID__ {
-	margin-right:98px;
-	height:40px;
-	padding:0;
-}
-
-#address__MODULE_ID__ {
-	float:left;
-	width:100%;
-	margin:0;
-	padding:0;
-	height:20px;
-}
-
-#buttons__MODULE_ID__ {
-	float:left;
-	width:56px;
-	margin-right:-98px;
-	height:20px;
-}
 
 /* 
 http://www.webmasterworld.com/css/3605330.htm
@@ -242,14 +222,17 @@ _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 
-<div id="geocode__MODULE_ID__">
+<table id="geocode__MODULE_ID__">
+<tr>
+<td>
 <input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
-
-<div id="buttons__MODULE_ID__">
+</td>
+<td id="buttons__MODULE_ID__">
 <input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
-</div>
-</div>
+</td>
+</tr>
+</table>
 
 <script type="text/javascript">
   _IG_RegisterOnloadHandler(function() {
