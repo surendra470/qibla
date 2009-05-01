@@ -51,13 +51,14 @@
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
-#address__MODULE_ID__ {width:80%;color:grey;}
-#form__MODULE_ID__ {margin:0;padding:0;}
-#address_btn__MODULE_ID__ {border-style:none;}
-#help_btn__MODULE_ID__ {border-style:none;}
-#map__MODULE_ID__ {width:100%;height:277px;}
+#form__MODULE_ID__ {margin:0;padding:0;height:20px;}
+#geocode__MODULE_ID__ {width:100%;padding:0;margin:0;border-style:none;}
+#geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
+#address__MODULE_ID__ {width:100%;height:20px;color:grey;font-size:70%;}
+#buttons__MODULE_ID__ {width:32px;}
+#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
+#map__MODULE_ID__ {width:100%;height:280px;}
 </style>
-
 <!--[if IE 6]> 
 <style>
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
@@ -89,14 +90,6 @@ function Process__MODULE_ID__() {
   var msg;
   var trackCode = "UA-1059171-6";
   var analysed = false;
-  var reasons = [];
-  reasons[G_GEO_SUCCESS] = "G_GEO_SUCCESS";
-  reasons[G_GEO_MISSING_ADDRESS] = "G_GEO_MISSING_ADDRESS";
-  reasons[G_GEO_UNKNOWN_ADDRESS] = "G_GEO_UNKNOWN_ADDRESS";
-  reasons[G_GEO_UNAVAILABLE_ADDRESS] = "G_GEO_UNAVAILABLE_ADDRESS";
-  reasons[G_GEO_BAD_KEY] = "G_GEO_BAD_KEY";
-  reasons[G_GEO_TOO_MANY_QUERIES] = "G_GEO_TOO_MANY_QUERIES";
-  reasons[G_GEO_SERVER_ERROR] = "G_GEO_SERVER_ERROR";
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
@@ -116,7 +109,6 @@ function Process__MODULE_ID__() {
       }
 
       geo.setBaseCountryCode(country);
-      
       obj.centreMap(lat, lng, initZoom);
       
       if (!lat || !lng) {
@@ -125,7 +117,6 @@ function Process__MODULE_ID__() {
       }
       
       map.setUIToDefault();
-      
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
@@ -140,6 +131,7 @@ function Process__MODULE_ID__() {
   };
 
   this.centreMap = function(pLat, pLng, pZoom) {
+    miniMsg.dismissMessage(msg);
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), pZoom);
     showXhair(pLat, pLng);
@@ -177,7 +169,7 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" + p[1] + "," + p[0] + "," + geoZoom + ");process__MODULE_ID__.dismissMsg()'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
@@ -190,11 +182,7 @@ function Process__MODULE_ID__() {
       }
     }
     else {
-      var reason = "Code " + pResult.Status.code;
-      if (reasons[pResult.Status.code]) {
-        reason = prefs.getMsg(reasons[pResult.Status.code]);
-      }
-      msg = miniMsg.createDismissibleMessage(reason);
+      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
     }
   }
 
@@ -203,10 +191,13 @@ function Process__MODULE_ID__() {
   };
   
   this.help = function() {
+    miniMsg.dismissMessage(msg);
     var help = "<ol><li>" + prefs.getMsg("help1") + "</li><li>" + prefs.getMsg("help2") + "<ul><li>" + 
        prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
-       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li></ul></li></ol>";
+       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + 
+       "</li><li>" + prefs.getMsg("help3_3") + "</li><li>" + prefs.getMsg("help3_4") + "</li></ul></li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
+    _IG_Analytics(trackCode, "/qibla/help");
   };
 }
 
@@ -218,9 +209,13 @@ function init__MODULE_ID__() {
 _IG_RegisterOnloadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
-<input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
-<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" />&nbsp;&nbsp;
-<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" /></a>
+
+<table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
+<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" /></td>
+<td id="buttons__MODULE_ID__">
+<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
+<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
+</td></tr></table>
 <script type="text/javascript">
   _IG_RegisterOnloadHandler(function() {
     _gel("address_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
