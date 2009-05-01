@@ -60,7 +60,7 @@
 #map__MODULE_ID__ {width:100%;height:280px;}
 
 #geocode__MODULE_ID__ {
-	margin-right:58px;
+	margin-right:98px;
 	height:20px;
 	padding:0;
 }
@@ -74,8 +74,8 @@
 
 #buttons__MODULE_ID__ {
 	float:right;
-	width:26px;
-	margin-right:-58px;
+	width:56px;
+	margin-right:-98px;
 }
 
 /* 
