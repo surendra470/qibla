@@ -55,7 +55,7 @@
 #form__MODULE_ID__ {margin:0;padding:0;}
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
-#map__MODULE_ID__ {width:100%;height:280px;}
+#map__MODULE_ID__ {width:100%;height:277px;}
 </style>
 
 <!--[if IE 6]> 
