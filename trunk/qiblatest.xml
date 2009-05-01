@@ -51,24 +51,26 @@
 .mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
-/*#address__MODULE_ID__ {width:80%;color:grey;}*/
+/*
+#address__MODULE_ID__ {width:80%;color:grey;}
 #form__MODULE_ID__ {margin:0;padding:0;}
 #address_btn__MODULE_ID__ {border-style:none;}
 #help_btn__MODULE_ID__ {border-style:none;}
-#map__MODULE_ID__ {width:100%;height:280px;}
+*/
+#map__MODULE_ID__ {width:100%;height:277px;}
 
-#form__MODULE_ID__ #geocode__MODULE_ID__ {
+#geocode__MODULE_ID__ {
 	margin-right:24px;
 }
 
-#form__MODULE_ID__ #address__MODULE_ID__ {
+#address__MODULE_ID__ {
 	float:left;
 	width:100%;
 	margin:0;
 	padding:0;
 }
 
-#form__MODULE_ID__ #buttons__MODULE_ID__ {
+#buttons__MODULE_ID__ {
 	float:left;
 	width:20px;
 	margin-right:-24px;
