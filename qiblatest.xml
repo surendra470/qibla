@@ -56,8 +56,10 @@
 #help_btn__MODULE_ID__ {border-style:none;}
 #map__MODULE_ID__ {width:100%;height:280px;}
 #geocode__MODULE_ID__ {width:100%;padding:0;margin:0;border-style:none;}
+#geocode__MODULE_ID__ tr {height:20px;padding:0;margin:0;}
+#geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
 #address__MODULE_ID__ {width:100%;height:20px;color:grey;}
-#buttons__MODULE_ID__ {width:25px;}
+#buttons__MODULE_ID__ {width:30px;}
 
 
 /* 
