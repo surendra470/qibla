@@ -61,6 +61,8 @@
 
 #geocode__MODULE_ID__ {
 	margin-right:28px;
+	height:20px;
+	padding:0;
 }
 
 #address__MODULE_ID__ {
