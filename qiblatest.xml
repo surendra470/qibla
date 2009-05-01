@@ -61,7 +61,7 @@
 
 #geocode__MODULE_ID__ {
 	margin-right:98px;
-	height:20px;
+	height:40px;
 	padding:0;
 }
 
@@ -70,12 +70,14 @@
 	width:100%;
 	margin:0;
 	padding:0;
+	height:20px;
 }
 
 #buttons__MODULE_ID__ {
 	float:left;
 	width:56px;
 	margin-right:-98px;
+	height:20px;
 }
 
 /* 
