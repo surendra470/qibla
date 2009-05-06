@@ -59,7 +59,7 @@
 #address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
 #map__MODULE_ID__ {width:100%;height:280px;}
 </style>
-<!--[if IE 6]> 
+<!--[if lte IE 8]> 
 <style>
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
 </style>
