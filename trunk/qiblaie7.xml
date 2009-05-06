@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Qibla Direction"
+    directory_title="Qibla Direction"
+    author="Munawar Akbar"
+    author_email="futureindustries@yahoo.com"
+    thumbnail="http://qibla.googlecode.com/svn/trunk/thumb.png"
+    screenshot="http://qibla.googlecode.com/svn/trunk/screen.png"
+    category="tools"
+    height="300"
+    description="Discover the Qibla direction using your address. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).">
+    <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
+    <Locale lang="en" country="GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
+    <Locale lang="en" country="CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
+    <Require feature="minimessage"/>
+    <Require feature="analytics"/>
+</ModulePrefs>
+
+<UserPref
+   name="location"
+   display_name="Initial map location if it cannot be discovered automatically"
+   datatype="location"
+   default_value="Buckingham Palace, London"/>
+
+<UserPref
+   name="zoom"
+   display_name="Initial zoom level"
+   datatype="string"
+   default_value="12"/>
+
+<UserPref
+   name="country"
+   display_name="Default address lookup country if it cannot be discovered automatically (a 2 letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
+   datatype="string"
+   default_value="uk"/>
+
+<UserPref
+   name="bg"
+   display_name="Information message background colour"
+   datatype="string"
+   default_value="fff4c2"/>
+
+<UserPref
+   name="fg"
+   display_name="Information message foreground colour"
+   datatype="string"
+   default_value="000000"/>
+
+<Content type="html"><![CDATA[
+<style>
+.mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
+.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
+.mmlib_table__MODULE_ID__ td {vertical-align:top;}
+#form__MODULE_ID__ {margin:0;padding:0;height:20px;}
+#geocode__MODULE_ID__ {width:99%;padding:0;margin:0;border-style:none;}
+#geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
+#address__MODULE_ID__ {width:100%;height:20px;color:grey;font-size:70%;}
+#buttons__MODULE_ID__ {width:32px;}
+#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
+#map__MODULE_ID__ {width:100%;height:280px;}
+</style>
+
+<!--[if lte IE 7]> 
+<style>
+.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
+</style>
+<![endif]-->
+
+<script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
+<script type="text/javascript">
+google.load("maps", "2");
+var process__MODULE_ID__;
+
+function Process__MODULE_ID__() {
+  var prefs = (gadgets && gadgets.Prefs) ? new gadgets.Prefs(__MODULE_ID__) : new _IG_Prefs(__MODULE_ID__);
+  var lat = prefs.getString("location.lat");
+  var lng = prefs.getString("location.long");
+  var country = prefs.getString("country");
+  var initZoom = prefs.getInt("zoom");
+  var geoZoom = 16;
+  var obj = this;
+  var map;
+  var xMrk;
+  var poly;
+  var typeCtrl;
+  var zoomCtrl;
+  var qbLat = 21.422504762754905;
+  var qbLng = 39.8261421918869;
+  var geo = new google.maps.ClientGeocoder();
+  var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
+  var msg;
+  var trackCode = "UA-1059171-6";
+  var analysed = false;
+  
+  this.init = function() {
+    if (google.maps.BrowserIsCompatible()) {
+      map = new google.maps.Map2(_gel("map__MODULE_ID__"));
+      var xIco = new google.maps.Icon();
+      xIco.image = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
+      xIco.iconSize = new google.maps.Size(21, 21);
+      xIco.iconAnchor = new google.maps.Point(11, 11);
+      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
+      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      
+      var loc = google.loader.ClientLocation; 
+      if (loc) {
+        lat = loc.latitude;
+        lng = loc.longitude;
+	  country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
+      }
+
+      geo.setBaseCountryCode(country);
+      
+      obj.centreMap(lat, lng, initZoom);
+      obj.help();
+      
+      if (!lat || !lng) {
+        // when last checked, Blogger doesn't populate lat and lng from the location datatype
+        this.showAddr(prefs.getString("location"), false); 
+      }
+      
+      map.setUIToDefault();
+      
+      drawMap();
+      google.maps.Event.addListener(map, "moveend", drawMap);
+      google.maps.Event.addListener(map, "zoomend", function() {
+        if (!analysed) {
+          _IG_Analytics(trackCode, "/qibla/navigate");
+          analysed = true;
+        }
+      });
+
+      _IG_Analytics(trackCode, "/qibla");
+    }
+  };
+
+  this.centreMap = function(pLat, pLng, pZoom) {
+    miniMsg.dismissMessage(msg);
+    map.checkResize();
+    map.setCenter(new google.maps.LatLng(pLat, pLng), pZoom);
+    showXhair(pLat, pLng);
+  };
+
+  function showXhair(pLat, pLng) {
+    xMrk.setLatLng(new google.maps.LatLng(pLat, pLng));
+    map.addOverlay(xMrk);
+  }
+  
+  function drawMap() {
+      var ctr = map.getCenter();
+      map.clearOverlays();
+      showXhair(ctr.lat(), ctr.lng());
+      flyCrow(ctr.lat(), ctr.lng());
+  }
+
+  function flyCrow(pLat, pLng) {
+    poly = new google.maps.Polyline([new google.maps.LatLng(pLat, pLng), new google.maps.LatLng(qbLat, qbLng)], "#ff0000", 1, 1, {geodesic:true});
+    map.addOverlay(poly);
+  }
+
+  this.showAddr = function(pAddr, pAnalyse) {
+    miniMsg.dismissMessage(msg);
+    geo.getLocations(pAddr, procResult);
+    if (pAnalyse)
+      _IG_Analytics(trackCode, "/qibla/geocode");
+    analysed = pAnalyse;
+    return false;
+  };
+
+  function procResult(pResult) {
+    if (pResult.Status.code == G_GEO_SUCCESS) {
+      if (pResult.Placemark.length > 1) {
+        var msgCnt = "";
+        for (var i=0; i < pResult.Placemark.length; i++) {
+          var p = pResult.Placemark[i].Point.coordinates;
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
+          if (i != pResult.Placemark.length - 1)
+            msgCnt += "<br />";
+        }
+        msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
+        msg.style.cursor = "pointer";
+      }
+      else {
+        var p = pResult.Placemark[0].Point.coordinates;
+        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
+      }
+    }
+    else {
+      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
+    }
+  }
+
+  this.dismissMsg = function() {
+    miniMsg.dismissMessage(msg);
+  };
+  
+  this.help = function() {
+    miniMsg.dismissMessage(msg);
+    var help = "<ol><li>" + prefs.getMsg("help1") + "</li><li>" + prefs.getMsg("help2") + "<ul><li>" + 
+       prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
+       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li><li>" + prefs.getMsg("help3_3") + "</li><li>" + prefs.getMsg("help3_4") + "</li></ul></li></ol>";
+    msg = miniMsg.createDismissibleMessage(help);
+    _IG_Analytics(trackCode, "/qibla/help");
+  };
+}
+
+function init__MODULE_ID__() {
+  process__MODULE_ID__ = new Process__MODULE_ID__();
+  process__MODULE_ID__.init();
+}
+
+_IG_RegisterOnloadHandler(init__MODULE_ID__);
+</script>
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
+
+<table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
+</td>
+<td id="buttons__MODULE_ID__">
+<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
+<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
+</td>
+</tr>
+</table>
+
+<script type="text/javascript">
+  _IG_RegisterOnloadHandler(function() {
+    _gel("address_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
+    _gel("help_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/question.gif");
+  });
+</script>
+</form>
+<div id="map__MODULE_ID__"></div>
+]]>
+</Content>
+</Module>
