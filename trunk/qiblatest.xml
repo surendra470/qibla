@@ -53,23 +53,11 @@
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
 #form__MODULE_ID__ {margin:0;padding:0;height:20px;}
 #geocode__MODULE_ID__ {width:100%;padding:0;margin:0;border-style:none;}
-/*#geocode__MODULE_ID__ tr {height:20px;padding:0;margin:0;}*/
 #geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
 #address__MODULE_ID__ {width:100%;height:20px;color:grey;font-size:70%;}
-#buttons__MODULE_ID__ {width:32px;}
+#buttons__MODULE_ID__ {width:32px;padding-right:3px;}
 #address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
 #map__MODULE_ID__ {width:100%;height:280px;}
-
-/* 
-http://www.webmasterworld.com/css/3605330.htm
-http://forums.digitalpoint.com/showthread.php?t=1018014
-
-geocode return code handling
-additional help items
-input styling
-analyse help page views
-*/
-
 </style>
 
 <!--[if IE 6]> 
