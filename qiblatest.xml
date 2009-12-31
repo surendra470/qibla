@@ -134,10 +134,10 @@ function Process__MODULE_ID__() {
     }
   };
 
-  this.centreMap = function(pLatLng) {
+  function centreMap(pLatLng) {
     map.setCenter(pLatLng, zoom);
     showOverlays(pLatLng);
-  };
+  }
   
   this.centreLatLng = function(pLat, pLng, pZoom) {
     alert("centreLatLng");
@@ -197,9 +197,9 @@ function Process__MODULE_ID__() {
     }
   }
   
-  this.dismissMsg = function() {
+  function dismissMsg() {
     miniMsg.dismissMessage(msg);
-  };
+  }
   
   function listify(pTxt) {
     return "<li>" + pTxt + "</li>";
