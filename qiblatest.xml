@@ -219,22 +219,19 @@ function init__MODULE_ID__() {
   process__MODULE_ID__.init();
 }
 
-gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
+gadgets.util.registerOnLoadHandler(function() {
+  init__MODULE_ID__;
+  document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
+  document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
+});
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
-
 <table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
 <tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" /></td>
 <td id="buttons__MODULE_ID__">
 <input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
 </td></tr></table>
-<script type="text/javascript">
-  gadgets.util.registerOnLoadHandler(function() {
-    document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
-    document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
-  });
-</script>
 </form>
 <div id="map__MODULE_ID__"></div>
 ]]>
