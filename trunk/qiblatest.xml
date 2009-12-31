@@ -127,7 +127,9 @@ function Process__MODULE_ID__() {
         obj.centreMap(lat, lng, initZoom);
       }
       
+      alert("before");
       overlay();
+      alert("after");
       map.setUIToDefault();
       google.maps.Event.addListener(map, "moveend", overlay);
       google.maps.Event.addListener(map, "zoomend", function() {
