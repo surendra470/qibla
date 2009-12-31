@@ -167,36 +167,34 @@ function Process__MODULE_ID__() {
 
   this.showAddr = function(pAddr, pAnalyse) {
     miniMsg.dismissMessage(msg);
-    geo.getLocations(pAddr, procAddr);
+    geo.getLocations(pAddr, procResult);
     if (pAnalyse)
       _IG_Analytics(trackCode, "/qibla/geocode");
     analysed = pAnalyse;
     return false;
   };
 
-  function procAddr(pAddrResult) {
-    if (pAddrResult.Status.code == G_GEO_SUCCESS) {
-      if (pAddrResult.Placemark.length > 1) {
+  function procResult(pResult) {
+    if (pResult.Status.code == G_GEO_SUCCESS) {
+      if (pResult.Placemark.length > 1) {
         var msgCnt = "";
-        for (var i=0; i < pAddrResult.Placemark.length; i++) {
-          var p = pAddrResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
-          if (i != pAddrResult.Placemark.length - 1)
+        for (var i=0; i < pResult.Placemark.length; i++) {
+          var p = pResult.Placemark[i].Point.coordinates;
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
+          if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
-	alert(msgCnt);
         msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
         msg.style.cursor = "pointer";
       }
       else {
-        var p = pAddrResult.Placemark[0].Point.coordinates;
-        obj.centreLatLng(p[1], p[0], geoZoom);
+        var p = pResult.Placemark[0].Point.coordinates;
+        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
       }
     }
     else {
-      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pAddrResult.Status.code));
+      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
     }
-  }
 
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
