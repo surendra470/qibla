@@ -156,6 +156,7 @@ function Process__MODULE_ID__() {
   }
   
   function overlay() {
+  if (map) alert("map not null");
       var ctr = map.getCenter();
       map.clearOverlays();
       showXhair(ctr.lat(), ctr.lng());
