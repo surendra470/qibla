@@ -30,7 +30,7 @@
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically (a 2 letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
+   display_name="Default address lookup country if it cannot be discovered automatically (a two letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
    datatype="string"
    default_value="uk"/>
 
@@ -52,17 +52,21 @@
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
 .mmlib_table__MODULE_ID__ td {vertical-align:top;}
 #form__MODULE_ID__ {margin:0;padding:0;height:20px;}
-#geocode__MODULE_ID__ {width:100%;padding:0;margin:0;border-style:none;}
+#geocode__MODULE_ID__ {width:99%;padding:0;margin:0;border-style:none;}
 #geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
-#address__MODULE_ID__ {width:100%;height:20px;color:red;font-size:70%;}
+#address__MODULE_ID__ {width:100%;height:20px;color:grey;font-size:70%;}
 #buttons__MODULE_ID__ {width:32px;}
-#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;margin-right:3px;}
-#map__MODULE_ID__ {width:100%;height:280px;}
+#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
+#map__MODULE_ID__ {width:100%;height:100%;}
 </style>
-
-<!--[if IE 6]> 
+<!--[if lte IE 8]> 
 <style>
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
+</style>
+<![endif]-->
+<!--[if lte IE 6]> 
+<style>
+#map__MODULE_ID__ {height:280px;}
 </style>
 <![endif]-->
 
@@ -72,35 +76,34 @@ google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
-  var prefs = (gadgets && gadgets.Prefs) ? new gadgets.Prefs(__MODULE_ID__) : new _IG_Prefs(__MODULE_ID__);
+  var obj = this;
+  var prefs = new gadgets.Prefs(__MODULE_ID__);
   var lat = prefs.getString("location.lat");
   var lng = prefs.getString("location.long");
   var country = prefs.getString("country");
   var initZoom = prefs.getInt("zoom");
   var geoZoom = 16;
-  var obj = this;
   var map;
   var xMrk;
   var poly;
-  var typeCtrl;
-  var zoomCtrl;
   var qbLat = 21.422504762754905;
   var qbLng = 39.8261421918869;
   var geo = new google.maps.ClientGeocoder();
-  var miniMsg = new _IG_MiniMessage(__MODULE_ID__);
+  var miniMsg = new gadgets.MiniMessage(__MODULE_ID__);
   var msg;
   var trackCode = "UA-1059171-6";
   var analysed = false;
+  var fileLoc = "http://qibla.googlecode.com/svn/trunk";
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
-      map = new google.maps.Map2(_gel("map__MODULE_ID__"));
+      map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/crosshair.gif");
+      xIco.image = gadgets.io.getProxyUrl(fileLoc + "/crosshair.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: "Centre your location onto the crosshairs"});
+      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
       
       var loc = google.loader.ClientLocation; 
       if (loc) {
@@ -110,16 +113,14 @@ function Process__MODULE_ID__() {
       }
 
       geo.setBaseCountryCode(country);
-      
       obj.centreMap(lat, lng, initZoom);
       
       if (!lat || !lng) {
-        // when last checked, Blogger doesn't populate lat and lng from the location datatype
+        // when last checked, Blogspot doesn't populate lat and lng from the location datatype
         this.showAddr(prefs.getString("location"), false); 
       }
       
       map.setUIToDefault();
-      
       drawMap();
       google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
@@ -193,11 +194,16 @@ function Process__MODULE_ID__() {
     miniMsg.dismissMessage(msg);
   };
   
+  this.listify(pTxt) {
+    return "<li>" + pTxt + "</li>";
+  }
+
   this.help = function() {
     miniMsg.dismissMessage(msg);
-    var help = "<ol><li>" + prefs.getMsg("help1") + "</li><li>" + prefs.getMsg("help2") + "<ul><li>" + 
-       prefs.getMsg("help2_2") + "</li><li>" + prefs.getMsg("help2_3") + "</li></ul></li><li>" + 
-       prefs.getMsg("help3") + "<ul><li>" + prefs.getMsg("help3_1") + "</li><li>" + prefs.getMsg("help3_2") + "</li><li>" + prefs.getMsg("help3_3") + "</li><li>" + prefs.getMsg("help3_4") + "</li></ul></li></ol>";
+    var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" + 
+       listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" + 
+       prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) + 
+       listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
     _IG_Analytics(trackCode, "/qibla/help");
   };
@@ -208,26 +214,20 @@ function init__MODULE_ID__() {
   process__MODULE_ID__.init();
 }
 
-_IG_RegisterOnloadHandler(init__MODULE_ID__);
+gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 
 <table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
-<tr>
-<td>
-<input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" />
-</td>
+<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" /></td>
 <td id="buttons__MODULE_ID__">
 <input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
-</td>
-</tr>
-</table>
-
+</td></tr></table>
 <script type="text/javascript">
-  _IG_RegisterOnloadHandler(function() {
-    _gel("address_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/forward.gif");
-    _gel("help_btn__MODULE_ID__").src = _IG_GetImageUrl("http://qibla.googlecode.com/svn/trunk/question.gif");
+  gadgets.util.registerOnLoadHandler(function() {
+    document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(fileLoc + "/forward.gif");
+    document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(fileLoc + "/question.gif");
   });
 </script>
 </form>
