@@ -124,8 +124,7 @@ function Process__MODULE_ID__() {
       }
       
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
-      
-      showOverlays();
+
       map.setUIToDefault();
       
       google.maps.Event.addListener(map, "moveend", showOverlays);
