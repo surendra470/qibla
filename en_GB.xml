@@ -1,6 +1,7 @@
 <messagebundle>
  <msg name="address">Enter your address here</msg>
  <msg name="address_btn">Show direction</msg>
+ <msg name="crosshairs">Centre your location onto the crosshairs</msg>
  <msg name="400">The address cannot be understood.</msg>
  <msg name="500">The reason for the failure is unknown.</msg>
  <msg name="601">The address is empty.</msg>
@@ -20,3 +21,4 @@
  <msg name="help3_3">Double-click the map</msg>
  <msg name="help3_4">Rotate the mouse wheel button</msg>
 </messagebundle>
+
