@@ -166,8 +166,8 @@ function Process__MODULE_ID__() {
   }
 
   this.showAddr = function(pAddr, pAnalyse) {
-    miniMsg.dismissMessage(msg);
     geo.getLocations(pAddr, procResult);
+		miniMsg.dismissMessage(msg);
     if (pAnalyse)
       _IG_Analytics(trackCode, "/qibla/geocode");
     analysed = pAnalyse;
@@ -199,7 +199,7 @@ function Process__MODULE_ID__() {
   
   function dismissMsg() {
     miniMsg.dismissMessage(msg);
-  };
+  }
   
   function listify(pTxt) {
     return "<li>" + pTxt + "</li>";
