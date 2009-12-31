@@ -113,9 +113,9 @@ function Process__MODULE_ID__() {
       geo.setBaseCountryCode(country);
       
       if (!lat || !lng) {
-        geo.getLatLng(prefs.getString('location'), this.centreMap)
+        geo.getLatLng(prefs.getString('location'), centreMap)
       } else {
-        obj.centreLatLng(lat, lng, zoom);
+        centreLatLng(lat, lng, zoom);
       }
       
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
@@ -184,12 +184,12 @@ function Process__MODULE_ID__() {
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
-        msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
+        msg = miniMsg.createDismissibleMessage(msgCnt, dismissMsg);
         msg.style.cursor = "pointer";
       }
       else {
         var p = pResult.Placemark[0].Point.coordinates;
-        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
+        centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
       }
     }
     else {
