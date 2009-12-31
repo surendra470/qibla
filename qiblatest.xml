@@ -217,12 +217,11 @@ function Process__MODULE_ID__() {
 function init__MODULE_ID__() {
   process__MODULE_ID__ = new Process__MODULE_ID__();
   process__MODULE_ID__.init();
-}
-
-gadgets.util.registerOnLoadHandler(function() {
-  init__MODULE_ID__;
   document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
   document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
+}
+
+gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 });
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
