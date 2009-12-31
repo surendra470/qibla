@@ -140,7 +140,6 @@ function Process__MODULE_ID__() {
   }
   
   this.centreLatLng = function(pLat, pLng, pZoom) {
-    alert("centreLatLng");
     var latLng = new google.maps.LatLng(pLat, pLng);
     miniMsg.dismissMessage(msg);
     map.checkResize();
@@ -166,7 +165,7 @@ function Process__MODULE_ID__() {
   }
 
   this.showAddr = function(pAddr, pAnalyse) {
-    geo.getLocations(pAddr, procResult);
+    geo.getLocations(pAddr, procAddr);
 		miniMsg.dismissMessage(msg);
     if (pAnalyse)
       _IG_Analytics(trackCode, "/qibla/geocode");
@@ -174,14 +173,14 @@ function Process__MODULE_ID__() {
     return false;
   };
 
-  function procResult(pResult) {
-    if (pResult.Status.code == G_GEO_SUCCESS) {
-      if (pResult.Placemark.length > 1) {
+  function procAddr(pAddrResult) {
+    if (pAddrResult.Status.code == G_GEO_SUCCESS) {
+      if (pAddrResult.Placemark.length > 1) {
         var msgCnt = "";
-        for (var i=0; i < pResult.Placemark.length; i++) {
-          var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
-          if (i != pResult.Placemark.length - 1)
+        for (var i=0; i < pAddrResult.Placemark.length; i++) {
+          var p = pAddrResult.Placemark[i].Point.coordinates;
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
+          if (i != pAddrResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
 				// non-DOM method no longer works?
@@ -192,12 +191,12 @@ function Process__MODULE_ID__() {
         msg.style.cursor = "pointer";
       }
       else {
-        var p = pResult.Placemark[0].Point.coordinates;
+        var p = pAddrResult.Placemark[0].Point.coordinates;
         centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
       }
     }
     else {
-      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
+      msg = miniMsg.createDismissibleMessage(prefs.getMsg(pAddrResult.Status.code));
     }
   }
   
