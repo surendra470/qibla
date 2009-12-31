@@ -107,9 +107,6 @@ function Process__MODULE_ID__() {
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      if (prefs) alert("true");
-      alert(prefs.getMsg("crosshairs"));
-      alert(this.prefs.getMsg("crosshairs"));
       
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
       
