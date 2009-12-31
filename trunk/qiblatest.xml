@@ -124,7 +124,7 @@ function Process__MODULE_ID__() {
         // when last checked, Blogspot doesn't populate lat and lng from the location datatype
         this.showAddr(prefs.getString("location"), false); 
       } else {
-        this.centreMap(lat, lng, initZoom);
+        obj.centreMap(lat, lng, initZoom);
       }
       
       overlay();
@@ -184,12 +184,12 @@ function Process__MODULE_ID__() {
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
-        msg = miniMsg.createDismissibleMessage(msgCnt, this.dismissMsg);
+        msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
         msg.style.cursor = "pointer";
       }
       else {
         var p = pResult.Placemark[0].Point.coordinates;
-        this.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
+        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
       }
     }
     else {
