@@ -84,7 +84,7 @@ function Process__MODULE_ID__() {
   var msg;
   var trackCode = "UA-1059171-6";
   var analysed = false;
-  var fileLoc = "http://qibla.googlecode.com/svn/trunk";
+  this.fileLoc = "http://qibla.googlecode.com/svn/trunk";
 
   function centreMap(pLatLng) {
     map.setCenter(pLatLng, zoom);
@@ -141,7 +141,7 @@ function Process__MODULE_ID__() {
 }
 
 Process__MODULE_ID__.prototype.getFileLoc = function() {
-	return fileLoc;
+	return this.fileLoc;
 };
 
 Process__MODULE_ID__.prototype.init = function() {
