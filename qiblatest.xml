@@ -95,6 +95,10 @@ function Process__MODULE_ID__() {
   var analysed = false;
   var fileLoc = "http://qibla.googlecode.com/svn/trunk";
   
+  this.getFileLoc = function() {
+    return fileLoc;
+  }
+  
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -194,7 +198,7 @@ function Process__MODULE_ID__() {
     miniMsg.dismissMessage(msg);
   };
   
-  this.listify(pTxt) {
+  this.listify = function(pTxt) {
     return "<li>" + pTxt + "</li>";
   }
 
@@ -226,8 +230,8 @@ gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 </td></tr></table>
 <script type="text/javascript">
   gadgets.util.registerOnLoadHandler(function() {
-    document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(fileLoc + "/forward.gif");
-    document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(fileLoc + "/question.gif");
+    document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
+    document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
   });
 </script>
 </form>
