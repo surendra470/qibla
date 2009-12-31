@@ -89,7 +89,7 @@ function Process__MODULE_ID__() {
   
   this.getFileLoc = function() {
     return fileLoc;
-  }
+  };
   
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
@@ -203,7 +203,7 @@ function Process__MODULE_ID__() {
   
   this.listify = function(pTxt) {
     return "<li>" + pTxt + "</li>";
-  }
+  };
 
   this.help = function() {
     miniMsg.dismissMessage(msg);
