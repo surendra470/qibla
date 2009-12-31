@@ -145,6 +145,7 @@ function Process__MODULE_ID__() {
   };
   
   this.centreLatLng = function(pLat, pLng, pZoom) {
+    alert("centreLatLng");
     var latLng = new google.maps.LatLng(pLat, pLng);
     miniMsg.dismissMessage(msg);
     map.checkResize();
