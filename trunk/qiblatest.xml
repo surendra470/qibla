@@ -71,7 +71,6 @@ google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
-  var obj = this;
   var prefs = new gadgets.Prefs(__MODULE_ID__);
   var country = prefs.getString("country");
   var zoom = prefs.getInt("zoom");
@@ -86,67 +85,11 @@ function Process__MODULE_ID__() {
   var trackCode = "UA-1059171-6";
   var analysed = false;
   var fileLoc = "http://qibla.googlecode.com/svn/trunk";
-  
-  this.getFileLoc = function() {
-    return fileLoc;
-  };
-  
-  this.init = function() {
-    if (google.maps.BrowserIsCompatible()) {
-      map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
-      var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(fileLoc + "/crosshair.gif");
-      xIco.iconSize = new google.maps.Size(21, 21);
-      xIco.iconAnchor = new google.maps.Point(11, 11);
-      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-
-      var loc = google.loader.ClientLocation;
-      var lat;
-      var lng;
-  
-      if (loc) {
-        lat = loc.latitude;
-        lng = loc.longitude;
-	country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
-      }
-
-      geo.setBaseCountryCode(country);
-      
-      if (!lat || !lng) {
-        geo.getLatLng(prefs.getString('location'), centreMap)
-      } else {
-        obj.centreLatLng(lat, lng, zoom);
-      }
-      
-      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
-
-      map.setUIToDefault();
-      
-      google.maps.Event.addListener(map, "moveend", showOverlays);
-      google.maps.Event.addListener(map, "zoomend", function() {
-        if (!analysed) {
-          _IG_Analytics(trackCode, "/qibla/navigate");
-          analysed = true;
-        }
-      });
-
-      _IG_Analytics(trackCode, "/qibla");
-    }
-  };
 
   function centreMap(pLatLng) {
     map.setCenter(pLatLng, zoom);
     showOverlays(pLatLng);
   }
-  
-  this.centreLatLng = function(pLat, pLng, pZoom) {
-    alert("centreLatLng");
-    var latLng = new google.maps.LatLng(pLat, pLng);
-    miniMsg.dismissMessage(msg);
-    map.checkResize();
-    map.setCenter(latLng, pZoom);
-    showOverlays(latLng);
-  };
 
   function showOverlays() {
     var latLng = map.getCenter();
@@ -164,15 +107,6 @@ function Process__MODULE_ID__() {
     poly = new google.maps.Polyline([pLatLng, qbLatLng], "#ff0000", 1, 1, {geodesic:true});
     map.addOverlay(poly);
   }
-
-  this.showAddr = function(pAddr, pAnalyse) {
-    miniMsg.dismissMessage(msg);
-    geo.getLocations(pAddr, procResult);
-    if (pAnalyse)
-      _IG_Analytics(trackCode, "/qibla/geocode");
-    analysed = pAnalyse;
-    return false;
-  };
 
   function procResult(pResult) {
     if (pResult.Status.code == G_GEO_SUCCESS) {
@@ -204,17 +138,82 @@ function Process__MODULE_ID__() {
   function listify(pTxt) {
     return "<li>" + pTxt + "</li>";
   }
-
-  this.help = function() {
-    miniMsg.dismissMessage(msg);
-    var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" + 
-       listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" + 
-       prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) + 
-       listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>";
-    msg = miniMsg.createDismissibleMessage(help);
-    _IG_Analytics(trackCode, "/qibla/help");
-  };
 }
+
+Process__MODULE_ID__.prototype.getFileLoc = function() {
+	return fileLoc;
+};
+
+Process__MODULE_ID__.prototype.init = function() {
+	if (google.maps.BrowserIsCompatible()) {
+		map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+		var xIco = new google.maps.Icon();
+		xIco.image = gadgets.io.getProxyUrl(fileLoc + "/crosshair.gif");
+		xIco.iconSize = new google.maps.Size(21, 21);
+		xIco.iconAnchor = new google.maps.Point(11, 11);
+		xIco.infoWindowAnchor = new google.maps.Point(11, 11);
+
+		var loc = google.loader.ClientLocation;
+		var lat;
+		var lng;
+
+		if (loc) {
+			lat = loc.latitude;
+			lng = loc.longitude;
+      country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
+		}
+
+		geo.setBaseCountryCode(country);
+		
+		if (!lat || !lng) {
+			geo.getLatLng(prefs.getString('location'), centreMap)
+		} else {
+			obj.centreLatLng(lat, lng, zoom);
+		}
+		
+		xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
+
+		map.setUIToDefault();
+		
+		google.maps.Event.addListener(map, "moveend", showOverlays);
+		google.maps.Event.addListener(map, "zoomend", function() {
+			if (!analysed) {
+				_IG_Analytics(trackCode, "/qibla/navigate");
+				analysed = true;
+			}
+		});
+
+		_IG_Analytics(trackCode, "/qibla");
+	}
+};
+
+Process__MODULE_ID__.prototype.centreLatLng = function(pLat, pLng, pZoom) {
+  alert("centreLatLng");
+  var latLng = new google.maps.LatLng(pLat, pLng);
+  miniMsg.dismissMessage(msg);
+  map.checkResize();
+  map.setCenter(latLng, pZoom);
+  showOverlays(latLng);
+};
+
+Process__MODULE_ID__.prototype.showAddr = function(pAddr, pAnalyse) {
+	miniMsg.dismissMessage(msg);
+	geo.getLocations(pAddr, procResult);
+	if (pAnalyse)
+		_IG_Analytics(trackCode, "/qibla/geocode");
+	analysed = pAnalyse;
+	return false;
+};
+
+Process__MODULE_ID__.prototype.help = function() {
+	miniMsg.dismissMessage(msg);
+	var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" + 
+		 listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" + 
+		 prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) + 
+		 listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>";
+	msg = miniMsg.createDismissibleMessage(help);
+	_IG_Analytics(trackCode, "/qibla/help");
+};
 
 function init__MODULE_ID__() {
   process__MODULE_ID__ = new Process__MODULE_ID__();
