@@ -184,6 +184,7 @@ function Process__MODULE_ID__() {
           if (i != pAddrResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
+	alert(msgCnt);
         msg = miniMsg.createDismissibleMessage(msgCnt, obj.dismissMsg);
         msg.style.cursor = "pointer";
       }
