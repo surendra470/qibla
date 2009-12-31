@@ -181,7 +181,6 @@ function Process__MODULE_ID__() {
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
           msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
-	  msgCnt += "[a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")']" + pResult.Placemark[i].address + "[/a]";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
@@ -202,9 +201,9 @@ function Process__MODULE_ID__() {
     miniMsg.dismissMessage(msg);
   };
   
-  this.listify = function(pTxt) {
+  function listify(pTxt) {
     return "<li>" + pTxt + "</li>";
-  };
+  }
 
   this.help = function() {
     miniMsg.dismissMessage(msg);
