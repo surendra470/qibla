@@ -159,6 +159,8 @@ function Process__MODULE_ID__() {
   if (map) alert("map not null");
       var ctr = map.getCenter();
       map.clearOverlays();
+      alert(ctr.lat());
+      alert(ctr.lng());
       showXhair(ctr.lat(), ctr.lng());
       flyCrow(ctr.lat(), ctr.lng());
   }
