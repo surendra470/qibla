@@ -118,20 +118,16 @@ function Process__MODULE_ID__() {
       }
 
       geo.setBaseCountryCode(country);
-      
+      obj.centreMap(lat, lng, initZoom);
       
       if (!lat || !lng) {
         // when last checked, Blogspot doesn't populate lat and lng from the location datatype
         this.showAddr(prefs.getString("location"), false); 
-      } else {
-        obj.centreMap(lat, lng, initZoom);
       }
       
-      alert("before");
-      overlay();
-      alert("after");
       map.setUIToDefault();
-      google.maps.Event.addListener(map, "moveend", overlay);
+      drawMap();
+      google.maps.Event.addListener(map, "moveend", drawMap);
       google.maps.Event.addListener(map, "zoomend", function() {
         if (!analysed) {
           _IG_Analytics(trackCode, "/qibla/navigate");
@@ -155,13 +151,9 @@ function Process__MODULE_ID__() {
     map.addOverlay(xMrk);
   }
   
-  function overlay() {
-  if (map) alert("map not null");
+  function drawMap() {
       var ctr = map.getCenter();
-      alert(ctr);
       map.clearOverlays();
-      alert(ctr.lat());
-      alert(ctr.lng());
       showXhair(ctr.lat(), ctr.lng());
       flyCrow(ctr.lat(), ctr.lng());
   }
