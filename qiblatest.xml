@@ -19,7 +19,7 @@
 <UserPref
    name="location"
    display_name="Initial map location if it cannot be discovered automatically"
-   datatype="location"
+   datatype="string"
    default_value="Buckingham Palace, London"/>
 
 <UserPref
@@ -78,8 +78,8 @@ var process__MODULE_ID__;
 function Process__MODULE_ID__() {
   var obj = this;
   var prefs = new gadgets.Prefs(__MODULE_ID__);
-  var lat = prefs.getString("location.lat");
-  var lng = prefs.getString("location.long");
+  var lat;
+  var lng;
   var country = prefs.getString("country");
   var initZoom = prefs.getInt("zoom");
   var geoZoom = 16;
@@ -107,9 +107,7 @@ function Process__MODULE_ID__() {
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-      
-      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
-      
+
       var loc = google.loader.ClientLocation; 
       if (loc) {
         lat = loc.latitude;
@@ -118,16 +116,18 @@ function Process__MODULE_ID__() {
       }
 
       geo.setBaseCountryCode(country);
-      obj.centreMap(lat, lng, initZoom);
       
       if (!lat || !lng) {
-        // when last checked, Blogspot doesn't populate lat and lng from the location datatype
-        this.showAddr(prefs.getString("location"), false); 
+        geoc.getLatLng(prefs.getString('loc'), centreMap)
+      } else {
+        obj.centreLatLng(lat, lng, initZoom);
       }
       
+      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
+      
       map.setUIToDefault();
-      drawMap();
-      google.maps.Event.addListener(map, "moveend", drawMap);
+      overlay();
+      google.maps.Event.addListener(map, "moveend", overlay);
       google.maps.Event.addListener(map, "zoomend", function() {
         if (!analysed) {
           _IG_Analytics(trackCode, "/qibla/navigate");
@@ -139,7 +139,14 @@ function Process__MODULE_ID__() {
     }
   };
 
-  this.centreMap = function(pLat, pLng, pZoom) {
+  this.centreMap = function(pLatLng) {
+    map.setCenter(pLatLng, geoZoom);
+    lat = pLatLng.lat();
+    lng = pLatLng.lng();
+    showXhair(lat, lng);
+  };
+  
+  this.centreLatLng = function(pLat, pLng, pZoom) {
     miniMsg.dismissMessage(msg);
     map.checkResize();
     map.setCenter(new google.maps.LatLng(pLat, pLng), pZoom);
@@ -151,7 +158,7 @@ function Process__MODULE_ID__() {
     map.addOverlay(xMrk);
   }
   
-  function drawMap() {
+  function overlay() {
       var ctr = map.getCenter();
       map.clearOverlays();
       showXhair(ctr.lat(), ctr.lng());
@@ -178,7 +185,7 @@ function Process__MODULE_ID__() {
         var msgCnt = "";
         for (var i=0; i < pResult.Placemark.length; i++) {
           var p = pResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreMap(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
+          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pResult.Placemark[i].address + "</a>";
           if (i != pResult.Placemark.length - 1)
             msgCnt += "<br />";
         }
@@ -187,7 +194,7 @@ function Process__MODULE_ID__() {
       }
       else {
         var p = pResult.Placemark[0].Point.coordinates;
-        obj.centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
+        obj.centreLatLng(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
       }
     }
     else {
