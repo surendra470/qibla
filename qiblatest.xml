@@ -195,7 +195,8 @@ function Process__MODULE_ID__() {
     else {
       msg = miniMsg.createDismissibleMessage(prefs.getMsg(pResult.Status.code));
     }
-
+  }
+  
   this.dismissMsg = function() {
     miniMsg.dismissMessage(msg);
   };
