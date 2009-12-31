@@ -118,7 +118,7 @@ function Process__MODULE_ID__() {
       geo.setBaseCountryCode(country);
       
       if (!lat || !lng) {
-        geo.getLatLng(prefs.getString('location'), centreMap)
+        geo.getLatLng(prefs.getString('location'), this.centreMap)
       } else {
         obj.centreLatLng(lat, lng, initZoom);
       }
