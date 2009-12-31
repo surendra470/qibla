@@ -162,10 +162,11 @@ function Process__MODULE_ID__() {
   }
   
   function showOverlays() {
-      var ctr = map.getCenter();
-      map.clearOverlays();
-      showXhair(ctr.lat(), ctr.lng());
-      flyCrow(ctr.lat(), ctr.lng());
+    alert("showOverlays");
+    var ctr = map.getCenter();
+    map.clearOverlays();
+    showXhair(ctr.lat(), ctr.lng());
+    flyCrow(ctr.lat(), ctr.lng());
   }
 
   function flyCrow(pLat, pLng) {
