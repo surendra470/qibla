@@ -59,7 +59,7 @@
 #address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
 #map__MODULE_ID__ {width:100%;height:280px;}
 </style>
-<!--[if lte IE 8]> 
+<!--[if lte IE 8]>
 <style>
 .mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
 </style>
@@ -86,11 +86,11 @@ function Process__MODULE_ID__() {
   var trackCode = "UA-1059171-6";
   var analysed = false;
   var fileLoc = "http://qibla.googlecode.com/svn/trunk";
-  
+
   this.getFileLoc = function() {
     return fileLoc;
   };
-  
+
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
@@ -103,7 +103,7 @@ function Process__MODULE_ID__() {
       var loc = google.loader.ClientLocation;
       var lat;
       var lng;
-  
+
       if (loc) {
         lat = loc.latitude;
         lng = loc.longitude;
@@ -111,7 +111,7 @@ function Process__MODULE_ID__() {
       }
 
       geo.setBaseCountryCode(country);
-      
+
       if (!lat || !lng) {
         geo.getLatLng(prefs.getString('location'), centreMap);
       } else {
@@ -119,7 +119,7 @@ function Process__MODULE_ID__() {
       }
 
       map.setUIToDefault();
-      
+
       google.maps.Event.addListener(map, "moveend", showOverlays);
       google.maps.Event.addListener(map, "zoomend", function() {
         if (!analysed) {
@@ -136,7 +136,7 @@ function Process__MODULE_ID__() {
     map.setCenter(pLatLng, zoom);
     showOverlays(pLatLng);
   }
-  
+
   this.centreLatLng = function(pLat, pLng, pZoom) {
     var latLng = new google.maps.LatLng(pLat, pLng);
     miniMsg.dismissMessage(msg);
@@ -197,20 +197,20 @@ function Process__MODULE_ID__() {
       msg = miniMsg.createDismissibleMessage(prefs.getMsg(pAddrResult.Status.code));
     }
   }
-  
+
   function dismissMsg() {
     miniMsg.dismissMessage(msg);
   }
-  
+
   function listify(pTxt) {
     return "<li>" + pTxt + "</li>";
   }
 
   this.help = function() {
     miniMsg.dismissMessage(msg);
-    var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" + 
-       listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" + 
-       prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) + 
+    var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" +
+       listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" +
+       prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) +
        listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>";
     msg = miniMsg.createDismissibleMessage(help);
     _IG_Analytics(trackCode, "/qibla/help");
@@ -228,11 +228,14 @@ function addrFocus(pAddr) {
   if (pAddr.value == "__MSG_address__") pAddr.value = "";
 }
 
+function addrBlur(pAddr) {
+  if (pAddr.value == "") pAddr.value = "__MSG_address__";
+}
 gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
-<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)"/></td>
+<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
 <td id="buttons__MODULE_ID__">
 <input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
