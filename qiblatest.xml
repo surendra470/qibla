@@ -224,11 +224,15 @@ function init__MODULE_ID__() {
   document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
 }
 
+function addrFocus(pAddr) {
+  if (pAddr.value == "__MSG_address__") pAddr.value = "";
+}
+
 gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 </script>
 <form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
 <table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
-<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" /></td>
+<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)"/></td>
 <td id="buttons__MODULE_ID__">
 <input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
 <a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
