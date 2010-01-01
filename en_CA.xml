@@ -1,12 +1,11 @@
 <messagebundle>
  <msg name="address">Enter your address here</msg>
- <msg name="address_btn">Show direction</msg>
- <msg name="crosshairs">Centre your location onto the crosshairs</msg>
- <msg name="400">The address cannot be understood.</msg>
- <msg name="500">The reason for the failure is unknown.</msg>
+ <msg name="address_btn">Show qibla direction</msg>
+ <msg name="crosshairs">The crosshairs represent your location</msg>
+ <msg name="500">The address cannot be found due to an error.</msg>
  <msg name="601">The address is empty.</msg>
  <msg name="602">The address is unknown. It may be relatively new.</msg>
- <msg name="603">The address cannot be found due to legal or contractual reasons.</msg>
+ <msg name="603">The address cannot be found due to legal reasons.</msg>
  <msg name="610">The API key is invalid.</msg>
  <msg name="620">The address lookup quota has been exceeded.</msg>
  <msg name="help_btn">Help</msg>
