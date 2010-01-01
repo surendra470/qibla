@@ -115,7 +115,7 @@ function Process__MODULE_ID__() {
       if (!lat || !lng) {
         geo.getLatLng(prefs.getString('location'), centreMap);
       } else {
-        centreLatLng(lat, lng, zoom);
+        this.centreLatLng(lat, lng, zoom);
       }
       
       xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
