@@ -36,13 +36,13 @@
 
 <UserPref
    name="bg"
-   display_name="Information message background colour"
+   display_name="Information message background color"
    datatype="string"
    default_value="fff4c2"/>
 
 <UserPref
    name="fg"
-   display_name="Information message foreground colour"
+   display_name="Information message foreground color"
    datatype="string"
    default_value="000000"/>
 
@@ -95,11 +95,11 @@ function Process__MODULE_ID__() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(fileLoc + "/crosshair.gif");
+      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshair.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
-
+      xMrk = new google.maps.Marker(new google.maps.LatLng(0, 0), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
       var loc = google.loader.ClientLocation;
       var lat;
       var lng;
@@ -115,10 +115,8 @@ function Process__MODULE_ID__() {
       if (!lat || !lng) {
         geo.getLatLng(prefs.getString('location'), centreMap);
       } else {
-        centreLatLng(lat, lng, zoom);
+        this.centreLatLng(lat, lng, zoom);
       }
-      
-      xMrk = new google.maps.Marker(new google.maps.LatLng(lat, lng), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
 
       map.setUIToDefault();
       
