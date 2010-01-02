@@ -9,14 +9,14 @@
  <msg name="610">The API key is invalid.</msg>
  <msg name="620">The address lookup quota has been exceeded.</msg>
  <msg name="help_btn">Help</msg>
- <msg name="help1">Type an address, then press Enter</msg>
- <msg name="help2">The crosshairs in the centre of the map represent your location. To adjust the map, move your mouse cursor over the map, then use one of the following methods:</msg>
- <msg name="help2_1">Use the up/down/left/right control buttons in the top left corner of the map (these won't appear on small maps)</msg>
+ <msg name="help1">Type your address, then press Enter</msg>
+ <msg name="help2">The crosshairs in the centre of the map represent your location. To adjust the map, use one of the following methods:</msg>
+ <msg name="help2_1">Click the up/down/left/right buttons in the top left corner of the map (not available on small maps)</msg>
  <msg name="help2_2">Click on the map and drag it with the mouse button pressed</msg>
- <msg name="help2_3">Use the up/down/left/right arrow keys on your keyboard</msg>
- <msg name="help3">The red line shows the direction to the Qibla. You can visualise the direction better by choosing "Satellite" from the list in the top right corner of the map. To zoom in for more detail, move your mouse cursor over the map, then use one of the following methods:</msg>
- <msg name="help3_1">Use the +/- control buttons in the top left corner of the map</msg>
- <msg name="help3_2">Use the +/- keys on your keyboard</msg>
+ <msg name="help2_3">Press the up/down/left/right arrow keys on your keyboard</msg>
+ <msg name="help3">The red line shows the qibla direction. To visualise the direction better, click the Satellite button in the top right corner of the map. To zoom in for more detail:</msg>
+ <msg name="help3_1">Click the +/- buttons in the top left corner of the map</msg>
+ <msg name="help3_2">Press the +/- keys on your keyboard</msg>
  <msg name="help3_3">Double-click the map</msg>
  <msg name="help3_4">Rotate the mouse wheel button</msg>
 </messagebundle>
