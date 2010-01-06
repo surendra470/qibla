@@ -207,12 +207,14 @@ function Process__MODULE_ID__() {
 
   this.help = function() {
     miniMsg.dismissMessage(msg);
-    var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" +
+    var msgTxt = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" +
        listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" +
        prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) +
        listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>" + 
 			 "<br /><a href='http://gmodules.com/ig/creator?url=" + this.getFileLoc() + "/qibla.xml'>" + prefs.getMsg("add") + "</a>";
-    msg = miniMsg.createDismissibleMessage(help);
+		var div = document.createElement("div");
+		div.innerHTML = msgTxt;
+		msg = miniMsg.createDismissibleMessage(div);		
     _IG_Analytics(trackCode, "/qibla/help");
   };
 }
