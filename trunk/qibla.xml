@@ -96,7 +96,7 @@ function Process__MODULE_ID__() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshair.gif");
+      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
