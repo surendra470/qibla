@@ -18,31 +18,31 @@
 
 <UserPref
    name="location"
-   display_name="Initial map location if it cannot be discovered automatically"
+   display_name="Default map location if it cannot be discovered automatically. E.g. 'Indonesia', 'Makkah', 'Manchester, USA', '29 Acacia Road, Edinburgh, UK'."
    datatype="string"
-   default_value="Buckingham Palace, London"/>
+   default_value="Westminster Palace, London"/>
 
 <UserPref
    name="zoom"
-   display_name="Initial zoom level"
+   display_name="Default zoom level. Choose a value appropriate to the default location. E.g. 15 if the default map location is a country, 9 if a city, etc."
    datatype="string"
    default_value="12"/>
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically (a two letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, pk, eg, my, id)"
+   display_name="Default address lookup country if it cannot be discovered automatically (a two letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, id)."
    datatype="string"
    default_value="uk"/>
 
 <UserPref
    name="bg"
-   display_name="Information message background color"
+   display_name="Information message background color."
    datatype="string"
    default_value="fff4c2"/>
 
 <UserPref
    name="fg"
-   display_name="Information message foreground color"
+   display_name="Information message foreground color."
    datatype="string"
    default_value="000000"/>
 
@@ -75,6 +75,7 @@ function Process__MODULE_ID__() {
   var prefs = new gadgets.Prefs(__MODULE_ID__);
   var country = prefs.getString("country");
   var zoom = prefs.getInt("zoom");
+	var ipZoom = 9;
   var geoZoom = 16;
   var map;
   var xMrk;
@@ -115,17 +116,16 @@ function Process__MODULE_ID__() {
       if (!lat || !lng) {
         geo.getLatLng(prefs.getString('location'), centreMap);
       } else {
-        this.centreLatLng(lat, lng, zoom);
+        this.centreLatLng(lat, lng, ipZoom);
       }
 
       map.setUIToDefault();
 
       google.maps.Event.addListener(map, "moveend", showOverlays);
-      google.maps.Event.addListener(map, "zoomend", function() {
-        if (!analysed) {
+      google.maps.Event.addListener(map, "dragend", function() {
+        if (!analysed)
           _IG_Analytics(trackCode, "/qibla/navigate");
-          analysed = true;
-        }
+        analysed = true;
       });
 
       _IG_Analytics(trackCode, "/qibla");
@@ -134,10 +134,8 @@ function Process__MODULE_ID__() {
 
   function centreMap(pLatLng, pZoom) {
 	  var myZoom = (pZoom) ? pZoom : zoom;
-		alert(typeof myZoom)
-		alert(myZoom);
     map.checkResize();		
-    map.setCenter(pLatLng, zoom);
+    map.setCenter(pLatLng, myZoom);
     miniMsg.dismissMessage(msg);
     showOverlays(pLatLng);
   }
@@ -145,8 +143,6 @@ function Process__MODULE_ID__() {
   this.centreLatLng = function(pLat, pLng, pZoom) {
     var latLng = new google.maps.LatLng(pLat, pLng);
 		centreMap(latLng, pZoom);
-    //map.setCenter(latLng, pZoom);
-    //showOverlays(latLng);
   };
 
   function showOverlays() {
@@ -166,12 +162,12 @@ function Process__MODULE_ID__() {
     map.addOverlay(poly);
   }
 
-  this.showAddr = function(pAddr, pAnalyse) {
+  this.showAddr = function(pAddr) {
     geo.getLocations(pAddr, procAddr);
 		miniMsg.dismissMessage(msg);
-    if (pAnalyse)
+    if (!analysed)
       _IG_Analytics(trackCode, "/qibla/geocode");
-    analysed = pAnalyse;
+    analysed = true;
     return false;
   };
 
@@ -237,7 +233,7 @@ function addrBlur(pAddr) {
 }
 gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
 </script>
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value, true); return false">
+<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
 <table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
 <tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
 <td id="buttons__MODULE_ID__">
