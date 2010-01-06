@@ -132,17 +132,19 @@ function Process__MODULE_ID__() {
     }
   };
 
-  function centreMap(pLatLng) {
+  function centreMap(pLatLng, pZoom) {
+	  var zoom = (pZoom) ? pZoom : zoom;
+    map.checkResize();		
     map.setCenter(pLatLng, zoom);
+    miniMsg.dismissMessage(msg);
     showOverlays(pLatLng);
   }
 
   this.centreLatLng = function(pLat, pLng, pZoom) {
     var latLng = new google.maps.LatLng(pLat, pLng);
-    miniMsg.dismissMessage(msg);
-    map.checkResize();
-    map.setCenter(latLng, pZoom);
-    showOverlays(latLng);
+		centreMap(latLng, pZoom);
+    //map.setCenter(latLng, pZoom);
+    //showOverlays(latLng);
   };
 
   function showOverlays() {
@@ -174,23 +176,22 @@ function Process__MODULE_ID__() {
   function procAddr(pAddrResult) {
     if (pAddrResult.Status.code == G_GEO_SUCCESS) {
       if (pAddrResult.Placemark.length > 1) {
-        var msgCnt = "";
+        var msgTxt = "";
         for (var i=0; i < pAddrResult.Placemark.length; i++) {
           var p = pAddrResult.Placemark[i].Point.coordinates;
-          msgCnt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
+          msgTxt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
           if (i != pAddrResult.Placemark.length - 1)
-            msgCnt += "<br />";
+            msgTxt += "<br />";
         }
-				// non-DOM method no longer works?
-        //msg = miniMsg.createDismissibleMessage(msgCnt, dismissMsg);
+				//msg = miniMsg.createDismissibleMessage(msgTxt, dismissMsg);
 				var div = document.createElement("div");
-        div.innerHTML = msgCnt;
-        msg = miniMsg.createDismissibleMessage(div);
-        msg.style.cursor = "pointer";
+				div.innerHTML = msgTxt;
+				msg = miniMsg.createDismissibleMessage(div);
+				msg.style.cursor = "pointer";
       }
       else {
         var p = pAddrResult.Placemark[0].Point.coordinates;
-        centreMap(p[1], p[0], prefs.getString("location.lat") ? geoZoom : initZoom);
+        centreMap(p[1], p[0], geoZoom);
       }
     }
     else {
@@ -211,7 +212,8 @@ function Process__MODULE_ID__() {
     var help = "<ol>" + listify(prefs.getMsg("help1")) + "<li>" + prefs.getMsg("help2") + "<ul>" +
        listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" +
        prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) +
-       listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>";
+       listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>" + 
+			 "<br /><a href='http://gmodules.com/ig/creator?url=" + this.getFileLoc() + "/qibla.xml'>" + prefs.getMsg("add") + "</a>";
     msg = miniMsg.createDismissibleMessage(help);
     _IG_Analytics(trackCode, "/qibla/help");
   };
