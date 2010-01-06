@@ -133,9 +133,9 @@ function Process__MODULE_ID__() {
   };
 
   function centreMap(pLatLng, pZoom) {
-	  var zoom = (pZoom) ? pZoom : zoom;
-		alert(typeof zoom)
-		alert(zoom);
+	  var myZoom = (pZoom) ? pZoom : zoom;
+		alert(typeof myZoom)
+		alert(myZoom);
     map.checkResize();		
     map.setCenter(pLatLng, zoom);
     miniMsg.dismissMessage(msg);
