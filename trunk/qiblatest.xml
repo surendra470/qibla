@@ -67,7 +67,7 @@
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2.s");
+google.load("maps", "2");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
