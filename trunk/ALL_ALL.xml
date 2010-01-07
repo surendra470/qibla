@@ -1,20 +1,20 @@
 <messagebundle>
  <msg name="address">Enter your address here</msg>
- <msg name="address_btn">Show qibla direction</msg>
- <msg name="crosshairs">The cross hairs represent your location</msg>
+ <msg name="address_btn">Show direction to the Qibla</msg>
+ <msg name="crosshairs">The location that you are praying from</msg>
  <msg name="500">The address cannot be found due to an error.</msg>
  <msg name="601">The address is empty.</msg>
  <msg name="602">The address is unknown. It may be relatively new.</msg>
  <msg name="603">The address cannot be found due to legal reasons.</msg>
  <msg name="610">The API key is invalid.</msg>
- <msg name="620">The address lookup quota has been exceeded.</msg>
+ <msg name="620">The address searching limit has been reached.</msg>
  <msg name="help_btn">Help</msg>
- <msg name="help1">Type your address into the box above the map, then press Enter</msg>
- <msg name="help2">The cross hairs in the center of the map represent your location. To adjust the map, use one of the following methods:</msg>
+ <msg name="help1">Type your address into the box above the map, then press the Enter key</msg>
+ <msg name="help2">The cross hairs in the center of the map show where you are praying from. To adjust the map, use one of the following methods:</msg>
  <msg name="help2_1">Click the up/down/left/right buttons in the top left corner of the map (not available on small maps)</msg>
  <msg name="help2_2">Click on the map and drag it with the mouse button pressed</msg>
  <msg name="help2_3">Press the up/down/left/right arrow keys on your keyboard</msg>
- <msg name="help3">The red line shows the qibla direction. To visualize the direction better, click the Satellite button in the top right corner of the map. To zoom in for more detail:</msg>
+ <msg name="help3">The red line shows the direction to the Qibla. To visualize the direction better, click the Satellite button in the top right corner of the map. To zoom in for more detail, use one of the following methods:</msg>
  <msg name="help3_1">Click the +/- buttons in the top left corner of the map</msg>
  <msg name="help3_2">Press the +/- keys on your keyboard</msg>
  <msg name="help3_3">Double-click the map</msg>
