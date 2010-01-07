@@ -30,7 +30,7 @@
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically (a two letter code corresponding to the top-level domain for your country, e.g. uk, us, ca, id)."
+   display_name="Default address lookup country if it cannot be discovered automatically. E.g. uk, us, my, pk, id, in, de, fr, es."
    datatype="string"
    default_value="uk"/>
 
@@ -67,7 +67,7 @@
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
-google.load("maps", "2");
+google.load("maps", "2.s");
 var process__MODULE_ID__;
 
 function Process__MODULE_ID__() {
@@ -96,7 +96,7 @@ function Process__MODULE_ID__() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
       var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshair.gif");
+      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
       xIco.iconAnchor = new google.maps.Point(11, 11);
       xIco.infoWindowAnchor = new google.maps.Point(11, 11);
