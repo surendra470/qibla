@@ -12,13 +12,16 @@
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
     <Locale lang="en" country="GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
     <Locale lang="en" country="CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
-    <Require feature="minimessage"/>
+		<Locale lang="fr" messages="http://qibla.googlecode.com/svn/trunk/fr_ALL.xml"/>
+		<Locale lang="nl" messages="http://qibla.googlecode.com/svn/trunk/nl_ALL.xml"/>
+		<Locale lang="tr" messages="http://qibla.googlecode.com/svn/trunk/tr_ALL.xml"/>
     <Require feature="analytics"/>
+		<Require feature="minimessage"/>
 </ModulePrefs>
 
 <UserPref
    name="location"
-   display_name="Default map location if it cannot be discovered automatically. E.g. 'Indonesia', 'Makkah', 'Manchester, USA', '29 Acacia Road, Edinburgh, UK'."
+   display_name="Default map location if it cannot be discovered automatically. E.g. 'Indonesia', 'Paris', 'Manchester, USA', '29 Acacia Road, Edinburgh, UK'."
    datatype="string"
    default_value="Westminster Palace, London"/>
 
@@ -30,7 +33,7 @@
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically. E.g. uk, us, my, pk, id, in, de, fr, es."
+   display_name="Default country for address searching if it cannot be discovered automatically. E.g. uk, us, my, pk, id, in, de, fr, es."
    datatype="string"
    default_value="uk"/>
 
