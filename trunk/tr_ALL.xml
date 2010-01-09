@@ -1,0 +1,23 @@
+<messagebundle>
+ <msg name="address">Adresinizi yazınız</msg>
+ <msg name="address_btn">Namaz yönünü belirleyin</msg>
+ <msg name="crosshairs">Parola bulunduğunuz yönü belirliyor</msg>
+ <msg name="500">Adres hata yüzünden bulunamıyor.</msg>
+ <msg name="601">Adres boş.</msg>
+ <msg name="602">Adres bilinmiyor. Galiba yeni bir adres.</msg>
+ <msg name="603">Adres yasal nedenler yüzünden bulunamıyor.</msg>
+ <msg name="610">API codu geçersiz.</msg>
+ <msg name="620">Arama görevi azami miktarı aşmıştır.</msg>
+ <msg name="help_btn">Yardım</msg>
+ <msg name="help1">Adresinizi dosyanın üstündeki boşlağa yazınız ve enter tuşuna basınız</msg>
+ <msg name="help2">Dosyanın ortasında bulunan parola yönünüzü belirliyor. Bu dosyayı ayarlamak icin ilerdeki yazılan methodları kullanabilirsiniz:</msg>
+ <msg name="help2_1">Yukarıdaki solda bulunan ‘yukarı/asağı/sol/sağ’ tuşlara basınız (küçük dosyalarda bulunmuyor)</msg>
+ <msg name="help2_2">Dosyanın üstüne tıklayınız ve farenizin üstüne basarak dosyanızı taşıyınz</msg>
+ <msg name="help2_3">Klavyenizin üstündeki ‘yukarı/aşağı/sol/sağ’ ok tuşlarına basını</msg>
+ <msg name="help3">Kırmızı çizgi kıble yönünüzü belirliyor. Yönünüzü daha iyi belirlemek icin dosyanın sağ üstteki ‘Satellite’ tuşuna basınız. Ayrıntılı detay için zoom yapınız:</msg>
+ <msg name="help3_1">Dosyanın sol üstündeki ‘+/-‘ tuşlara basını</msg>
+ <msg name="help3_2"> Klavyenizle ‘+/-‘ tuşlara basınız</msg>
+ <msg name="help3_3">Dosyanızı çift tıklayınız</msg>
+ <msg name="help3_4">Farenizle yönlendiriniz</msg>
+ <msg name="add">Namaz yönünüzü web sitenize ekleyiniz</msg>
+</messagebundle>

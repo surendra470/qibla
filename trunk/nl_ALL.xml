@@ -1,0 +1,23 @@
+<messagebundle>
+ <msg name="address">Voer uw adres hier in</msg>
+ <msg name="address_btn">Toon de gebedsrichting (Qibla)</msg>
+ <msg name="crosshairs">Het dradenkruis weergeeft uw ligging</msg>
+ <msg name="500">Het adres kan vanwege een fout niet gevonden worden.</msg>
+ <msg name="601">Het adres is leeg.</msg>
+ <msg name="602">Het adres is onbekend. Het is mogelijkerwijs een relatief nieuw adres.</msg>
+ <msg name="603">Het adres kan vanwege wettelijke redenen niet gevonden worden.</msg>
+ <msg name="610">De API code is ongeldig.</msg>
+ <msg name="620">Het maximaal aantal toegestane zoekopdrachten is bereikt.</msg>
+ <msg name="help_btn">Help</msg>
+ <msg name="help1">Voer uw adres in het vak boven de map en klik op enter</msg>
+ <msg name="help2">De dradenkruis in het midden van de map weergeeft uw ligging. Om de map af te stemmen gebruik een van de volgende methodes:</msg>
+ <msg name="help2_1">Druk op de knop ‘omhoog/omlaag/links/rechts’ linksboven (niet beschikbaar op kleine mappen)</msg>
+ <msg name="help2_2">Klik op de map en sleep het door de muisknop ingedrukt te houden</msg>
+ <msg name="help2_3">Druk op de pijltoetsen ‘omhoog/omlaag/links/rechts’ op uw toetsenbord</msg>
+ <msg name="help3">De rode lijn wijst de gebedsrichting (Qibla) aan. Om de richting beter zichtbaar te maken, klik op de knop ‘Satellite’ rechtsboven op de map. Voor meer detail zoom in:</msg>
+ <msg name="help3_1">Klik op de knop ‘+/- ‘ linksboven op de map</msg>
+ <msg name="help3_2">Toets de ‘+/-‘ toetsen in op uw toetsenbor</msg>
+ <msg name="help3_3">Dubbelklik op de map</msg>
+ <msg name="help3_4">Scroll met de muis</msg>
+ <msg name="add">Voeg de gebedsrichting (Qibla) toe aan uw website</msg>
+</messagebundle>
