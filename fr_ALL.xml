@@ -1,0 +1,24 @@
+<messagebundle>
+ <msg name="address">Entrez votre adresse ici</msg>
+ <msg name="address_btn">Montrez la direction de la "Qibla"</msg>
+ <msg name="crosshairs">La croix représente votre emplacement</msg>
+ <msg name="500">L'adresse ne peut être trouvée à cause d'une erreur.</msg>
+ <msg name="601">L'adresse est vide.</msg>
+ <msg name="602">L'adresse est inconnue. Elle peut être relativement récente.</msg>
+ <msg name="603">L'adresse ne peut être trouvée pour des raisons légales.</msg>
+ <msg name="610">La clef de l'API "Google Maps" n'est pas valide.</msg>
+ <msg name="620">Le quota de recerche d'adresse a été dépassé.</msg>
+ <msg name="help_btn">Aide</msg>
+ <msg name="help1">Tapez votre adresse dans le cadre au-dessus de la carte, puis appuyez sur Entrée</msg>
+ <msg name="help2">La croix au milieu de la carte représente votre emplacement. Pour ajuster la carte, utilisez l'une des méthodes suivantes:</msg>
+ <msg name="help2_1">Cliquez sur les boutons haut/bas/gauche/droite dans la partie supérieure gauche de la carte (non disponible sur les petites cartes)</msg>
+ <msg name="help2_2">Cliquez-glissez sur la carte tout en maintenant le bouton gauche de la souris appuyé</msg>
+ <msg name="help2_3">Appuyez sur les touches haut/bas/gauche/droite de votre clavier</msg>
+ <msg name="help3">La ligne rouge montre la direction de la "Qibla". Pour mieux visualiser, cliquez sur le bouton "Satellite" dans la partie supérieure droite de la carte. Pour faire un zoom pour plus de détails:</msg>
+ <msg name="help3_1">Cliquez sur les boutons +/- dans la partie supérieure gauche de la carte</msg>
+ <msg name="help3_2">Appuyez sur les touches  +/- de votre clavier</msg>
+ <msg name="help3_3">Double-cliquez sur la carte</msg>
+ <msg name="help3_4">Tournez la molette de la souris</msg>
+ <msg name="add">Ajoutez "Qibla Direction" à vote site web</msg>
+</messagebundle>
+
