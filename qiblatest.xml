@@ -29,7 +29,7 @@
    name="zoom"
    display_name="__MSG_zoom__"
    datatype="string"
-   default_value="12"/>
+   default_value="19"/>
 
 <UserPref
    name="country"
