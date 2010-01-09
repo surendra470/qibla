@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-<ModulePrefs title="Qibla Direction"
-    directory_title="Qibla Direction"
+<ModulePrefs title="__MSG_title__"
+    directory_title="__MSG_title__"
     author="Munawar Akbar"
     author_email="futureindustries@yahoo.com"
     thumbnail="http://qibla.googlecode.com/svn/trunk/thumb.png"
     screenshot="http://qibla.googlecode.com/svn/trunk/screen.png"
     category="tools"
-    height="300"
-    description="Discover the Qibla direction using your address. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).">
+    height="500"
+    description="__MSG_description__">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
     <Locale lang="en" country="GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
     <Locale lang="en" country="CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
-    <Require feature="minimessage"/>
+		<Locale lang="fr" messages="http://qibla.googlecode.com/svn/trunk/fr_ALL.xml"/>
+		<Locale lang="nl" messages="http://qibla.googlecode.com/svn/trunk/nl_ALL.xml"/>
+		<Locale lang="tr" messages="http://qibla.googlecode.com/svn/trunk/tr_ALL.xml"/>
     <Require feature="analytics"/>
+		<Require feature="minimessage"/>
 </ModulePrefs>
 
 <UserPref
    name="location"
-   display_name="Default map location if it cannot be discovered automatically. E.g. 'Indonesia', 'Makkah', 'Manchester, USA', '29 Acacia Road, Edinburgh, UK'."
+   display_name="__MSG_location__"
    datatype="string"
    default_value="Westminster Palace, London"/>
 
 <UserPref
    name="zoom"
-   display_name="Default zoom level. Choose a value appropriate to the default location. E.g. 15 if the default map location is a country, 9 if a city, etc."
+   display_name="__MSG_zoom__"
    datatype="string"
    default_value="12"/>
 
 <UserPref
    name="country"
-   display_name="Default address lookup country if it cannot be discovered automatically. E.g. uk, us, my, pk, id, in, de, fr, es."
+   display_name="__MSG_country__"
    datatype="string"
    default_value="uk"/>
 
 <UserPref
    name="bg"
-   display_name="Information message background color."
+   display_name="__MSG_bg__"
    datatype="string"
    default_value="fff4c2"/>
 
 <UserPref
    name="fg"
-   display_name="Information message foreground color."
+   display_name="__MSG_fg__"
    datatype="string"
    default_value="000000"/>
 
