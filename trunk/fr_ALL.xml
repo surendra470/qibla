@@ -1,4 +1,11 @@
 <messagebundle>
+ <msg name="title">Qibla Direction</msg>
+ <msg name="description">View the prayer direction to the Qibla. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).</msg>
+ <msg name="location">Default map location. E.g. "France", "Paris, France", "29 L'Avenue des Champs Elysées, Paris, France".</msg>
+ <msg name="zoom">Default map zoom level. Enter a value appropriate to the default map location. E.g. 5 for a country, 12 for a city, and 19 for a full address.</msg>
+ <msg name="country">Default country for searching addresses. E.g. fr, us, my, pk.</msg>
+ <msg name="bg">Information message background colour.</msg>
+ <msg name="fg">Information message foreground colour.</msg>
  <msg name="address">Entrez votre adresse ici</msg>
  <msg name="address_btn">Montrez la direction de la "Qibla"</msg>
  <msg name="crosshairs">La croix représente votre emplacement</msg>

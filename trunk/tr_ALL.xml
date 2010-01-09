@@ -1,4 +1,11 @@
 <messagebundle>
+ <msg name="title">Qibla Direction</msg>
+ <msg name="description">View the prayer direction to the Qibla. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).</msg>
+ <msg name="location">Default map location. E.g. "Turkey", "Istanbul, Turkey", "29 Bagdat Street, Istanbul, Turkey".</msg>
+ <msg name="zoom">Default map zoom level. Enter a value appropriate to the default map location. E.g. 5 for a country, 12 for a city, and 19 for a full address.</msg>
+ <msg name="country">Default country for searching addresses. E.g. tr, us, my, pk.</msg>
+ <msg name="bg">Information message background colour.</msg>
+ <msg name="fg">Information message foreground colour.</msg>
  <msg name="address">Adresinizi yazınız</msg>
  <msg name="address_btn">Namaz yönünü belirleyin</msg>
  <msg name="crosshairs">Parola bulunduğunuz yönü belirliyor</msg>
