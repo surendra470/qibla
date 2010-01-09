@@ -7,7 +7,7 @@
     thumbnail="http://qibla.googlecode.com/svn/trunk/thumb.png"
     screenshot="http://qibla.googlecode.com/svn/trunk/screen.png"
     category="tools"
-    height="500"
+    height="300"
     description="__MSG_description__">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
     <Locale lang="en" country="GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
@@ -29,7 +29,7 @@
    name="zoom"
    display_name="__MSG_zoom__"
    datatype="string"
-   default_value="19"/>
+   default_value="12"/>
 
 <UserPref
    name="country"
@@ -60,7 +60,7 @@
 #address__MODULE_ID__ {width:100%;height:20px;color:gray;font-size:70%;}
 #buttons__MODULE_ID__ {width:32px;}
 #address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
-#map__MODULE_ID__ {width:100%;height:480px;}
+#map__MODULE_ID__ {width:100%;height:280px;}
 </style>
 <!--[if lte IE 8]>
 <style>
