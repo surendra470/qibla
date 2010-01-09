@@ -16,9 +16,8 @@
  <msg name="help2_3">Appuyez sur les touches haut/bas/gauche/droite de votre clavier</msg>
  <msg name="help3">La ligne rouge montre la direction de la "Qibla". Pour mieux visualiser, cliquez sur le bouton "Satellite" dans la partie supérieure droite de la carte. Pour faire un zoom pour plus de détails:</msg>
  <msg name="help3_1">Cliquez sur les boutons +/- dans la partie supérieure gauche de la carte</msg>
- <msg name="help3_2">Appuyez sur les touches  +/- de votre clavier</msg>
+ <msg name="help3_2">Appuyez sur les touches +/- de votre clavier</msg>
  <msg name="help3_3">Double-cliquez sur la carte</msg>
  <msg name="help3_4">Tournez la molette de la souris</msg>
  <msg name="add">Ajoutez "Qibla Direction" à vote site web</msg>
 </messagebundle>
-
