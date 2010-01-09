@@ -7,7 +7,7 @@
  <msg name="bg">Information message background colour.</msg>
  <msg name="fg">Information message foreground colour.</msg>
  <msg name="address">Entrez votre adresse ici</msg>
- <msg name="address_btn">Montrez la direction de la "Qibla"</msg>
+ <msg name="address_btn">Montrez la direction de la Qibla</msg>
  <msg name="crosshairs">La croix représente votre emplacement</msg>
  <msg name="500">L'adresse ne peut être trouvée à cause d'une erreur.</msg>
  <msg name="601">L'adresse est vide.</msg>
