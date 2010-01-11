@@ -194,7 +194,7 @@ function Process__MODULE_ID__() {
       else {
 			  
         var p = pAddrResult.Placemark[0].Point.coordinates;
-        centreLatLng(p[1], p[0], geoZoom);
+        this.centreLatLng(p[1], p[0], geoZoom);
       }
     }
     else {
