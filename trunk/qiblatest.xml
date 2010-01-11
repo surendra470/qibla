@@ -114,7 +114,7 @@ function Process__MODULE_ID__() {
 	      country = loc.address.country_code == "GB" ? "uk" : loc.address.country_code;
       }
 
-      geo.setBaseCountryCode(country);
+      //geo.setBaseCountryCode(country);
 
       if (!lat || !lng) {
         geo.getLatLng(prefs.getString('location'), centreMap);
