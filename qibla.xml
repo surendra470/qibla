@@ -184,7 +184,6 @@ function Process__MODULE_ID__() {
           if (i != pAddrResult.Placemark.length - 1)
             msgTxt += "<br />";
         }
-				//msg = miniMsg.createDismissibleMessage(msgTxt, dismissMsg);
 				var div = document.createElement("div");
 				div.innerHTML = msgTxt;
 				msg = miniMsg.createDismissibleMessage(div);
@@ -192,7 +191,7 @@ function Process__MODULE_ID__() {
       }
       else {
         var p = pAddrResult.Placemark[0].Point.coordinates;
-        centreMap(p[1], p[0], geoZoom);
+        obj.centreLatLng(p[1], p[0], geoZoom);
       }
     }
     else {
