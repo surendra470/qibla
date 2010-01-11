@@ -68,8 +68,7 @@
 </style>
 <![endif]-->
 
-<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w"type="text/javascript"></script>
-
+<script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
 google.load("maps", "2");
 var process__MODULE_ID__;
@@ -177,6 +176,7 @@ function Process__MODULE_ID__() {
   };
 
   function procAddr(pAddrResult) {
+	alert(pAddrResult.Status.code);
     if (pAddrResult.Status.code == G_GEO_SUCCESS) {
       if (pAddrResult.Placemark.length > 1) {
         var msgTxt = "";
