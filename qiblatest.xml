@@ -177,7 +177,6 @@ function Process__MODULE_ID__() {
 
   function procAddr(pAddrResult) {
     if (pAddrResult.Status.code == G_GEO_SUCCESS) {
-		  alert(pAddrResult.Placemark.length);
       if (pAddrResult.Placemark.length > 1) {
         var msgTxt = "";
         for (var i=0; i < pAddrResult.Placemark.length; i++) {
@@ -195,8 +194,7 @@ function Process__MODULE_ID__() {
       else {
 			  
         var p = pAddrResult.Placemark[0].Point.coordinates;
-				alert(p[1] + "|" + p[0] + "|" + geoZoom);
-        centreMap(p[1], p[0], geoZoom);
+        centreLatLng(p[1], p[0], geoZoom);
       }
     }
     else {
