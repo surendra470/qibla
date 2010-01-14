@@ -6,6 +6,8 @@
  <msg name="country">Gebrek in verstrekking van het land bij het zoeken naar adressen. Bijv. nl, us, my, pk.</msg>
  <msg name="bg">Informatie betreft achtergrond kleur.</msg>
  <msg name="fg">Informatie betreft voorgrond kleur.</msg>
+ <msg name="default_location">Keizerstraat, Den Haag, Nederland</msg>
+ <msg name="default_country">nl</msg>
  <msg name="address">Voer uw adres hier in</msg>
  <msg name="address_btn">Toon de gebedsrichting (Qibla)</msg>
  <msg name="crosshairs">Het dradenkruis weergeeft uw ligging</msg>
