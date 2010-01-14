@@ -23,7 +23,7 @@
    name="location"
    display_name="__MSG_location__"
    datatype="string"
-   default_value="Westminster Palace, London"/>
+   default_value="__MSG_default_location__"/>
 
 <UserPref
    name="zoom"
