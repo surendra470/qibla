@@ -6,6 +6,8 @@
  <msg name="country">Default country for searching addresses. E.g. us, uk, my, pk.</msg>
  <msg name="bg">Information message background color.</msg>
  <msg name="fg">Information message foreground color.</msg>
+ <msg name="default_location">Fifth Avenue, New York City, USA</msg>
+ <msg name="default_country">us</msg> 
  <msg name="address">Enter your address here</msg>
  <msg name="address_btn">Show direction to the Qibla</msg>
  <msg name="crosshairs">The location that you are praying from</msg>
