@@ -1,11 +1,11 @@
 <messagebundle>
- <msg name="title">Qibla Direction</msg>
- <msg name="description">View the prayer direction to the Qibla. In Islam, a Muslim faces the Kaaba in Makkah (Mecca) at the time of prayer (Salah).</msg>
- <msg name="location">Default map location. E.g. "France", "Paris, France", "29 L'Avenue des Champs Elysées, Paris, France".</msg>
- <msg name="zoom">Default map zoom level. Enter a value appropriate to the default map location. E.g. 5 for a country, 12 for a city, and 19 for a full address.</msg>
- <msg name="country">Default country for searching addresses. E.g. fr, us, my, pk.</msg>
- <msg name="bg">Information message background colour.</msg>
- <msg name="fg">Information message foreground colour.</msg>
+ <msg name="title">Direction de la Qibla</msg>
+ <msg name="description">Montre la direction de la prière vers la Qibla. En Islam, un Musulman se dirige vers la Kaaba à Makkah (La Mecque) lors de la prière (Salah).</msg>
+ <msg name="location">Emplacement par défaut de la carte. Exemple: "France", "Paris, France", "29 L'Avenue des Champs Elysées, Paris, France".</msg>
+ <msg name="zoom">Niveau de zoom par défaut. Entrez une valeur correspendant à l'emplacement par défaut. Exemple: 5 pour un pays, 12 pour une ville, et 19 pour une adresse complète.</msg>
+ <msg name="country">Pays par défaut pour la recherche d'addresse. Exemple: fr, us, my, pk.</msg>
+ <msg name="bg">Couleur du fond du message d'information.</msg>
+ <msg name="fg">Couleur du premier-plan du message d'information.</msg>
  <msg name="address">Entrez votre adresse ici</msg>
  <msg name="address_btn">Montrez la direction de la Qibla</msg>
  <msg name="crosshairs">La croix représente votre emplacement</msg>
@@ -26,5 +26,5 @@
  <msg name="help3_2">Appuyez sur les touches +/- de votre clavier</msg>
  <msg name="help3_3">Double-cliquez sur la carte</msg>
  <msg name="help3_4">Tournez la molette de la souris</msg>
- <msg name="add">Ajoutez "Qibla Direction" à vote site web</msg>
+ <msg name="add">Ajoutez "Direction de la Qibla" à vote site web</msg>
 </messagebundle>
