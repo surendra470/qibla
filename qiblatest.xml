@@ -62,7 +62,7 @@
 #btns{width:32px;}
 #searchBtn,#infoBtn{border:0 none;margin-left:3px;}
 #map{width:100%;height:260px;}
-#versions{float:left;width:100%;height:15px;line-height:12px;color:white;text-align:center;margin:0 0 0 -3px;}
+#versions{float:left;width:100%;height:15px;line-height:15px;color:white;text-align:center;margin:0 3px 0 -3px;}
 #versions div{float:left;width:50%;}
 #versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
