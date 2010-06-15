@@ -60,9 +60,9 @@
 #address__MODULE_ID__ {width:100%;height:20px;color:gray;font-size:70%;}
 #buttons__MODULE_ID__ {width:32px;}
 #address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
-#map__MODULE_ID__ {width:100%;height:270px;}
+#map__MODULE_ID__ {width:100%;height:260px;}
 #versions__MODULE_ID__ {float:left;width:100%;}
-#versions__MODULE_ID__ div {float:left;width:50%;height:10px;}
+#versions__MODULE_ID__ div {float:left;width:50%;height:20px;font-size:70%;}
 </style>
 <!--[if lte IE 8]>
 <style>
