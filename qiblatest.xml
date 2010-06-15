@@ -61,7 +61,7 @@ form,div,table,input,img{margin:0;padding:0;}
 #geo td{height:20px;}
 #addr{width:100%;height:20px;line-height:20px;color:#6784C7;font-weight:bold;padding-left:2px;}
 #addr:focus{outline:none;}
-#btns{width:42px;}
+#btns{width:40px;}
 input,#infoBtn{border:0 none;}
 #infoBtn{vertical-align:bottom;}
 #map{width:100%;height:254px;}
