@@ -54,15 +54,16 @@
 .mmlib_table{background-color:#__UP_bg__;color:#__UP_fg__;}
 .mmlib_table ol,.mmlib_table ul{padding-left:20px;}
 .mmlib_table td{vertical-align:top;}
-#container{border:3px solid #BBB;}
+#container{border:3px solid #BBB;margin:0;padding:0;}
 #form{height:20px;margin:0;padding:0;}
-#geo{width:99%;border:0 none;margin:0 10px;margin-left:0;padding:0;}
-#geo td{height:20px;margin:0;padding:0;}
+#geo{width:99%;border:0 none;margin:0;padding:0;}
+#geo td{height:20px;}
 #addr{width:100%;height:20px;line-height:20px;color:#6784C7;font-weight:bold;padding-left:2px;border:0 none;}
+#addr:focus{outline:none;}
 #btns{width:32px;}
-#searchBtn,#infoBtn{border:0 none;margin-left:3px;}
+#searchBtn,#infoBtn{border:0 none;margin:0;padding:0;}
 #map{width:100%;height:260px;}
-#versions{float:left;width:100%;height:15px;line-height:15px;color:white;text-align:center;margin:0 3px 0 -3px;}
+#versions{float:left;width:100%;height:15px;line-height:15px;font-size:80%;color:white;text-align:center;margin:0;padding:0;}
 #versions div{float:left;width:50%;}
 #versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
@@ -254,9 +255,9 @@ gadgets.util.registerOnLoadHandler(init);
 </td></tr></table>
 </form>
 <div id="map"></div>
+</div>
 <div id="versions">
 <div id="desktop"><a href="http://www.qib.la" title="Desktop version">http://www.qib.la</a></div><div id="mobile"><a href="http://m.qib.la" title="Mobile version">http://m.qib.la</a></div>
-</div>
 </div>
 ]]>
 </Content>
