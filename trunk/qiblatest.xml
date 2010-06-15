@@ -63,7 +63,7 @@
 #btns{width:32px;}
 #searchBtn,#infoBtn{border:0 none;margin:0;padding:0;}
 #map{width:100%;height:260px;}
-#versions{float:left;width:100%;height:15px;line-height:15px;font-size:80%;color:white;text-align:center;margin:0;padding:0;}
+#versions{float:left;width:100%;height:15px;line-height:15px;font-size:70%;font-weight:bold;color:white;text-align:center;margin:0;padding:0;}
 #versions div{float:left;width:50%;}
 #versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
@@ -257,7 +257,7 @@ gadgets.util.registerOnLoadHandler(init);
 <div id="map"></div>
 </div>
 <div id="versions">
-<div id="desktop"><a href="http://www.qib.la" title="Desktop version">http://www.qib.la</a></div><div id="mobile"><a href="http://m.qib.la" title="Mobile version">http://m.qib.la</a></div>
+<div id="desktop"><a href="http://www.qib.la" title="Desktop version">www.qib.la</a></div><div id="mobile"><a href="m.qib.la" title="Mobile version">http://m.qib.la</a></div>
 </div>
 ]]>
 </Content>
