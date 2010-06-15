@@ -233,8 +233,8 @@ function Process() {
 function init() {
   process = new Process();
   process.init();
-  document.getElementById("searchBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/forward.gif");
-  document.getElementById("infoBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/question.gif");
+  document.getElementById("searchBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/globe.png");
+  document.getElementById("infoBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/info.png");
 }
 
 function addrFocus(pAddr) {
@@ -251,8 +251,8 @@ gadgets.util.registerOnLoadHandler(init);
 <table id="geo" cellpadding="0" cellspacing="0">
 <tr><td><input type="text" id="addr" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
 <td id="btns">
-<input type="image" src="" id="searchBtn" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
-<a href="javascript:process.help()"><img src="" id="infoBtn" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
+<input type="image" src="" id="searchBtn" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="20" height="20" />
+<a href="javascript:process.help()"><img src="" id="infoBtn" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="20" height="20" /></a>
 </td></tr></table>
 </form>
 <div id="map"></div>
