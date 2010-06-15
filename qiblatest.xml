@@ -61,7 +61,7 @@ form,div,table,img,#addr{margin:0;padding:0;}
 #geo td{height:20px;}
 #addr{width:100%;height:20px;line-height:20px;color:#6784C7;font-weight:bold;padding-left:2px;border:0 none;}
 #addr:focus{outline:none;}
-#btns{width:40px;}
+#btns{width:50px;}
 #searchBtn,#infoBtn{border:0 none;}
 #map{width:100%;height:254px;}
 #versions{float:left;width:100%;height:20px;line-height:20px;font-size:70%;font-weight:bold;color:white;text-align:center;}
