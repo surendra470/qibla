@@ -50,39 +50,39 @@
    default_value="000000"/>
 
 <Content type="html"><![CDATA[
-<style>
-.mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
-.mmlib_table__MODULE_ID__ td {vertical-align:top;}
-#container__MODULE_ID__ {border:3px solid #BBB;}
-#form__MODULE_ID__ {height:20px;margin:0;padding:0;}
-#geocode__MODULE_ID__ {width:99%;border:0 none;margin:0 10px;margin-left:0;padding:0;}
-#geocode__MODULE_ID__ td {height:20px;margin:0;padding:0;}
-#address__MODULE_ID__ {width:100%;height:20px;color:gray;font-size:70%;}
-#buttons__MODULE_ID__ {width:32px;}
-#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border:0 none;margin-left:3px;}
-#map__MODULE_ID__ {width:100%;height:260px;}
-#versions__MODULE_ID__ {float:left;width:100%;color:white;font-weight:bold;text-align:center;font-size:70%;}
-#versions__MODULE_ID__ div {float:left;width:50%;height:15px;}
-#versions__MODULE_ID__ div:hover {color:#CCC; background-color:#FFCC00 !important;}
-#desktop__MODULE_ID__ {background-color:#4B8C52;}
-#mobile__MODULE_ID__ {background-color:#3C64B6;}
+<style type="text/css">
+.mmlib_table{background-color:#__UP_bg__;color:#__UP_fg__;}
+.mmlib_table ol,.mmlib_table ul{padding-left:20px;}
+.mmlib_table td{vertical-align:top;}
+#container{border:3px solid #BBB;}
+#form{height:20px;margin:0;padding:0;}
+#geo{width:99%;border:0 none;margin:0 10px;margin-left:0;padding:0;}
+#geo td{height:20px;margin:0;padding:0;}
+#addr{width:100%;height:20px;color:#6784C7;font-size:70%;border:0 none;}
+#btns{width:32px;}
+#searchBtn,#infoBtn{border:0 none;margin-left:3px;}
+#map{width:100%;height:260px;}
+#versions{float:left;width:100%;color:white;font-weight:bold;text-align:center;font-size:70%;margin:0 -3px;}
+#versions div{float:left;width:50%;height:15px;}
+#versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
+#desktop{background-color:#4B8C52;}
+#mobile{background-color:#3C64B6;}
 #versions a,#versions a:visited{text-decoration:none;color:white;}
 </style>
 <!--[if lte IE 8]>
-<style>
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
+<style type="text/css">
+.mmlib_table ol,.mmlib_table ul{margin-left:25px;padding-left:0;}
 </style>
 <![endif]-->
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
 google.load("maps", "2");
-var process__MODULE_ID__;
+var process;
 
-function Process__MODULE_ID__() {
+function Process() {
   var obj = this;
-  var prefs = new gadgets.Prefs(__MODULE_ID__);
+  var prefs = new gadgets.Prefs();
   var country = prefs.getString("country");
   var zoom = prefs.getInt("zoom");
 	var ipZoom = 9;
@@ -92,7 +92,7 @@ function Process__MODULE_ID__() {
   var poly;
   var qbLatLng = new google.maps.LatLng(21.422504762754905, 39.8261421918869);
   var geo = new google.maps.ClientGeocoder();
-  var miniMsg = new gadgets.MiniMessage(__MODULE_ID__);
+  var miniMsg = new gadgets.MiniMessage();
   var msg;
   var ga = new _IG_GA("UA-1059171-6");
   var analysed = false;
@@ -104,7 +104,7 @@ function Process__MODULE_ID__() {
 
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
-      map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+      map = new google.maps.Map2(document.getElementById("map"));
       var xIco = new google.maps.Icon();
       xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
@@ -187,7 +187,7 @@ function Process__MODULE_ID__() {
         var msgTxt = "";
         for (var i=0; i < pAddrResult.Placemark.length; i++) {
           var p = pAddrResult.Placemark[i].Point.coordinates;
-          msgTxt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
+          msgTxt += "<a href='javascript:process.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
           if (i != pAddrResult.Placemark.length - 1)
             msgTxt += "<br />";
         }
@@ -228,11 +228,11 @@ function Process__MODULE_ID__() {
   };
 }
 
-function init__MODULE_ID__() {
-  process__MODULE_ID__ = new Process__MODULE_ID__();
-  process__MODULE_ID__.init();
-  document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
-  document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
+function init() {
+  process = new Process();
+  process.init();
+  document.getElementById("searchBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/forward.gif");
+  document.getElementById("infoBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/question.gif");
 }
 
 function addrFocus(pAddr) {
@@ -242,20 +242,20 @@ function addrFocus(pAddr) {
 function addrBlur(pAddr) {
   if (pAddr.value == "") pAddr.value = "__MSG_address__";
 }
-gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
+gadgets.util.registerOnLoadHandler(init);
 </script>
-<div id="container__MODULE_ID__">
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
-<table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
-<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
-<td id="buttons__MODULE_ID__">
-<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
-<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
+<div id="container">
+<form id="form" action="qibla.html" method="post" onsubmit="return process.showAddr(this.addr.value)">
+<table id="geo" cellpadding="0" cellspacing="0">
+<tr><td><input type="text" id="addr" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
+<td id="btns">
+<input type="image" src="" id="searchBtn" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
+<a href="javascript:process.help()"><img src="" id="infoBtn" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
 </td></tr></table>
 </form>
-<div id="map__MODULE_ID__"></div>
-<div id="versions__MODULE_ID__">
-<div id="desktop__MODULE_ID__"><a href="http://www.qib.la" title="Desktop version">http://www.qib.la</a></div><div id="mobile__MODULE_ID__"><a href="http://m.qib.la" title="Mobile version">http://m.qib.la</a></div>
+<div id="map"></div>
+<div id="versions">
+<div id="desktop"><a href="http://www.qib.la" title="Desktop version">http://www.qib.la</a></div><div id="mobile"><a href="http://m.qib.la" title="Mobile version">http://m.qib.la</a></div>
 </div>
 </div>
 ]]>
