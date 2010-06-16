@@ -70,8 +70,8 @@ input,#infoBtn{border:0 none;}
 #versions div:hover{background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
 #mobile{background-color:#3C64B6;}
-#desktop:hover{color:#4B8C52;}
-#mobile:hover{color:#3C64B6;}
+#desktop:hover{color:#4B8C52 !important;}
+#mobile:hover{color:#3C64B6 !important;}
 #versions a,#versions a:visited{text-decoration:none;color:white;}
 </style>
 <!--[if lte IE 8]>
