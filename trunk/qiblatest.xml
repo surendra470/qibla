@@ -109,10 +109,10 @@ function Process() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map"));
       var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
-      xIco.iconSize = new google.maps.Size(21, 21);
-      xIco.iconAnchor = new google.maps.Point(11, 11);
-      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
+      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/xhairs.png");
+      xIco.iconSize = new google.maps.Size(20, 20);
+      xIco.iconAnchor = new google.maps.Point(10, 10);
+      xIco.infoWindowAnchor = new google.maps.Point(10, 10);
       xMrk = new google.maps.Marker(new google.maps.LatLng(0, 0), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
       var loc = google.loader.ClientLocation;
       var lat;
