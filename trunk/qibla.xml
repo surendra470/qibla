@@ -10,12 +10,12 @@
     height="300"
     description="__MSG_description__">
     <Locale messages="http://qibla.googlecode.com/svn/trunk/ALL_ALL.xml"/>
-    <Locale lang="en" country="GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
-    <Locale lang="en" country="CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
+    <Locale lang="en-GB" messages="http://qibla.googlecode.com/svn/trunk/en_GB.xml"/>
+    <Locale lang="en-CA" messages="http://qibla.googlecode.com/svn/trunk/en_CA.xml"/>
 		<Locale lang="fr" messages="http://qibla.googlecode.com/svn/trunk/fr_ALL.xml"/>
 		<Locale lang="nl" messages="http://qibla.googlecode.com/svn/trunk/nl_ALL.xml"/>
 		<Locale lang="tr" messages="http://qibla.googlecode.com/svn/trunk/tr_ALL.xml"/>
-    <Require feature="analytics"/>
+    <Require feature="com.google.gadgets.analytics"/>
 		<Require feature="minimessage"/>
 </ModulePrefs>
 
@@ -50,32 +50,42 @@
    default_value="000000"/>
 
 <Content type="html"><![CDATA[
-<style>
-.mmlib_table__MODULE_ID__ {background-color:#__UP_bg__;color:#__UP_fg__;}
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {padding-left:20px;}
-.mmlib_table__MODULE_ID__ td {vertical-align:top;}
-#form__MODULE_ID__ {margin:0;padding:0;height:20px;}
-#geocode__MODULE_ID__ {width:99%;padding:0;margin:0;border-style:none;}
-#geocode__MODULE_ID__ td {height:20px;padding:0;margin:0;}
-#address__MODULE_ID__ {width:100%;height:20px;color:gray;font-size:70%;}
-#buttons__MODULE_ID__ {width:32px;}
-#address_btn__MODULE_ID__, #help_btn__MODULE_ID__{border-style:none;margin-left:3px;}
-#map__MODULE_ID__ {width:100%;height:280px;}
+<style type="text/css">
+.mmlib_table{background-color:#__UP_bg__;color:#__UP_fg__;}
+.mmlib_table ol,.mmlib_table ul{padding-left:20px;}
+.mmlib_table td{vertical-align:top;}
+form,div,table,input,img{margin:0;padding:0;}
+#container{border:3px solid #BBB;}
+#form{height:20px;}
+#geo{width:100%;border:0 none;}
+#geo td{height:20px;}
+#addr{width:100%;height:20px;line-height:20px;color:#6784C7;font-weight:bold;padding-left:2px;}
+#addr:focus{outline:none;}
+#btns{width:40px;}
+input,#infoBtn{border:0 none;}
+#searchBtn,#infoBtn{vertical-align:bottom;}
+#map{width:100%;height:254px;}
+#versions{float:left;width:100%;height:20px;line-height:20px;font-size:70%;font-weight:bold;color:white;text-align:center;}
+#versions div{float:left;width:50%;}
+#versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
+#desktop{background-color:#4B8C52;}
+#mobile{background-color:#3C64B6;}
+#versions a,#versions a:visited{text-decoration:none;color:white;}
 </style>
 <!--[if lte IE 8]>
-<style>
-.mmlib_table__MODULE_ID__ ol, .mmlib_table__MODULE_ID__ ul {margin-left:25px; padding-left:0;}
+<style type="text/css">
+.mmlib_table ol,.mmlib_table ul{margin-left:25px;padding-left:0;}
 </style>
 <![endif]-->
 
 <script src="http://www.google.com/jsapi?key=ABQIAAAAufA8C5iylDOIdtxKEJcoQBTZqGWfQErE9pT-IucjscazSdFnjBSJw14CqW91AnwlAcqbsWOlBhbz4w" type="text/javascript"></script>
 <script type="text/javascript">
 google.load("maps", "2");
-var process__MODULE_ID__;
+var process;
 
-function Process__MODULE_ID__() {
+function Process() {
   var obj = this;
-  var prefs = new gadgets.Prefs(__MODULE_ID__);
+  var prefs = new gadgets.Prefs();
   var country = prefs.getString("country");
   var zoom = prefs.getInt("zoom");
 	var ipZoom = 9;
@@ -85,9 +95,9 @@ function Process__MODULE_ID__() {
   var poly;
   var qbLatLng = new google.maps.LatLng(21.422504762754905, 39.8261421918869);
   var geo = new google.maps.ClientGeocoder();
-  var miniMsg = new gadgets.MiniMessage(__MODULE_ID__);
+  var miniMsg = new gadgets.MiniMessage();
   var msg;
-  var trackCode = "UA-1059171-6";
+  var ga = new _IG_GA("UA-1059171-6");
   var analysed = false;
   var fileLoc = "http://qibla.googlecode.com/svn/trunk";
 
@@ -97,7 +107,7 @@ function Process__MODULE_ID__() {
 
   this.init = function() {
     if (google.maps.BrowserIsCompatible()) {
-      map = new google.maps.Map2(document.getElementById("map__MODULE_ID__"));
+      map = new google.maps.Map2(document.getElementById("map"));
       var xIco = new google.maps.Icon();
       xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
       xIco.iconSize = new google.maps.Size(21, 21);
@@ -127,11 +137,11 @@ function Process__MODULE_ID__() {
       google.maps.Event.addListener(map, "moveend", showOverlays);
       google.maps.Event.addListener(map, "dragend", function() {
         if (!analysed)
-          _IG_Analytics(trackCode, "/qibla/navigate");
+          ga.reportPageview("/qibla/navigate");
         analysed = true;
       });
 
-      _IG_Analytics(trackCode, "/qibla");
+      ga.reportPageview("/qibla");
     }
   };
 
@@ -169,7 +179,7 @@ function Process__MODULE_ID__() {
     geo.getLocations(pAddr, procAddr);
 		miniMsg.dismissMessage(msg);
     if (!analysed)
-      _IG_Analytics(trackCode, "/qibla/geocode");
+      ga.reportPageview("/qibla/geocode");
     analysed = true;
     return false;
   };
@@ -180,7 +190,7 @@ function Process__MODULE_ID__() {
         var msgTxt = "";
         for (var i=0; i < pAddrResult.Placemark.length; i++) {
           var p = pAddrResult.Placemark[i].Point.coordinates;
-          msgTxt += "<a href='javascript:process__MODULE_ID__.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
+          msgTxt += "<a href='javascript:process.centreLatLng(" + p[1] + "," + p[0] + "," + geoZoom + ")'>" + pAddrResult.Placemark[i].address + "</a>";
           if (i != pAddrResult.Placemark.length - 1)
             msgTxt += "<br />";
         }
@@ -213,19 +223,19 @@ function Process__MODULE_ID__() {
        listify(prefs.getMsg("help2_2")) + listify(prefs.getMsg("help2_3")) + "</ul></li><li>" +
        prefs.getMsg("help3") + "<ul>" + listify(prefs.getMsg("help3_1")) + listify(prefs.getMsg("help3_2")) +
        listify(prefs.getMsg("help3_3")) + listify(prefs.getMsg("help3_4")) + "</ul></li></ol>" + 
-			 "<br /><a href='http://gmodules.com/ig/creator?url=" + this.getFileLoc() + "/qibla.xml'>" + prefs.getMsg("add") + "</a>";
+			 "<br /><a href='http://gmodules.com/ig/creator?url=" + this.getFileLoc() + "/qibla.xml' target='_blank'>" + prefs.getMsg("add") + "</a>";
 		var div = document.createElement("div");
 		div.innerHTML = msgTxt;
 		msg = miniMsg.createDismissibleMessage(div);		
-    _IG_Analytics(trackCode, "/qibla/help");
+    ga.reportPageview("/qibla/help");
   };
 }
 
-function init__MODULE_ID__() {
-  process__MODULE_ID__ = new Process__MODULE_ID__();
-  process__MODULE_ID__.init();
-  document.getElementById("address_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/forward.gif");
-  document.getElementById("help_btn__MODULE_ID__").src = gadgets.io.getProxyUrl(process__MODULE_ID__.getFileLoc() + "/question.gif");
+function init() {
+  process = new Process();
+  process.init();
+  document.getElementById("searchBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/globe.png");
+  document.getElementById("infoBtn").src = gadgets.io.getProxyUrl(process.getFileLoc() + "/info.png");
 }
 
 function addrFocus(pAddr) {
@@ -235,17 +245,19 @@ function addrFocus(pAddr) {
 function addrBlur(pAddr) {
   if (pAddr.value == "") pAddr.value = "__MSG_address__";
 }
-gadgets.util.registerOnLoadHandler(init__MODULE_ID__);
+gadgets.util.registerOnLoadHandler(init);
 </script>
-<form id="form__MODULE_ID__" action="qibla.html" method="post" onsubmit="process__MODULE_ID__.showAddr(this.address__MODULE_ID__.value); return false">
-<table id="geocode__MODULE_ID__" cellpadding="0" cellspacing="0">
-<tr><td><input type="text" id="address__MODULE_ID__" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
-<td id="buttons__MODULE_ID__">
-<input type="image" src="" id="address_btn__MODULE_ID__" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="15" height="11" />
-<a href="javascript:process__MODULE_ID__.help()"><img src="" id="help_btn__MODULE_ID__" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="7" height="11" /></a>
-</td></tr></table>
+<div id="container">
+<form id="form" action="qibla.html" method="post" onsubmit="return process.showAddr(this.addr.value)">
+<table id="geo" cellpadding="0" cellspacing="0">
+<tr><td><input type="text" id="addr" maxlength="80" value="__MSG_address__" onfocus="addrFocus(this)" onblur="addrBlur(this)"/></td>
+<td id="btns"><input type="image" src="" id="searchBtn" alt="__MSG_address_btn__" title="__MSG_address_btn__" width="20" height="20" /><a href="javascript:process.help()"><img src="" id="infoBtn" alt="__MSG_help_btn__" title="__MSG_help_btn__" width="20" height="20" /></a></td></tr></table>
 </form>
-<div id="map__MODULE_ID__"></div>
+<div id="map"></div>
+</div>
+<div id="versions">
+<div id="desktop"><a href="http://www.qib.la" title="Desktop version">www.qib.la</a></div><div id="mobile"><a href="http://m.qib.la" title="Mobile version">m.qib.la</a></div>
+</div>
 ]]>
 </Content>
 </Module>
