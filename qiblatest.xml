@@ -67,9 +67,11 @@ input,#infoBtn{border:0 none;}
 #map{width:100%;height:254px;}
 #versions{float:left;width:100%;height:20px;line-height:20px;font-size:70%;font-weight:bold;color:white;text-align:center;}
 #versions div{float:left;width:50%;}
-#versions div:hover{color:#CCC;background-color:#FFCC00 !important;}
+#versions div:hover{background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
 #mobile{background-color:#3C64B6;}
+#desktop:hover{color:#4B8C52;}
+#mobile:hover{color:#3C64B6;}
 #versions a,#versions a:visited{text-decoration:none;color:white;}
 </style>
 <!--[if lte IE 8]>
@@ -109,10 +111,10 @@ function Process() {
     if (google.maps.BrowserIsCompatible()) {
       map = new google.maps.Map2(document.getElementById("map"));
       var xIco = new google.maps.Icon();
-      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/xhairs.png");
-      xIco.iconSize = new google.maps.Size(20, 20);
-      xIco.iconAnchor = new google.maps.Point(10, 10);
-      xIco.infoWindowAnchor = new google.maps.Point(10, 10);
+      xIco.image = gadgets.io.getProxyUrl(this.getFileLoc() + "/crosshairs.gif");
+      xIco.iconSize = new google.maps.Size(21, 21);
+      xIco.iconAnchor = new google.maps.Point(11, 11);
+      xIco.infoWindowAnchor = new google.maps.Point(11, 11);
       xMrk = new google.maps.Marker(new google.maps.LatLng(0, 0), {icon: xIco, clickable: false, title: prefs.getMsg("crosshairs")});
       var loc = google.loader.ClientLocation;
       var lat;
