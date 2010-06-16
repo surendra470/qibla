@@ -67,9 +67,9 @@ input,#infoBtn{border:0 none;}
 #map{width:100%;height:254px;}
 #versions{float:left;width:100%;height:20px;line-height:20px;font-size:70%;font-weight:bold;color:white;text-align:center;}
 #versions div{float:left;width:50%;}
-#versions a:hover{background-color:#FFCC00 !important;}
-#desktop{background-color:#4B8C52;}
-#mobile{background-color:#3C64B6;}
+#versions a:hover div{background-color:#FFCC00 !important;}
+#desktop div{background-color:#4B8C52;}
+#mobile div{background-color:#3C64B6;}
 #desktop:hover{color:#4B8C52;}
 #mobile:hover{color:#3C64B6;}
 #versions a:link,#versions a:visited{text-decoration:none;color:white;}
