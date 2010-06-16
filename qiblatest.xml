@@ -67,12 +67,12 @@ input,#infoBtn{border:0 none;}
 #map{width:100%;height:254px;}
 #versions{float:left;width:100%;height:20px;line-height:20px;font-size:70%;font-weight:bold;color:white;text-align:center;}
 #versions div{float:left;width:50%;}
-#versions div:hover{background-color:#FFCC00 !important;color:white !important;}
+#versions a:hover{background-color:#FFCC00 !important;}
 #desktop{background-color:#4B8C52;}
 #mobile{background-color:#3C64B6;}
-#versions a:link,#versions a:visited{text-decoration:none;}
-#desktop a:hover{color:#4B8C52;}
-#mobile a:hover{color:#3C64B6;}
+#desktop:hover{color:#4B8C52;}
+#mobile:hover{color:#3C64B6;}
+#versions a:link,#versions a:visited{text-decoration:none;color:white;}
 </style>
 <!--[if lte IE 8]>
 <style type="text/css">
@@ -258,7 +258,7 @@ gadgets.util.registerOnLoadHandler(init);
 <div id="map"></div>
 </div>
 <div id="versions">
-<div id="desktop"><a href="http://www.qib.la" title="Desktop version">www.qib.la</a></div><div id="mobile"><a href="http://m.qib.la" title="Mobile version">m.qib.la</a></div>
+<a href="http://www.qib.la" id="desktop" title="Desktop version"><div>www.qib.la</div></a><a href="http://m.qib.la" id="mobile" title="Mobile version"><div>m.qib.la</div></a>
 </div>
 ]]>
 </Content>
