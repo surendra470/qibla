@@ -1,0 +1,1 @@
+Discover the Qibla direction without needing a compass.
